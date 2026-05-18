@@ -41,10 +41,7 @@ const envSchema = z
       .string()
       .optional()
       .default('gpt-5.4-nano'),
-    OPENAI_MODEL_RECEIPT_EXTRACT: z
-      .string()
-      .optional()
-      .default('gpt-5.4-nano'),
+    OPENAI_MODEL_RECEIPT_EXTRACT: z.string().optional().default('gpt-5.4-nano'),
   })
   .superRefine((env, ctx) => {
     if (

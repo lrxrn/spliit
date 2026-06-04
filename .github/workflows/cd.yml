@@ -66,3 +66,8 @@ jobs:
             ghcr.io/${{ env.REPO }}:latest
           provenance: false # Disable provenance to avoid unknown/unknown
           sbom: false       # Disable sbom to avoid unknown/unknown
+          # Persist layers across runs so a flaky step (e.g. a transient
+          # network error during the slow emulated arm64 build) doesn't throw
+          # away the whole build, and subsequent builds are much faster.
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

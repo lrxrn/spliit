@@ -12,10 +12,10 @@ COPY ./scripts ./scripts
 COPY ./prisma ./prisma
 
 RUN apk add --no-cache openssl && \
-    npm ci --ignore-scripts \
-      --fetch-retries=5 --fetch-retry-factor=2 \
-      --fetch-retry-mintimeout=20000 --fetch-retry-maxtimeout=120000 \
-      --fetch-timeout=600000 && \
+    ( for i in 1 2 3 4 5; do \
+        npm ci --ignore-scripts --fetch-retries=5 --fetch-timeout=600000 && exit 0; \
+        echo "npm ci failed (attempt $i), retrying in 10s..."; sleep 10; \
+      done; exit 1 ) && \
     npx prisma generate
 
 COPY ./src ./src
@@ -34,10 +34,11 @@ WORKDIR /usr/app
 COPY --from=base /usr/app/package.json /usr/app/package-lock.json /usr/app/next.config.mjs ./
 COPY --from=base /usr/app/prisma ./prisma
 
-RUN npm ci --omit=dev --omit=optional --ignore-scripts \
-      --fetch-retries=5 --fetch-retry-factor=2 \
-      --fetch-retry-mintimeout=20000 --fetch-retry-maxtimeout=120000 \
-      --fetch-timeout=600000 && \
+RUN ( for i in 1 2 3 4 5; do \
+        npm ci --omit=dev --omit=optional --ignore-scripts \
+          --fetch-retries=5 --fetch-timeout=600000 && exit 0; \
+        echo "npm ci failed (attempt $i), retrying in 10s..."; sleep 10; \
+      done; exit 1 ) && \
     npx prisma generate
 
 FROM node:21-alpine AS runner

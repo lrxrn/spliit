@@ -33,6 +33,10 @@ jobs:
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
+        with:
+          # Pin the emulator: newer QEMU releases crash Node/V8 under arm64
+          # emulation ("Illegal instruction"). v7.0.0 emulates aarch64 reliably.
+          image: tonistiigi/binfmt:qemu-v7.0.0
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3

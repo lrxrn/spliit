@@ -5,6 +5,8 @@ on:
     tags:
       - '*'
     branches:
+      # TEMP: lets this branch trigger a build for verification. Remove once
+      # the native multi-arch build is confirmed working.
       - 'claude/spliit-docker-registry-9zEkX'
   workflow_dispatch:
     inputs:
@@ -13,9 +15,21 @@ on:
         required: false
         default: '1.19.1-openai'
 
+env:
+  REGISTRY: ghcr.io
+
 jobs:
-  build-and-push-image:
-    runs-on: ubuntu-latest
+  build:
+    name: Build (${{ matrix.platform }})
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: linux/amd64
+            runner: ubuntu-latest
+          - platform: linux/arm64
+            runner: ubuntu-24.04-arm
     permissions:
       contents: read
       packages: write
@@ -24,26 +38,61 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Login to Github Container Registry
+      - name: Downcase repo
+        run: echo "REPO=${GITHUB_REPOSITORY@L}" >> "${GITHUB_ENV}"
+
+      - name: Prepare platform pair
+        run: |
+          platform="${{ matrix.platform }}"
+          echo "PLATFORM_PAIR=${platform//\//-}" >> "${GITHUB_ENV}"
+
+      - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
         with:
-          registry: ghcr.io
+          registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-        with:
-          # Pin the emulator: newer QEMU releases crash Node/V8 under arm64
-          # emulation ("Illegal instruction"). v7.0.0 emulates aarch64 reliably.
-          image: tonistiigi/binfmt:qemu-v7.0.0
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Downcase repo
+      - name: Build and push by digest
+        id: build
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: ${{ matrix.platform }}
+          provenance: false # Disable provenance to avoid unknown/unknown
+          sbom: false       # Disable sbom to avoid unknown/unknown
+          cache-from: type=gha,scope=${{ env.PLATFORM_PAIR }}
+          cache-to: type=gha,mode=max,scope=${{ env.PLATFORM_PAIR }}
+          outputs: type=image,name=${{ env.REGISTRY }}/${{ env.REPO }},push-by-digest=true,name-canonical=true,push=true
+
+      - name: Export digest
         run: |
-          echo "REPO=${GITHUB_REPOSITORY@L}" >> "${GITHUB_ENV}"
+          mkdir -p /tmp/digests
+          digest="${{ steps.build.outputs.digest }}"
+          touch "/tmp/digests/${digest#sha256:}"
+
+      - name: Upload digest
+        uses: actions/upload-artifact@v4
+        with:
+          name: digests-${{ env.PLATFORM_PAIR }}
+          path: /tmp/digests/*
+          if-no-files-found: error
+          retention-days: 1
+
+  merge:
+    name: Merge and publish manifest
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Downcase repo
+        run: echo "REPO=${GITHUB_REPOSITORY@L}" >> "${GITHUB_ENV}"
 
       - name: Determine image tag
         run: |
@@ -55,19 +104,30 @@ jobs:
             echo "IMAGE_TAG=1.19.1-openai" >> "${GITHUB_ENV}"
           fi
 
-      - name: Build and push
-        uses: docker/build-push-action@v6
+      - name: Download digests
+        uses: actions/download-artifact@v4
         with:
-          context: .
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: |
-            ghcr.io/${{ env.REPO }}:${{ env.IMAGE_TAG }}
-            ghcr.io/${{ env.REPO }}:latest
-          provenance: false # Disable provenance to avoid unknown/unknown
-          sbom: false       # Disable sbom to avoid unknown/unknown
-          # Persist layers across runs so a flaky step (e.g. a transient
-          # network error during the slow emulated arm64 build) doesn't throw
-          # away the whole build, and subsequent builds are much faster.
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          path: /tmp/digests
+          pattern: digests-*
+          merge-multiple: true
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Create manifest list and push
+        working-directory: /tmp/digests
+        run: |
+          docker buildx imagetools create \
+            -t "${REGISTRY}/${REPO}:${IMAGE_TAG}" \
+            -t "${REGISTRY}/${REPO}:latest" \
+            $(printf "${REGISTRY}/${REPO}@sha256:%s " *)
+
+      - name: Inspect image
+        run: docker buildx imagetools inspect "${REGISTRY}/${REPO}:${IMAGE_TAG}"

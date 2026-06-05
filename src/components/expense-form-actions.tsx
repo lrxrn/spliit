@@ -39,8 +39,9 @@ export async function extractCategoryFromTitle(description: string) {
         role: 'system',
         content: `
         Task: Receive expense titles. Respond with the most relevant category ID from the list below as a JSON object with a "categoryId" field.
-        Categories: ${categories.map((category) =>
-          formatCategoryForAIPrompt(category),
+        Categories: ${categories.map(
+          (category: (typeof categories)[number]) =>
+            formatCategoryForAIPrompt(category),
         )}
         Fallback: If no category fits, default to ${formatCategoryForAIPrompt(
           categories[0],
@@ -55,9 +56,13 @@ export async function extractCategoryFromTitle(description: string) {
     ],
   })
   const messageContent = completion.choices.at(0)?.message.content
-  const parsed = messageContent ? JSON.parse(messageContent) : {}
+  const parsed = messageContent
+    ? (JSON.parse(messageContent) as { categoryId: number })
+    : null
   // ensure the returned id actually exists
-  const category = categories.find((c) => c.id === Number(parsed.categoryId))
+  const category = categories.find(
+    (c: (typeof categories)[number]) => c.id === Number(parsed?.categoryId),
+  )
   // fall back to first category (should be "General") if no category matches the output
   return { categoryId: category?.id || 0 }
 }

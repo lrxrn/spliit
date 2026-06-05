@@ -1,9 +1,8 @@
-'use server'
-import { getCategories } from '@/lib/api'
-import { env } from '@/lib/env'
-import { formatCategoryForAIPrompt } from '@/lib/utils'
-import OpenAI from 'openai'
-import { ChatCompletionCreateParamsNonStreaming } from 'openai/resources/index.mjs'
+‘use server’
+import { getCategories } from ‘@/lib/api’
+import { env } from ‘@/lib/env’
+import { formatCategoryForAIPrompt } from ‘@/lib/utils’
+import OpenAI from ‘openai’
 
 const openai = new OpenAI({
   apiKey: env.OPENAI_API_KEY,
@@ -11,41 +10,62 @@ const openai = new OpenAI({
 })
 
 export async function extractExpenseInformationFromImage(imageUrl: string) {
-  'use server'
+  ‘use server’
   const categories = await getCategories()
 
-  const body: ChatCompletionCreateParamsNonStreaming = {
+  const completion = await openai.chat.completions.create({
     model: env.OPENAI_MODEL_RECEIPT_EXTRACT,
+    response_format: {
+      type: ‘json_schema’,
+      json_schema: {
+        name: ‘receipt_response’,
+        strict: true,
+        schema: {
+          type: ‘object’,
+          properties: {
+            amount: { type: ‘number’ },
+            categoryId: { type: ‘string’ },
+            date: { type: ‘string’ },
+            title: { type: ‘string’ },
+          },
+          required: [‘amount’, ‘categoryId’, ‘date’, ‘title’],
+          additionalProperties: false,
+        },
+      },
+    },
     messages: [
       {
-        role: 'user',
+        role: ‘user’,
         content: [
           {
-            type: 'text',
+            type: ‘text’,
             text: `
               This image contains a receipt.
-              Read the total amount and store it as a non-formatted number without any other text or currency.
-              Then guess the category for this receipt among the following categories and store its ID: ${categories.map(
+              Read the total amount as a plain number without currency symbols.
+              Guess the category ID from this list: ${categories.map(
                 (category) => formatCategoryForAIPrompt(category),
               )}.
-              Guess the expense’s date and store it as yyyy-mm-dd.
-              Guess a title for the expense.
-              Return the amount, the category, the date and the title with just a comma between them, without anything else.`,
+              Guess the expense’s date in yyyy-mm-dd format.
+              Guess a short title for the expense.
+              Return a JSON object with fields: amount (number), categoryId (string), date (string), title (string).`,
           },
         ],
       },
       {
-        role: 'user',
-        content: [{ type: 'image_url', image_url: { url: imageUrl } }],
+        role: ‘user’,
+        content: [{ type: ‘image_url’, image_url: { url: imageUrl } }],
       },
     ],
-  }
-  const completion = await openai.chat.completions.create(body)
+  })
 
-  const [amountString, categoryId, date, title] = completion.choices
-    .at(0)
-    ?.message.content?.split(',') ?? [null, null, null, null]
-  return { amount: Number(amountString), categoryId, date, title }
+  const messageContent = completion.choices.at(0)?.message.content
+  const parsed = messageContent ? JSON.parse(messageContent) : {}
+  return {
+    amount: Number(parsed.amount),
+    categoryId: parsed.categoryId ?? null,
+    date: parsed.date ?? null,
+    title: parsed.title ?? null,
+  }
 }
 
 export type ReceiptExtractedInfo = Awaited<

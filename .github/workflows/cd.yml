@@ -4,6 +4,10 @@ on:
   push:
     tags:
       - '*'
+    branches:
+      # TEMP: lets this branch trigger a build for verification. Remove once
+      # the standalone image is confirmed working.
+      - 'claude/spliit-docker-registry-9zEkX'
   workflow_dispatch:
     inputs:
       tag:

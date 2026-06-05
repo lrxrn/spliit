@@ -113,7 +113,7 @@ NEXT_PUBLIC_ENABLE_RECEIPT_EXTRACT=true
 OPENAI_API_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
 
-The model defaults to `gpt-5.4-nano`. You can override it with the optional `OPENAI_MODEL_RECEIPT_EXTRACT` variable (e.g. `gpt-5.4-mini` for higher OCR accuracy on poor-quality photos).
+The model defaults to `gpt-5.4-nano`. You can override it with the optional `OPENAI_MODEL_RECEIPT_EXTRACT` variable (e.g. `gpt-5.4-mini` for higher OCR accuracy on poor-quality photos). The model must support [structured outputs](https://platform.openai.com/docs/guides/structured-outputs) — compatible models include `gpt-4o` (August 2024 snapshot or later) and the `gpt-5.x` series; older models (`gpt-4`, `gpt-4-turbo`, `gpt-3.5-turbo`) and reasoning models (`o1`, `o3`) are not supported.
 
 ### Deduce category from title
 
@@ -124,9 +124,9 @@ NEXT_PUBLIC_ENABLE_CATEGORY_EXTRACT=true
 OPENAI_API_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
 
-The model defaults to `gpt-5.4-nano`. You can override it with the optional `OPENAI_MODEL_CATEGORY_EXTRACT` variable.
+The model defaults to `gpt-5.4-nano`. You can override it with the optional `OPENAI_MODEL_CATEGORY_EXTRACT` variable. The same model requirements apply as above.
 
-To use a self-hosted or OpenAI-compatible provider for either feature, set the optional `OPENAI_BASE_URL` variable (when unset, the official OpenAI API is used).
+To use a self-hosted or OpenAI-compatible provider for either feature, set the optional `OPENAI_BASE_URL` variable (when unset, the official OpenAI API is used). The endpoint must also support the `json_schema` structured output format.
 
 ## License
 

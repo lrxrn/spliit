@@ -81,7 +81,7 @@
     "@types/content-disposition": "^0.5.8",
     "@types/jest": "^29.5.12",
     "@types/negotiator": "^0.6.3",
-    "@types/node": "^20",
+    "@types/node": "^24",
     "@types/pg": "^8.10.9",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
@@ -99,6 +99,6 @@
     "tailwindcss": "^3",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.3.3"
+    "typescript": "^6.0.3"
   }
 }

@@ -4,9 +4,6 @@ on:
   push:
     tags:
       - '*'
-    branches:
-      # TEMP: verify the Prisma CLI fix; removed once confirmed.
-      - 'claude/spliit-docker-registry-9zEkX'
   workflow_dispatch:
     inputs:
       tag:

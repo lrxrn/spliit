@@ -24,6 +24,9 @@ if (process.env.S3_UPLOAD_ENDPOINT) {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Emit a self-contained server (.next/standalone) with only the traced
+  // production files, so the runtime image stays small.
+  output: 'standalone',
   images: {
     remotePatterns
   },

@@ -52,7 +52,8 @@ export const expenseFormSchema = z
     expenseDate: z.coerce.date(),
     title: z
       .string({
-        error: (issue) => (issue.input === undefined ? 'titleRequired' : undefined),
+        error: (issue) =>
+          issue.input === undefined ? 'titleRequired' : undefined,
       })
       .min(2, 'min2'),
     category: z.coerce.number().default(0),
@@ -93,7 +94,8 @@ export const expenseFormSchema = z
       ])
       .optional(),
     paidBy: z.string({
-      error: (issue) => (issue.input === undefined ? 'paidByRequired' : undefined),
+      error: (issue) =>
+        issue.input === undefined ? 'paidByRequired' : undefined,
     }),
     paidFor: z
       .array(

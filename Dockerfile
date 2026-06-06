@@ -26,6 +26,26 @@ ENV NEXT_TELEMETRY_DISABLED=1
 COPY scripts/build.env .env
 RUN npm run build
 
+# Isolated install of the Prisma CLI (matching the build's version) with its
+# full dependency tree AND engine binaries. The base stage installs with
+# --ignore-scripts (the repo's postinstall runs migrate deploy, which can't run
+# at build time), so @prisma/engines never downloads the schema engine that
+# `migrate deploy` needs; and the CLI has deps outside the @prisma scope (e.g.
+# effect). This stage produces a complete, self-contained CLI for the runtime.
+FROM node:21-alpine AS prisma-cli
+WORKDIR /opt/prisma-cli
+ENV CHECKPOINT_DISABLE=1
+RUN apk add --no-cache openssl
+COPY --from=base /usr/app/node_modules/prisma/package.json ./_prisma.json
+RUN PV="$(node -p "require('./_prisma.json').version")" && \
+    rm -f ./_prisma.json && \
+    npm init -y >/dev/null 2>&1 && \
+    ( for i in 1 2 3 4 5; do \
+        npm install --no-audit --no-fund \
+          --fetch-retries=5 --fetch-timeout=600000 "prisma@${PV}" && exit 0; \
+        echo "prisma install attempt $i failed, retrying in 10s..."; sleep 10; \
+      done; exit 1 )
+
 FROM node:21-alpine AS runner
 
 EXPOSE 3000/tcp
@@ -44,14 +64,14 @@ RUN apk add --no-cache openssl
 COPY --from=base /usr/app/.next/standalone ./
 COPY --from=base /usr/app/.next/static ./.next/static
 COPY ./public ./public
-
-# Prisma bits the trace doesn't include but the app needs at runtime:
-# the generated client + query engine (for queries) and the CLI + engines
-# (for `migrate deploy` on startup), plus the schema and migrations.
 COPY --from=base /usr/app/prisma ./prisma
+
+# Prisma CLI + engines for `migrate deploy` on startup (complete closure).
+COPY --from=prisma-cli /opt/prisma-cli/node_modules ./node_modules
+# Prisma client for runtime queries: generated client + query engine (copied
+# last so they take precedence over anything from the CLI install).
 COPY --from=base /usr/app/node_modules/.prisma ./node_modules/.prisma
-COPY --from=base /usr/app/node_modules/@prisma ./node_modules/@prisma
-COPY --from=base /usr/app/node_modules/prisma ./node_modules/prisma
+COPY --from=base /usr/app/node_modules/@prisma/client ./node_modules/@prisma/client
 
 COPY ./scripts ./scripts
 

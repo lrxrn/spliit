@@ -55,9 +55,6 @@ export async function extractCategoryFromTitle(description: string) {
     ],
   })
   const messageContent = completion.choices.at(0)?.message.content
-  if (process.env.NODE_ENV !== 'production') {
-    console.debug('[extractCategoryFromTitle] raw model response:', messageContent)
-  }
   const parsed = messageContent
     ? (JSON.parse(messageContent) as { categoryId: number })
     : null

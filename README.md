@@ -77,6 +77,15 @@ The application has a health check endpoint that can be used to check if the app
 
 ## Opt-in features
 
+> **Enabling features at runtime (Docker):** Each opt-in feature has two flags —
+> a build-time `NEXT_PUBLIC_*` flag and a runtime `ENABLE_*` flag (e.g.
+> `NEXT_PUBLIC_ENABLE_CATEGORY_EXTRACT` and `ENABLE_CATEGORY_EXTRACT`). The
+> `NEXT_PUBLIC_*` flags are inlined into the bundle when the app is **built**, so
+> in a prebuilt image (e.g. the published Docker image) they cannot be turned on
+> at runtime. To enable a feature in a prebuilt image, set the non-public
+> `ENABLE_*` variant in the container environment — it is read at request time.
+> When you build the image yourself, either flag works.
+
 ### Expense documents
 
 Spliit offers users to upload images (to an AWS S3 bucket) and attach them to expenses. To enable this feature:
@@ -85,6 +94,7 @@ Spliit offers users to upload images (to an AWS S3 bucket) and attach them to ex
 - Update your environments variables with appropriate values:
 
 ```.env
+# Use ENABLE_EXPENSE_DOCUMENTS=true instead when configuring a prebuilt image at runtime.
 NEXT_PUBLIC_ENABLE_EXPENSE_DOCUMENTS=true
 S3_UPLOAD_KEY=AAAAAAAAAAAAAAAAAAAA
 S3_UPLOAD_SECRET=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -109,6 +119,7 @@ To enable the feature:
 - Update your environment variables with appropriate values:
 
 ```.env
+# Use ENABLE_RECEIPT_EXTRACT=true instead when configuring a prebuilt image at runtime.
 NEXT_PUBLIC_ENABLE_RECEIPT_EXTRACT=true
 OPENAI_API_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
@@ -120,6 +131,7 @@ The model defaults to `gpt-5.4-nano`. You can override it with the optional `OPE
 You can offer users to automatically deduce the expense category from the title. Since this feature relies on a OpenAI subscription, follow the signup instructions above and configure the following environment variables:
 
 ```.env
+# Use ENABLE_CATEGORY_EXTRACT=true instead when configuring a prebuilt image at runtime.
 NEXT_PUBLIC_ENABLE_CATEGORY_EXTRACT=true
 OPENAI_API_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```

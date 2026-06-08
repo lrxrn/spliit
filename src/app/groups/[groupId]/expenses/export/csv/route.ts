@@ -2,7 +2,7 @@ import { getCurrency } from '@/lib/currency'
 import { formatAmountAsDecimal, getCurrencyFromGroup } from '@/lib/utils'
 import { Parser } from '@json2csv/plainjs'
 import { PrismaClient } from '@prisma/client'
-import contentDisposition from 'content-disposition'
+import { create as contentDisposition } from 'content-disposition'
 import { NextResponse } from 'next/server'
 
 const splitModeLabel = {

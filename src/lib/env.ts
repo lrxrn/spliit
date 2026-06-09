@@ -2,7 +2,9 @@ import { ZodIssueCode, z } from 'zod'
 
 const interpretEnvVarAsBool = (val: unknown): boolean => {
   if (typeof val !== 'string') return false
-  return ['true', 'yes', '1', 'on'].includes(val.toLowerCase())
+  // .trim() guards against trailing whitespace such as the CR from a CRLF
+  // (Windows) .env file, which would otherwise make "true\r" !== "true".
+  return ['true', 'yes', '1', 'on'].includes(val.trim().toLowerCase())
 }
 
 const envSchema = z
@@ -53,13 +55,20 @@ const envSchema = z
       interpretEnvVarAsBool,
       z.boolean().default(false),
     ),
-    OPENAI_API_KEY: z.string().optional(),
-    OPENAI_BASE_URL: z.string().url().optional(),
+    // .trim() on these guards against a trailing CR from a CRLF (Windows) .env
+    // file: an OPENAI_API_KEY ending in "\r" would otherwise fail auth with 401.
+    OPENAI_API_KEY: z.string().trim().optional(),
+    OPENAI_BASE_URL: z.string().trim().url().optional(),
     OPENAI_MODEL_CATEGORY_EXTRACT: z
       .string()
+      .trim()
       .optional()
       .default('gpt-5.4-nano'),
-    OPENAI_MODEL_RECEIPT_EXTRACT: z.string().optional().default('gpt-5.4-nano'),
+    OPENAI_MODEL_RECEIPT_EXTRACT: z
+      .string()
+      .trim()
+      .optional()
+      .default('gpt-5.4-nano'),
   })
   .superRefine((env, ctx) => {
     const enableExpenseDocuments =

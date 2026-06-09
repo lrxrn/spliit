@@ -1,4 +1,4 @@
-import { env } from '@/lib/env'
+import { effectiveBaseUrl } from '@/lib/env'
 import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/groups/',
     },
-    sitemap: `${env.NEXT_PUBLIC_BASE_URL}/sitemap.xml`,
+    sitemap: `${effectiveBaseUrl}/sitemap.xml`,
   }
 }

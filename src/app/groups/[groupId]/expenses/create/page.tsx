@@ -2,6 +2,8 @@ import { CreateExpenseForm } from '@/app/groups/[groupId]/expenses/create-expens
 import { getRuntimeFeatureFlags } from '@/lib/featureFlags'
 import { Metadata } from 'next'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: 'Create Expense',
 }

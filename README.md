@@ -64,7 +64,7 @@ Here is the current state of translation:
 ## Run in a container
 
 1. Run `npm run build-image` to build the docker image from the Dockerfile
-2. Copy the file `container.env.example` as `container.env`
+2. Copy the file `container.env.example` as `container.env` and fill in the values
 3. Run `npm run start-container` to start the postgres and the spliit2 containers
 4. You can access the app by browsing to http://localhost:3000
 
@@ -75,6 +75,50 @@ The application has a health check endpoint that can be used to check if the app
 - `GET /api/health/readiness` or `GET /api/health` - Check if the application is ready to serve requests, including database connectivity.
 - `GET /api/health/liveness` - Check if the application is running, but not necessarily ready to serve requests.
 
+## Configuration
+
+All environment variables listed here are read at runtime. For a container deployment, set them in `container.env` or pass them with `docker run -e`. No rebuild is required.
+
+### Application URL
+
+Set `BASE_URL` to the public URL your instance is reachable at. It is used for SEO metadata, sitemaps, and Open Graph tags.
+
+```.env
+BASE_URL=https://spliit.example.com
+```
+
+Defaults to `http://localhost:3000` when not set.
+
+### Default currency
+
+Set `DEFAULT_CURRENCY_CODE` to pre-select a currency when users create a new group.
+
+```.env
+DEFAULT_CURRENCY_CODE=EUR
+```
+
+Defaults to `USD` when not set.
+
+### Migrating from `NEXT_PUBLIC_*` variables
+
+Earlier versions used `NEXT_PUBLIC_`-prefixed variables for the settings above. These were **inlined into the app at build time**, so they could not be changed in a prebuilt image (such as the published Docker image) — the only way to change them was to rebuild. The runtime variables below replace them and can be set at deploy time without a rebuild.
+
+Rename your variables as follows:
+
+| Old (build-time, `NEXT_PUBLIC_*`)     | New (runtime)              |
+| ------------------------------------- | -------------------------- |
+| `NEXT_PUBLIC_BASE_URL`                | `BASE_URL`                 |
+| `NEXT_PUBLIC_DEFAULT_CURRENCY_CODE`   | `DEFAULT_CURRENCY_CODE`    |
+| `NEXT_PUBLIC_ENABLE_EXPENSE_DOCUMENTS`| `ENABLE_EXPENSE_DOCUMENTS` |
+| `NEXT_PUBLIC_ENABLE_RECEIPT_EXTRACT`  | `ENABLE_RECEIPT_EXTRACT`   |
+| `NEXT_PUBLIC_ENABLE_CATEGORY_EXTRACT` | `ENABLE_CATEGORY_EXTRACT`  |
+
+Notes:
+
+- **The old variables still work** for backward compatibility — the new runtime variant simply takes precedence when both are set. You don't have to migrate immediately, but the `NEXT_PUBLIC_*` variants only take effect when you build the image yourself; in a prebuilt image they were frozen at build time and have no effect at runtime.
+- When migrating, drop the `NEXT_PUBLIC_` prefix and set the variable in your runtime environment (e.g. `container.env` or `docker run -e`). No rebuild is needed.
+- If your environment file was created on Windows, make sure it uses **LF line endings**. A trailing carriage return turns `true` into `true\r`, which silently disables a flag (and a key like `OPENAI_API_KEY` ending in `\r` will fail authentication).
+
 ## Opt-in features
 
 ### Expense documents
@@ -82,10 +126,10 @@ The application has a health check endpoint that can be used to check if the app
 Spliit offers users to upload images (to an AWS S3 bucket) and attach them to expenses. To enable this feature:
 
 - Follow the instructions in the _S3 bucket_ and _IAM user_ sections of [next-s3-upload](https://next-s3-upload.codingvalue.com/setup#s3-bucket) to create and set up an S3 bucket where images will be stored.
-- Update your environments variables with appropriate values:
+- Set the following environment variables:
 
 ```.env
-NEXT_PUBLIC_ENABLE_EXPENSE_DOCUMENTS=true
+ENABLE_EXPENSE_DOCUMENTS=true
 S3_UPLOAD_KEY=AAAAAAAAAAAAAAAAAAAA
 S3_UPLOAD_SECRET=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 S3_UPLOAD_BUCKET=name-of-s3-bucket
@@ -106,27 +150,27 @@ To enable the feature:
 
 - You must enable expense documents feature as well (see section above). That might change in the future, but for now we need to store images to make receipt scanning work.
 - Subscribe to OpenAI API and get access to a vision-capable model (you might need to buy credits in advance).
-- Update your environment variables with appropriate values:
+- Set the following environment variables:
 
 ```.env
-NEXT_PUBLIC_ENABLE_RECEIPT_EXTRACT=true
+ENABLE_RECEIPT_EXTRACT=true
 OPENAI_API_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
 
-The model defaults to `gpt-5.4-nano`. You can override it with the optional `OPENAI_MODEL_RECEIPT_EXTRACT` variable (e.g. `gpt-5.4-mini` for higher OCR accuracy on poor-quality photos).
+The model defaults to `gpt-5.4-nano`. You can override it with the optional `OPENAI_MODEL_RECEIPT_EXTRACT` variable (e.g. `gpt-5.4-mini` for higher OCR accuracy on poor-quality photos). The model must support [structured outputs](https://platform.openai.com/docs/guides/structured-outputs) — compatible models include `gpt-4o` (August 2024 snapshot or later) and the `gpt-5.x` series; older models (`gpt-4`, `gpt-4-turbo`, `gpt-3.5-turbo`) and reasoning models (`o1`, `o3`) are not supported.
 
 ### Deduce category from title
 
-You can offer users to automatically deduce the expense category from the title. Since this feature relies on a OpenAI subscription, follow the signup instructions above and configure the following environment variables:
+You can offer users to automatically deduce the expense category from the title. Since this feature relies on an OpenAI subscription, follow the signup instructions above and set the following environment variables:
 
 ```.env
-NEXT_PUBLIC_ENABLE_CATEGORY_EXTRACT=true
+ENABLE_CATEGORY_EXTRACT=true
 OPENAI_API_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
 
-The model defaults to `gpt-5.4-nano`. You can override it with the optional `OPENAI_MODEL_CATEGORY_EXTRACT` variable.
+The model defaults to `gpt-5.4-nano`. You can override it with the optional `OPENAI_MODEL_CATEGORY_EXTRACT` variable. The same model requirements apply as above.
 
-To use a self-hosted or OpenAI-compatible provider for either feature, set the optional `OPENAI_BASE_URL` variable (when unset, the official OpenAI API is used).
+To use a self-hosted or OpenAI-compatible provider for either feature, set the optional `OPENAI_BASE_URL` variable (when unset, the official OpenAI API is used). The endpoint must also support the `json_schema` structured output format.
 
 ## License
 

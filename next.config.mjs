@@ -30,12 +30,17 @@ const nextConfig = {
   images: {
     remotePatterns
   },
-  // Required to run in a codespace (see https://github.com/vercel/next.js/issues/58019)
   experimental: {
     serverActions: {
-        allowedOrigins: ['localhost:3000'],
+      // Allow server actions from the configured base URL and localhost.
+      // BASE_URL (runtime) takes precedence over NEXT_PUBLIC_BASE_URL (build-time);
+      // localhost:3000 covers local dev and same-host access.
+      allowedOrigins: (() => {
+        const base = process.env.BASE_URL || process.env.NEXT_PUBLIC_BASE_URL
+        return ['localhost:3000', ...(base ? [new URL(base).host] : [])]
+      })(),
     },
-},
+  },
 }
 
 export default withNextIntl(nextConfig)

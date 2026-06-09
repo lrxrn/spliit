@@ -99,6 +99,26 @@ DEFAULT_CURRENCY_CODE=EUR
 
 Defaults to `USD` when not set.
 
+### Migrating from `NEXT_PUBLIC_*` variables
+
+Earlier versions used `NEXT_PUBLIC_`-prefixed variables for the settings above. These were **inlined into the app at build time**, so they could not be changed in a prebuilt image (such as the published Docker image) — the only way to change them was to rebuild. The runtime variables below replace them and can be set at deploy time without a rebuild.
+
+Rename your variables as follows:
+
+| Old (build-time, `NEXT_PUBLIC_*`)     | New (runtime)              |
+| ------------------------------------- | -------------------------- |
+| `NEXT_PUBLIC_BASE_URL`                | `BASE_URL`                 |
+| `NEXT_PUBLIC_DEFAULT_CURRENCY_CODE`   | `DEFAULT_CURRENCY_CODE`    |
+| `NEXT_PUBLIC_ENABLE_EXPENSE_DOCUMENTS`| `ENABLE_EXPENSE_DOCUMENTS` |
+| `NEXT_PUBLIC_ENABLE_RECEIPT_EXTRACT`  | `ENABLE_RECEIPT_EXTRACT`   |
+| `NEXT_PUBLIC_ENABLE_CATEGORY_EXTRACT` | `ENABLE_CATEGORY_EXTRACT`  |
+
+Notes:
+
+- **The old variables still work** for backward compatibility — the new runtime variant simply takes precedence when both are set. You don't have to migrate immediately, but the `NEXT_PUBLIC_*` variants only take effect when you build the image yourself; in a prebuilt image they were frozen at build time and have no effect at runtime.
+- When migrating, drop the `NEXT_PUBLIC_` prefix and set the variable in your runtime environment (e.g. `container.env` or `docker run -e`). No rebuild is needed.
+- If your environment file was created on Windows, make sure it uses **LF line endings**. A trailing carriage return turns `true` into `true\r`, which silently disables a flag (and a key like `OPENAI_API_KEY` ending in `\r` will fail authentication).
+
 ## Opt-in features
 
 ### Expense documents

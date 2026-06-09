@@ -1,10 +1,10 @@
-import { env } from '@/lib/env'
+import { effectiveBaseUrl } from '@/lib/env'
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: env.NEXT_PUBLIC_BASE_URL,
+      url: effectiveBaseUrl,
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 1,

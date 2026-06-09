@@ -11,6 +11,10 @@ const envSchema = z
   .object({
     POSTGRES_URL_NON_POOLING: z.string().url(),
     POSTGRES_PRISMA_URL: z.string().url(),
+    // Runtime override for the public base URL. Read at server start, so it
+    // works in a prebuilt image without a rebuild. Takes precedence over
+    // NEXT_PUBLIC_BASE_URL (which is baked at build time).
+    BASE_URL: z.string().url().trim().optional(),
     NEXT_PUBLIC_BASE_URL: z
       .string()
       .optional()
@@ -31,7 +35,9 @@ const envSchema = z
       interpretEnvVarAsBool,
       z.boolean().default(false),
     ),
-    NEXT_PUBLIC_DEFAULT_CURRENCY_CODE: z.string().optional(),
+    // Runtime override for the default currency code used when creating a new
+    // group. Takes precedence over NEXT_PUBLIC_DEFAULT_CURRENCY_CODE.
+    DEFAULT_CURRENCY_CODE: z.string().trim().optional(),
     S3_UPLOAD_KEY: z.string().optional(),
     S3_UPLOAD_SECRET: z.string().optional(),
     S3_UPLOAD_BUCKET: z.string().optional(),
@@ -88,16 +94,21 @@ const envSchema = z
       ctx.addIssue({
         code: ZodIssueCode.custom,
         message:
-          'If (NEXT_PUBLIC_)ENABLE_EXPENSE_DOCUMENTS is specified, then S3_* must be specified too',
+          'If ENABLE_EXPENSE_DOCUMENTS is set, S3_UPLOAD_KEY, S3_UPLOAD_SECRET, S3_UPLOAD_BUCKET and S3_UPLOAD_REGION must be set too',
       })
     }
     if ((enableReceiptExtract || enableCategoryExtract) && !env.OPENAI_API_KEY) {
       ctx.addIssue({
         code: ZodIssueCode.custom,
         message:
-          'If (NEXT_PUBLIC_)ENABLE_RECEIPT_EXTRACT or (NEXT_PUBLIC_)ENABLE_CATEGORY_EXTRACT is specified, then OPENAI_API_KEY must be specified too',
+          'If ENABLE_RECEIPT_EXTRACT or ENABLE_CATEGORY_EXTRACT is set, OPENAI_API_KEY must be set too',
       })
     }
   })
 
 export const env = envSchema.parse(process.env)
+
+// The effective public base URL: runtime BASE_URL takes precedence over the
+// build-time-baked NEXT_PUBLIC_BASE_URL, making it possible to configure the
+// URL in a prebuilt Docker image without rebuilding.
+export const effectiveBaseUrl = env.BASE_URL ?? env.NEXT_PUBLIC_BASE_URL

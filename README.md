@@ -64,7 +64,7 @@ Here is the current state of translation:
 ## Run in a container
 
 1. Run `npm run build-image` to build the docker image from the Dockerfile
-2. Copy the file `container.env.example` as `container.env`
+2. Copy the file `container.env.example` as `container.env` and fill in the values
 3. Run `npm run start-container` to start the postgres and the spliit2 containers
 4. You can access the app by browsing to http://localhost:3000
 
@@ -75,27 +75,41 @@ The application has a health check endpoint that can be used to check if the app
 - `GET /api/health/readiness` or `GET /api/health` - Check if the application is ready to serve requests, including database connectivity.
 - `GET /api/health/liveness` - Check if the application is running, but not necessarily ready to serve requests.
 
-## Opt-in features
+## Configuration
 
-> **Enabling features at runtime (Docker):** Each opt-in feature has two flags —
-> a build-time `NEXT_PUBLIC_*` flag and a runtime `ENABLE_*` flag (e.g.
-> `NEXT_PUBLIC_ENABLE_CATEGORY_EXTRACT` and `ENABLE_CATEGORY_EXTRACT`). The
-> `NEXT_PUBLIC_*` flags are inlined into the bundle when the app is **built**, so
-> in a prebuilt image (e.g. the published Docker image) they cannot be turned on
-> at runtime. To enable a feature in a prebuilt image, set the non-public
-> `ENABLE_*` variant in the container environment — it is read at request time.
-> When you build the image yourself, either flag works.
+All environment variables listed here are read at runtime. For a container deployment, set them in `container.env` or pass them with `docker run -e`. No rebuild is required.
+
+### Application URL
+
+Set `BASE_URL` to the public URL your instance is reachable at. It is used for SEO metadata, sitemaps, and Open Graph tags.
+
+```.env
+BASE_URL=https://spliit.example.com
+```
+
+Defaults to `http://localhost:3000` when not set.
+
+### Default currency
+
+Set `DEFAULT_CURRENCY_CODE` to pre-select a currency when users create a new group.
+
+```.env
+DEFAULT_CURRENCY_CODE=EUR
+```
+
+Defaults to `USD` when not set.
+
+## Opt-in features
 
 ### Expense documents
 
 Spliit offers users to upload images (to an AWS S3 bucket) and attach them to expenses. To enable this feature:
 
 - Follow the instructions in the _S3 bucket_ and _IAM user_ sections of [next-s3-upload](https://next-s3-upload.codingvalue.com/setup#s3-bucket) to create and set up an S3 bucket where images will be stored.
-- Update your environments variables with appropriate values:
+- Set the following environment variables:
 
 ```.env
-# Use ENABLE_EXPENSE_DOCUMENTS=true instead when configuring a prebuilt image at runtime.
-NEXT_PUBLIC_ENABLE_EXPENSE_DOCUMENTS=true
+ENABLE_EXPENSE_DOCUMENTS=true
 S3_UPLOAD_KEY=AAAAAAAAAAAAAAAAAAAA
 S3_UPLOAD_SECRET=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 S3_UPLOAD_BUCKET=name-of-s3-bucket
@@ -116,11 +130,10 @@ To enable the feature:
 
 - You must enable expense documents feature as well (see section above). That might change in the future, but for now we need to store images to make receipt scanning work.
 - Subscribe to OpenAI API and get access to a vision-capable model (you might need to buy credits in advance).
-- Update your environment variables with appropriate values:
+- Set the following environment variables:
 
 ```.env
-# Use ENABLE_RECEIPT_EXTRACT=true instead when configuring a prebuilt image at runtime.
-NEXT_PUBLIC_ENABLE_RECEIPT_EXTRACT=true
+ENABLE_RECEIPT_EXTRACT=true
 OPENAI_API_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
 
@@ -128,11 +141,10 @@ The model defaults to `gpt-5.4-nano`. You can override it with the optional `OPE
 
 ### Deduce category from title
 
-You can offer users to automatically deduce the expense category from the title. Since this feature relies on a OpenAI subscription, follow the signup instructions above and configure the following environment variables:
+You can offer users to automatically deduce the expense category from the title. Since this feature relies on an OpenAI subscription, follow the signup instructions above and set the following environment variables:
 
 ```.env
-# Use ENABLE_CATEGORY_EXTRACT=true instead when configuring a prebuilt image at runtime.
-NEXT_PUBLIC_ENABLE_CATEGORY_EXTRACT=true
+ENABLE_CATEGORY_EXTRACT=true
 OPENAI_API_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
 

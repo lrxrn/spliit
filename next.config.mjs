@@ -33,14 +33,12 @@ const nextConfig = {
   experimental: {
     serverActions: {
       // Allow server actions from the configured base URL and localhost.
-      // NEXT_PUBLIC_BASE_URL covers custom domains / IPs used to access the
-      // container; localhost:3000 covers local dev and same-host access.
-      allowedOrigins: [
-        'localhost:3000',
-        ...(process.env.NEXT_PUBLIC_BASE_URL
-          ? [new URL(process.env.NEXT_PUBLIC_BASE_URL).host]
-          : []),
-      ],
+      // BASE_URL (runtime) takes precedence over NEXT_PUBLIC_BASE_URL (build-time);
+      // localhost:3000 covers local dev and same-host access.
+      allowedOrigins: (() => {
+        const base = process.env.BASE_URL || process.env.NEXT_PUBLIC_BASE_URL
+        return ['localhost:3000', ...(base ? [new URL(base).host] : [])]
+      })(),
     },
   },
 }

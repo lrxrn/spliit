@@ -463,7 +463,10 @@ export function ExpenseForm({
                       {...field}
                       onBlur={async () => {
                         field.onBlur() // avoid skipping other blur event listeners since we overwrite `field`
-                        if (runtimeFeatureFlags.enableCategoryExtract && field.value.trim()) {
+                        if (
+                          runtimeFeatureFlags.enableCategoryExtract &&
+                          field.value.trim()
+                        ) {
                           setCategoryLoading(true)
                           const { categoryId } = await extractCategoryFromTitle(
                             field.value,

@@ -97,7 +97,10 @@ const envSchema = z
           'If ENABLE_EXPENSE_DOCUMENTS is set, S3_UPLOAD_KEY, S3_UPLOAD_SECRET, S3_UPLOAD_BUCKET and S3_UPLOAD_REGION must be set too',
       })
     }
-    if ((enableReceiptExtract || enableCategoryExtract) && !env.OPENAI_API_KEY) {
+    if (
+      (enableReceiptExtract || enableCategoryExtract) &&
+      !env.OPENAI_API_KEY
+    ) {
       ctx.addIssue({
         code: ZodIssueCode.custom,
         message:

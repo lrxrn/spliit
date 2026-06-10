@@ -4,6 +4,7 @@ WORKDIR /usr/app
 COPY ./package.json \
      ./package-lock.json \
      ./next.config.mjs \
+     ./prisma.config.ts \
      ./tsconfig.json \
      ./reset.d.ts \
      ./tailwind.config.js \
@@ -15,11 +16,14 @@ RUN apk add --no-cache openssl && \
     ( for i in 1 2 3 4 5; do \
         npm ci --ignore-scripts --fetch-retries=5 --fetch-timeout=600000 && exit 0; \
         echo "npm ci failed (attempt $i), retrying in 10s..."; sleep 10; \
-      done; exit 1 ) && \
-    npx prisma generate
+      done; exit 1 )
 
 COPY ./src ./src
 COPY ./messages ./messages
+
+# Prisma 7 generates the client into ./src/generated/prisma (no longer into
+# node_modules), so generate after the source tree is in place.
+RUN npx prisma generate
 
 ENV NEXT_TELEMETRY_DISABLED=1
 
@@ -65,13 +69,15 @@ COPY --from=base /usr/app/.next/standalone ./
 COPY --from=base /usr/app/.next/static ./.next/static
 COPY ./public ./public
 COPY --from=base /usr/app/prisma ./prisma
+# Prisma config (used by `migrate deploy` to resolve the database connection,
+# which Prisma 7 reads from prisma.config.ts instead of the schema).
+COPY ./prisma.config.ts ./
 
-# Prisma CLI + engines for `migrate deploy` on startup (complete closure).
+# Prisma CLI for `migrate deploy` on startup (complete closure). The Rust-free
+# Prisma 7 client (generated into the bundled app code) and its runtime deps
+# (@prisma/client, @prisma/adapter-pg, pg) are already traced into the Next.js
+# standalone output above, so no separate client/engine copy is needed.
 COPY --from=prisma-cli /opt/prisma-cli/node_modules ./node_modules
-# Prisma client for runtime queries: generated client + query engine (copied
-# last so they take precedence over anything from the CLI install).
-COPY --from=base /usr/app/node_modules/.prisma ./node_modules/.prisma
-COPY --from=base /usr/app/node_modules/@prisma/client ./node_modules/@prisma/client
 
 COPY ./scripts ./scripts
 

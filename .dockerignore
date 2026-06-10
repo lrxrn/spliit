@@ -1,0 +1,14 @@
+# Dependencies and build output are produced inside the image.
+node_modules
+.next
+out
+build
+coverage
+
+# Prisma client is generated inside the image (Prisma 7 emits it here).
+src/generated
+
+# VCS / local
+.git
+*.tsbuildinfo
+.env*.local

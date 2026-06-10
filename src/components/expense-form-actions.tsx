@@ -1,6 +1,7 @@
 'use server'
 import { getCategories } from '@/lib/api'
 import { env } from '@/lib/env'
+import { getRuntimeFeatureFlags } from '@/lib/featureFlags'
 import { formatCategoryForAIPrompt } from '@/lib/utils'
 import OpenAI from 'openai'
 
@@ -14,6 +15,14 @@ const limit = 40 // ~10 tokens
 
 export async function extractCategoryFromTitle(description: string) {
   'use server'
+
+  // Enforce the feature flag server-side: the UI gate only hides the feature, it
+  // does not prevent the action endpoint from being invoked directly.
+  const { enableCategoryExtract } = await getRuntimeFeatureFlags()
+  if (!enableCategoryExtract) {
+    throw new Error('Category extraction is not enabled.')
+  }
+
   const categories = await getCategories()
 
   const completion = await openai.chat.completions.create({
@@ -54,9 +63,14 @@ export async function extractCategoryFromTitle(description: string) {
     ],
   })
   const messageContent = completion.choices.at(0)?.message.content
-  const parsed = messageContent
-    ? (JSON.parse(messageContent) as { categoryId: number })
-    : null
+  const parsed = (() => {
+    if (!messageContent) return null
+    try {
+      return JSON.parse(messageContent) as { categoryId: number }
+    } catch {
+      return null
+    }
+  })()
   // ensure the returned id actually exists
   const category = categories.find(
     (c: (typeof categories)[number]) => c.id === Number(parsed?.categoryId),

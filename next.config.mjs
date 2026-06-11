@@ -11,7 +11,7 @@ const remotePatterns = []
 // S3 Storage
 if (process.env.S3_UPLOAD_ENDPOINT) {
   // custom endpoint for providers other than AWS
-  const url = new URL(process.env.S3_UPLOAD_ENDPOINT);
+  const url = new URL(process.env.S3_UPLOAD_ENDPOINT)
   remotePatterns.push({
     hostname: url.hostname,
   })
@@ -27,8 +27,11 @@ const nextConfig = {
   // Emit a self-contained server (.next/standalone) with only the traced
   // production files, so the runtime image stays small.
   output: 'standalone',
+  // Enable the React Compiler for automatic memoization (stable in Next.js 16).
+  // Requires the babel-plugin-react-compiler dev dependency.
+  reactCompiler: true,
   images: {
-    remotePatterns
+    remotePatterns,
   },
   experimental: {
     serverActions: {

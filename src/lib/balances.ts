@@ -1,5 +1,5 @@
+import { Participant } from '@/generated/prisma/browser'
 import { getGroupExpenses } from '@/lib/api'
-import { Participant } from '@prisma/client'
 import { match } from 'ts-pattern'
 
 export type Balances = Record<

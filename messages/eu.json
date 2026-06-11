@@ -447,5 +447,10 @@
     "other": {
       "heading": "Beste monetak"
     }
+  },
+  "Pwa": {
+    "updateTitle": "Eguneraketa eskuragarri",
+    "updateDescription": "Spliit-en bertsio berri bat eskuragarri dago.",
+    "reload": "Birkargatu"
   }
 }

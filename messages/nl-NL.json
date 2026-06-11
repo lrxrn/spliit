@@ -455,5 +455,10 @@
       "heading": "Andere valuta"
     },
     "search": "Valuta zoeken..."
+  },
+  "Pwa": {
+    "updateTitle": "Update beschikbaar",
+    "updateDescription": "Er is een nieuwe versie van Spliit beschikbaar.",
+    "reload": "Opnieuw laden"
   }
 }

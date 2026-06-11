@@ -385,5 +385,10 @@
       "TV/Phone/Internet": "TV/Telefon/İnternet",
       "Water": "Su"
     }
+  },
+  "Pwa": {
+    "updateTitle": "Güncelleme mevcut",
+    "updateDescription": "Spliit'in yeni bir sürümü mevcut.",
+    "reload": "Yeniden yükle"
   }
 }

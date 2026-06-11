@@ -447,5 +447,10 @@
     "other": {
       "heading": "その他の通貨"
     }
+  },
+  "Pwa": {
+    "updateTitle": "アップデートが利用可能です",
+    "updateDescription": "Spliit の新しいバージョンが利用可能です。",
+    "reload": "再読み込み"
   }
 }

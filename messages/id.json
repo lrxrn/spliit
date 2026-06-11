@@ -447,5 +447,10 @@
       "TV/Phone/Internet": "TV/HP/Internet",
       "Water": "Air"
     }
+  },
+  "Pwa": {
+    "updateTitle": "Pembaruan tersedia",
+    "updateDescription": "Versi baru Spliit tersedia.",
+    "reload": "Muat ulang"
   }
 }

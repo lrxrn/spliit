@@ -385,5 +385,10 @@
       "TV/Phone/Internet": "電視/電話/網路",
       "Water": "水費"
     }
+  },
+  "Pwa": {
+    "updateTitle": "有可用更新",
+    "updateDescription": "Spliit 有新版本可用。",
+    "reload": "重新載入"
   }
 }

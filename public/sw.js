@@ -41,7 +41,10 @@ self.addEventListener('install', (event) => {
       await Promise.allSettled(
         PRECACHE_URLS.map((url) => cache.add(new Request(url, { cache: 'reload' }))),
       )
-      await self.skipWaiting()
+      // Note: we intentionally do NOT call skipWaiting() here. A new worker
+      // stays in the "waiting" state until the page explicitly tells it to
+      // activate (see the message handler below), which lets the UI prompt the
+      // user to reload instead of swapping assets out from under a live page.
     })(),
   )
 })

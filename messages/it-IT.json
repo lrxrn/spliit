@@ -409,5 +409,10 @@
       "TV/Phone/Internet": "TV/Telefono/Internet",
       "Water": "Acqua"
     }
+  },
+  "Pwa": {
+    "updateTitle": "Aggiornamento disponibile",
+    "updateDescription": "È disponibile una nuova versione di Spliit.",
+    "reload": "Ricarica"
   }
 }

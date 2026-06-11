@@ -447,5 +447,10 @@
     "other": {
       "heading": "מטבעות אחרים"
     }
+  },
+  "Pwa": {
+    "updateTitle": "עדכון זמין",
+    "updateDescription": "גרסה חדשה של Spliit זמינה.",
+    "reload": "טען מחדש"
   }
 }

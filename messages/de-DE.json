@@ -57,6 +57,13 @@
       "create": "Erstelle eine",
       "orAsk": "oder bitte einen Freund, dir einen Link zu einer Existierenden zu schicken."
     },
+    "GlobalBalance": {
+      "title": "Deine Gesamtbilanz",
+      "description": "Deine zusammengefasste Bilanz über alle deine Gruppen.",
+      "owedToYou": "Du bekommst",
+      "youOwe": "Du schuldest",
+      "settledUp": "Über alle deine Gruppen hinweg ist alles ausgeglichen."
+    },
     "recent": "Letzte Gruppen",
     "starred": "Favorisierte Gruppen",
     "archived": "Archivierte Gruppen",

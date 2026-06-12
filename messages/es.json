@@ -57,6 +57,13 @@
       "create": "Crea uno",
       "orAsk": "o pídele a un amigo que te envíe el enlace a uno ya existente."
     },
+    "GlobalBalance": {
+      "title": "Tu saldo total",
+      "description": "Tu saldo combinado en todos tus grupos.",
+      "owedToYou": "Te deben",
+      "youOwe": "Debes",
+      "settledUp": "Estás al día en todos tus grupos."
+    },
     "recent": "Grupos recientes",
     "starred": "Grupos favoritos",
     "archived": "Grupos archivados",

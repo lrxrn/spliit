@@ -120,6 +120,12 @@
       "create": "Crea",
       "creating": "Sto creando…",
       "cancel": "Annulla"
+    },
+    "CurrencyCodeField": {
+      "label": "Valuta principale",
+      "createDescription": "Tutti gli importi e i saldi saranno in questa valuta.",
+      "editDescription": "Tutti gli importi e i saldi saranno in questa valuta. La modifica NON convertirà le spese già inserite, tranne quando la valuta ha \"unità minori\" diverse da quella attuale (ad es. passando dal dollaro statunitense allo yen giapponese)",
+      "customOption": "Personalizzata"
     }
   },
   "ExpenseForm": {
@@ -140,20 +146,16 @@
         "label": "Ricevuta da",
         "description": "Seleziona il partecipante che ha ricevuto l'entrata."
       },
-      "recurrenceRule": {
-        "label": "Spesa ricorrente",
-        "description": "Seleziona quanto spesso deve ripetersi.",
-        "none": "Mai",
-        "daily": "Giornaliera",
-        "weekly": "Settimanale",
-        "monthly": "Mensile"
-      },
       "paidFor": {
         "title": "Ricevuto per",
         "description": "Seleziona per chi è stato ricevuto il reddito."
       },
       "splitModeDescription": "Seleziona come dividere l'entrata.",
-      "attachDescription": "Vedi ed allega la ricevuta per l'entrata."
+      "attachDescription": "Vedi ed allega la ricevuta per l'entrata.",
+      "currencyField": {
+        "label": "Valuta dell'entrata",
+        "description": "La valuta in cui è stata ricevuta l'entrata."
+      }
     },
     "Expense": {
       "create": "Crea spesa",
@@ -186,7 +188,11 @@
         "description": "Seleleziona per chi è stato pagato."
       },
       "splitModeDescription": "Seleziona come dividere la spesa.",
-      "attachDescription": "Vedi ed allega la ricevuta per la spesa."
+      "attachDescription": "Vedi ed allega la ricevuta per la spesa.",
+      "currencyField": {
+        "label": "Valuta della spesa",
+        "description": "La valuta in cui è stata pagata la spesa."
+      }
     },
     "amountField": {
       "label": "Importo"
@@ -227,7 +233,25 @@
     "cancel": "Annulla",
     "reimbursement": "Rimborso",
     "conversionRateState": {
-      "refresh": "Aggiornare"
+      "refresh": "Aggiornare",
+      "loading": "Recupero dei tassi di cambio…",
+      "success": "Tassi ottenuti:",
+      "error": "Ops, non siamo riusciti a ottenere i tassi più recenti.",
+      "staleRate": "Tasso utilizzato:",
+      "noRate": "Inserisci un tasso personalizzato qui sotto.",
+      "currencyNotFound": "Ops, Frankfurter non ha il tasso per questa valuta in questa data.",
+      "noDate": "Inserisci la data della spesa per ottenere un tasso di conversione.",
+      "dateMismatch": "Tassi della data: {date}",
+      "customRate": "Tasso personalizzato in uso"
+    },
+    "conversionUnavailable": "Per impostare una valuta diversa per ogni spesa e convertire gli importi, seleziona una valuta non personalizzata per il gruppo.",
+    "originalAmountField": {
+      "label": "Importo da convertire"
+    },
+    "conversionRateField": {
+      "useApi": "Usa i tassi di Frankfurter",
+      "useCustom": "Usa un tasso personalizzato",
+      "label": "Tasso di cambio"
     }
   },
   "ExpenseDocumentsInput": {
@@ -341,7 +365,8 @@
     "paidForMin1": "La spesa deve essere pagata per almeno un partecipante.",
     "noZeroShares": "Tutti gli importi devono essere superiori a 0.",
     "amountSum": "La somma degli importi deve essere uguale all'importo della spesa.",
-    "percentageSum": "La somma delle percentuali deve essere uguale a 100."
+    "percentageSum": "La somma delle percentuali deve essere uguale a 100.",
+    "ratePositive": "Il tasso deve essere strettamente maggiore di zero."
   },
   "Categories": {
     "search": "Cerca categoria...",
@@ -410,6 +435,19 @@
       "Trash": "Rifiuti",
       "TV/Phone/Internet": "TV/Telefono/Internet",
       "Water": "Acqua"
+    }
+  },
+  "Currencies": {
+    "search": "Cerca valuta...",
+    "noCurrency": "Nessuna valuta trovata.",
+    "custom": {
+      "heading": "Personalizzata"
+    },
+    "common": {
+      "heading": "Più comuni"
+    },
+    "other": {
+      "heading": "Altre valute"
     }
   }
 }

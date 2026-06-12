@@ -146,14 +146,6 @@
         "label": "Reçu par",
         "description": "Sélectionnez le participant qui a reçu le revenu."
       },
-      "recurrenceRule": {
-        "label": "Récurrence de la dépense",
-        "description": "Sélectionnez la fréquence de répétition de la dépense.",
-        "none": "Aucune",
-        "daily": "Quotidienne",
-        "weekly": "Hebdomadaire",
-        "monthly": "Mensuelle"
-      },
       "paidFor": {
         "title": "Reçu pour",
         "description": "Sélectionnez pour qui le revenu a été reçu."

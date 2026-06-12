@@ -57,6 +57,13 @@
       "create": "创建一个群组",
       "orAsk": "或者让你的朋友发给你现有群组的链接。"
     },
+    "GlobalBalance": {
+      "title": "你的总余额",
+      "description": "你在所有群组中的合计余额。",
+      "owedToYou": "应收",
+      "youOwe": "应付",
+      "settledUp": "你在所有群组中均已结清。"
+    },
     "recent": "最近的群组",
     "starred": "已收藏的群组",
     "archived": "已归档的群组",

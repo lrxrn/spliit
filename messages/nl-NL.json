@@ -57,6 +57,13 @@
       "create": "Maak er één",
       "orAsk": "of vraag een vriend om je de link naar een bestaande groep te sturen."
     },
+    "GlobalBalance": {
+      "title": "Je totale saldo",
+      "description": "Je gecombineerde saldo over al je groepen.",
+      "owedToYou": "Je krijgt nog",
+      "youOwe": "Je bent verschuldigd",
+      "settledUp": "Je staat quitte in al je groepen."
+    },
     "recent": "Recente groepen",
     "starred": "Favoriete groepen",
     "archived": "Gearchiveerde groepen",

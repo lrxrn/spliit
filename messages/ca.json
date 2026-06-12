@@ -353,6 +353,8 @@
   "Share": {
     "title": "Compartir",
     "description": "Comparteix l'enllaç al grup amb altres participants perquè puguin veure el grup i afegir-hi despeses.",
+    "copyLink": "Copia l'enllaç",
+    "shareLink": "Comparteix l'enllaç",
     "warning": "Alerta!",
     "warningHelp": "Tothom qui tingui l'enllaç del grup podrà veure i editar les despeses. Comparteix-lo amb cautela!"
   },

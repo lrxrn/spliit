@@ -353,6 +353,8 @@
   "Share": {
     "title": "Partager",
     "description": "Pour que d'autres participants puissent voir le groupe et ajouter des dépenses, partagez son URL avec eux.",
+    "copyLink": "Copier le lien",
+    "shareLink": "Partager le lien",
     "warning": "Avertissement !",
     "warningHelp": "Toute personne ayant l'URL du groupe pourra voir et modifier les dépenses. Partagez avec prudence !"
   },

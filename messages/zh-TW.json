@@ -298,6 +298,8 @@
   "Share": {
     "title": "分享",
     "description": "將此網址分享給其他人以加入群組並查看及新增消費紀錄",
+    "copyLink": "複製連結",
+    "shareLink": "分享連結",
     "warning": "警告！",
     "warningHelp": "任何有此連結的人都可以看到及編輯消費紀錄。請小心使用！"
   },

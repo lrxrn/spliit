@@ -331,7 +331,9 @@
     "warningHelp": "그룹 URL을 가진 사람은 누구나 지출 내역을 보고 수정할 수 있어요. 조심해서 공유하세요!",
     "warning": "경고!",
     "title": "공유하기",
-    "description": "다른 참가자들이 그룹을 보고 지출을 추가할 수 있도록 URL을 공유해 주세요."
+    "description": "다른 참가자들이 그룹을 보고 지출을 추가할 수 있도록 URL을 공유해 주세요.",
+    "copyLink": "링크 복사",
+    "shareLink": "링크 공유"
   },
   "ExpenseCard": {
     "paidBy": "<strong>{paidBy}</strong>가 <paidFor></paidFor>를 위해 결제함",

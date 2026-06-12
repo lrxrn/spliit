@@ -353,6 +353,8 @@
   "Share": {
     "title": "Teilen",
     "description": "Teile die URL, damit andere Mitglieder die Gruppe sehen und Ausgaben hinzufügen können.",
+    "copyLink": "Link kopieren",
+    "shareLink": "Link teilen",
     "warning": "Achtung!",
     "warningHelp": "Jede Person mit der Gruppen-URL kann Ausgaben sehen und editieren. Teile den Link mit Bedacht!"
   },

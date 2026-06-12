@@ -358,6 +358,8 @@
   "Share": {
     "title": "Bagikan",
     "description": "Agar peserta lain dapat melihat grup dan menambahkan pengeluaran, bagikan URL-nya dengan mereka.",
+    "copyLink": "Salin tautan",
+    "shareLink": "Bagikan tautan",
     "warning": "Peringatan!",
     "warningHelp": "Setiap orang yang memiliki URL grup akan dapat melihat dan mengedit pengeluaran. Bagikan dengan hati-hati!"
   },

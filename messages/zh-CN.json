@@ -337,6 +337,8 @@
   "Share": {
     "title": "分享",
     "description": "请将此URL分享给其他群组成员，以使其可以查看群组并添加消费。",
+    "copyLink": "复制链接",
+    "shareLink": "分享链接",
     "warning": "警告！",
     "warningHelp": "任何持有群组URL的个体都有能够查看并编辑消费。请谨慎分享！"
   },

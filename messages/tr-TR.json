@@ -298,6 +298,8 @@
   "Share": {
     "title": "Paylaş",
     "description": "Diğer katılımcıların grubu görmesi ve masraf ekleyebilmesi için onlarla bu grubun URL'sini paylaşın.",
+    "copyLink": "Bağlantıyı kopyala",
+    "shareLink": "Bağlantıyı paylaş",
     "warning": "Uyarı!",
     "warningHelp": "Grubun URL'sine sahip olan herkes masrafları görebilir ve düzenleyebilir. Lütfen paylaşırken dikkatli olun!"
   },

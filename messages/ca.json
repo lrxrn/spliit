@@ -146,14 +146,6 @@
         "label": "Pagat per",
         "description": "Selecciona la participant que ha fet el pagament."
       },
-      "recurrenceRule": {
-        "label": "Recurrència de la despesa",
-        "description": "Selecciona amb quina freqüència cal que es repeteixi la despesa.",
-        "none": "Puntual",
-        "daily": "Diària",
-        "weekly": "Setmanal",
-        "monthly": "Mensual"
-      },
       "paidFor": {
         "title": "Pagat per a",
         "description": "Selecciona per a qui s'ha efectuat el pagament."
@@ -353,6 +345,8 @@
   "Share": {
     "title": "Compartir",
     "description": "Comparteix l'enllaç al grup amb altres participants perquè puguin veure el grup i afegir-hi despeses.",
+    "copyLink": "Copia l'enllaç",
+    "shareLink": "Comparteix l'enllaç",
     "warning": "Alerta!",
     "warningHelp": "Tothom qui tingui l'enllaç del grup podrà veure i editar les despeses. Comparteix-lo amb cautela!"
   },

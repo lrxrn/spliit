@@ -307,6 +307,8 @@
   "Share": {
     "title": "Udostępnij",
     "description": "Aby inni uczestnicy mogli zobaczyć grupę i dodać wydatki, udostępnij im jej adres URL.",
+    "copyLink": "Kopiuj link",
+    "shareLink": "Udostępnij link",
     "warning": "Uwaga!",
     "warningHelp": "Każda osoba posiadająca adres URL grupy będzie mogła przeglądać i edytować wydatki. Udostępniaj ostrożnie!"
   },

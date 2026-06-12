@@ -269,6 +269,42 @@
       "name_plural": "South African rand",
       "rounding": 0,
       "decimal_digits": 2
+    },
+    "COP": {
+      "name": "Peso Kolombia",
+      "symbol_native": "$",
+      "symbol": "CO$",
+      "code": "COP",
+      "name_plural": "Colombian pesos",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "VND": {
+      "name": "Dong Vietnam",
+      "symbol_native": "₫",
+      "symbol": "₫",
+      "code": "VND",
+      "name_plural": "Vietnamese dong",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "MKD": {
+      "name": "Denar Makedonia",
+      "symbol_native": "MKD",
+      "symbol": "MKD",
+      "code": "MKD",
+      "name_plural": "Macedonian denari",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MYR": {
+      "name": "Ringgit Malaysia",
+      "symbol_native": "RM",
+      "symbol": "RM",
+      "code": "MYR",
+      "name_plural": "Malaysian ringgits",
+      "rounding": 0,
+      "decimal_digits": 2
     }
   },
   "ca": {
@@ -539,6 +575,42 @@
       "symbol": "R",
       "code": "ZAR",
       "name_plural": "South African rand",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "COP": {
+      "name": "peso colombià",
+      "symbol_native": "$",
+      "symbol": "CO$",
+      "code": "COP",
+      "name_plural": "Colombian pesos",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "VND": {
+      "name": "dong vietnamita",
+      "symbol_native": "₫",
+      "symbol": "₫",
+      "code": "VND",
+      "name_plural": "Vietnamese dong",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "MKD": {
+      "name": "denar macedoni",
+      "symbol_native": "MKD",
+      "symbol": "MKD",
+      "code": "MKD",
+      "name_plural": "Macedonian denari",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MYR": {
+      "name": "ringgit de Malàisia",
+      "symbol_native": "RM",
+      "symbol": "RM",
+      "code": "MYR",
+      "name_plural": "Malaysian ringgits",
       "rounding": 0,
       "decimal_digits": 2
     }
@@ -813,6 +885,42 @@
       "name_plural": "South African rand",
       "rounding": 0,
       "decimal_digits": 2
+    },
+    "COP": {
+      "name": "kolumbijské peso",
+      "symbol_native": "$",
+      "symbol": "CO$",
+      "code": "COP",
+      "name_plural": "Colombian pesos",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "VND": {
+      "name": "vietnamský dong",
+      "symbol_native": "₫",
+      "symbol": "₫",
+      "code": "VND",
+      "name_plural": "Vietnamese dong",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "MKD": {
+      "name": "makedonský denár",
+      "symbol_native": "MKD",
+      "symbol": "MKD",
+      "code": "MKD",
+      "name_plural": "Macedonian denari",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MYR": {
+      "name": "malajsijský ringgit",
+      "symbol_native": "RM",
+      "symbol": "RM",
+      "code": "MYR",
+      "name_plural": "Malaysian ringgits",
+      "rounding": 0,
+      "decimal_digits": 2
     }
   },
   "de-DE": {
@@ -1083,6 +1191,42 @@
       "symbol": "R",
       "code": "ZAR",
       "name_plural": "South African rand",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "COP": {
+      "name": "Kolumbianischer Peso",
+      "symbol_native": "$",
+      "symbol": "CO$",
+      "code": "COP",
+      "name_plural": "Colombian pesos",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "VND": {
+      "name": "Vietnamesischer Dong",
+      "symbol_native": "₫",
+      "symbol": "₫",
+      "code": "VND",
+      "name_plural": "Vietnamese dong",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "MKD": {
+      "name": "Mazedonischer Denar",
+      "symbol_native": "MKD",
+      "symbol": "MKD",
+      "code": "MKD",
+      "name_plural": "Macedonian denari",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MYR": {
+      "name": "Malaysischer Ringgit",
+      "symbol_native": "RM",
+      "symbol": "RM",
+      "code": "MYR",
+      "name_plural": "Malaysian ringgits",
       "rounding": 0,
       "decimal_digits": 2
     }
@@ -1357,6 +1501,42 @@
       "name_plural": "South African rand",
       "rounding": 0,
       "decimal_digits": 2
+    },
+    "COP": {
+      "name": "Colombian Peso",
+      "symbol_native": "$",
+      "symbol": "CO$",
+      "code": "COP",
+      "name_plural": "Colombian pesos",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "VND": {
+      "name": "Vietnamese Dong",
+      "symbol_native": "₫",
+      "symbol": "₫",
+      "code": "VND",
+      "name_plural": "Vietnamese dong",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "MKD": {
+      "name": "Macedonian Denar",
+      "symbol_native": "MKD",
+      "symbol": "MKD",
+      "code": "MKD",
+      "name_plural": "Macedonian denari",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MYR": {
+      "name": "Malaysian Ringgit",
+      "symbol_native": "RM",
+      "symbol": "RM",
+      "code": "MYR",
+      "name_plural": "Malaysian ringgits",
+      "rounding": 0,
+      "decimal_digits": 2
     }
   },
   "es": {
@@ -1627,6 +1807,42 @@
       "symbol": "R",
       "code": "ZAR",
       "name_plural": "South African rand",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "COP": {
+      "name": "peso colombiano",
+      "symbol_native": "$",
+      "symbol": "CO$",
+      "code": "COP",
+      "name_plural": "Colombian pesos",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "VND": {
+      "name": "dong",
+      "symbol_native": "₫",
+      "symbol": "₫",
+      "code": "VND",
+      "name_plural": "Vietnamese dong",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "MKD": {
+      "name": "dinar macedonio",
+      "symbol_native": "MKD",
+      "symbol": "MKD",
+      "code": "MKD",
+      "name_plural": "Macedonian denari",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MYR": {
+      "name": "ringit",
+      "symbol_native": "RM",
+      "symbol": "RM",
+      "code": "MYR",
+      "name_plural": "Malaysian ringgits",
       "rounding": 0,
       "decimal_digits": 2
     }
@@ -1901,6 +2117,42 @@
       "name_plural": "South African rand",
       "rounding": 0,
       "decimal_digits": 2
+    },
+    "COP": {
+      "name": "Kolonbiako pesoa",
+      "symbol_native": "$",
+      "symbol": "CO$",
+      "code": "COP",
+      "name_plural": "Colombian pesos",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "VND": {
+      "name": "Vietnameko donga",
+      "symbol_native": "₫",
+      "symbol": "₫",
+      "code": "VND",
+      "name_plural": "Vietnamese dong",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "MKD": {
+      "name": "Mazedoniako dinarra",
+      "symbol_native": "MKD",
+      "symbol": "MKD",
+      "code": "MKD",
+      "name_plural": "Macedonian denari",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MYR": {
+      "name": "Malaysiako ringgita",
+      "symbol_native": "RM",
+      "symbol": "RM",
+      "code": "MYR",
+      "name_plural": "Malaysian ringgits",
+      "rounding": 0,
+      "decimal_digits": 2
     }
   },
   "fr-FR": {
@@ -2171,6 +2423,42 @@
       "symbol": "R",
       "code": "ZAR",
       "name_plural": "South African rand",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "COP": {
+      "name": "peso colombien",
+      "symbol_native": "$",
+      "symbol": "CO$",
+      "code": "COP",
+      "name_plural": "Colombian pesos",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "VND": {
+      "name": "dông vietnamien",
+      "symbol_native": "₫",
+      "symbol": "₫",
+      "code": "VND",
+      "name_plural": "Vietnamese dong",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "MKD": {
+      "name": "denar macédonien",
+      "symbol_native": "MKD",
+      "symbol": "MKD",
+      "code": "MKD",
+      "name_plural": "Macedonian denari",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MYR": {
+      "name": "ringgit malais",
+      "symbol_native": "RM",
+      "symbol": "RM",
+      "code": "MYR",
+      "name_plural": "Malaysian ringgits",
       "rounding": 0,
       "decimal_digits": 2
     }
@@ -2445,6 +2733,42 @@
       "name_plural": "South African rand",
       "rounding": 0,
       "decimal_digits": 2
+    },
+    "COP": {
+      "name": "peso colombiano",
+      "symbol_native": "$",
+      "symbol": "CO$",
+      "code": "COP",
+      "name_plural": "Colombian pesos",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "VND": {
+      "name": "dong vietnamita",
+      "symbol_native": "₫",
+      "symbol": "₫",
+      "code": "VND",
+      "name_plural": "Vietnamese dong",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "MKD": {
+      "name": "denar macedone",
+      "symbol_native": "MKD",
+      "symbol": "MKD",
+      "code": "MKD",
+      "name_plural": "Macedonian denari",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MYR": {
+      "name": "ringgit malese",
+      "symbol_native": "RM",
+      "symbol": "RM",
+      "code": "MYR",
+      "name_plural": "Malaysian ringgits",
+      "rounding": 0,
+      "decimal_digits": 2
     }
   },
   "nl-NL": {
@@ -2715,6 +3039,42 @@
       "symbol": "R",
       "code": "ZAR",
       "name_plural": "South African rand",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "COP": {
+      "name": "Colombiaanse peso",
+      "symbol_native": "$",
+      "symbol": "CO$",
+      "code": "COP",
+      "name_plural": "Colombian pesos",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "VND": {
+      "name": "Vietnamese dong",
+      "symbol_native": "₫",
+      "symbol": "₫",
+      "code": "VND",
+      "name_plural": "Vietnamese dong",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "MKD": {
+      "name": "Macedonische denar",
+      "symbol_native": "MKD",
+      "symbol": "MKD",
+      "code": "MKD",
+      "name_plural": "Macedonian denari",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MYR": {
+      "name": "Maleisische ringgit",
+      "symbol_native": "RM",
+      "symbol": "RM",
+      "code": "MYR",
+      "name_plural": "Malaysian ringgits",
       "rounding": 0,
       "decimal_digits": 2
     }
@@ -2989,6 +3349,42 @@
       "name_plural": "South African rand",
       "rounding": 0,
       "decimal_digits": 2
+    },
+    "COP": {
+      "name": "peso kolumbijskie",
+      "symbol_native": "$",
+      "symbol": "CO$",
+      "code": "COP",
+      "name_plural": "Colombian pesos",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "VND": {
+      "name": "dong wietnamski",
+      "symbol_native": "₫",
+      "symbol": "₫",
+      "code": "VND",
+      "name_plural": "Vietnamese dong",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "MKD": {
+      "name": "denar macedoński",
+      "symbol_native": "MKD",
+      "symbol": "MKD",
+      "code": "MKD",
+      "name_plural": "Macedonian denari",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MYR": {
+      "name": "ringgit malezyjski",
+      "symbol_native": "RM",
+      "symbol": "RM",
+      "code": "MYR",
+      "name_plural": "Malaysian ringgits",
+      "rounding": 0,
+      "decimal_digits": 2
     }
   },
   "pt": {
@@ -3259,6 +3655,42 @@
       "symbol": "R",
       "code": "ZAR",
       "name_plural": "South African rand",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "COP": {
+      "name": "Peso colombiano",
+      "symbol_native": "$",
+      "symbol": "CO$",
+      "code": "COP",
+      "name_plural": "Colombian pesos",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "VND": {
+      "name": "Dong vietnamita",
+      "symbol_native": "₫",
+      "symbol": "₫",
+      "code": "VND",
+      "name_plural": "Vietnamese dong",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "MKD": {
+      "name": "Dinar macedônio",
+      "symbol_native": "MKD",
+      "symbol": "MKD",
+      "code": "MKD",
+      "name_plural": "Macedonian denari",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MYR": {
+      "name": "Ringgit malaio",
+      "symbol_native": "RM",
+      "symbol": "RM",
+      "code": "MYR",
+      "name_plural": "Malaysian ringgits",
       "rounding": 0,
       "decimal_digits": 2
     }
@@ -3533,6 +3965,42 @@
       "name_plural": "South African rand",
       "rounding": 0,
       "decimal_digits": 2
+    },
+    "COP": {
+      "name": "Peso colombiano",
+      "symbol_native": "$",
+      "symbol": "CO$",
+      "code": "COP",
+      "name_plural": "Colombian pesos",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "VND": {
+      "name": "Dong vietnamita",
+      "symbol_native": "₫",
+      "symbol": "₫",
+      "code": "VND",
+      "name_plural": "Vietnamese dong",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "MKD": {
+      "name": "Dinar macedônio",
+      "symbol_native": "MKD",
+      "symbol": "MKD",
+      "code": "MKD",
+      "name_plural": "Macedonian denari",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MYR": {
+      "name": "Ringgit malaio",
+      "symbol_native": "RM",
+      "symbol": "RM",
+      "code": "MYR",
+      "name_plural": "Malaysian ringgits",
+      "rounding": 0,
+      "decimal_digits": 2
     }
   },
   "ro": {
@@ -3803,6 +4271,42 @@
       "symbol": "R",
       "code": "ZAR",
       "name_plural": "South African rand",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "COP": {
+      "name": "peso columbian",
+      "symbol_native": "$",
+      "symbol": "CO$",
+      "code": "COP",
+      "name_plural": "Colombian pesos",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "VND": {
+      "name": "dong vietnamez",
+      "symbol_native": "₫",
+      "symbol": "₫",
+      "code": "VND",
+      "name_plural": "Vietnamese dong",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "MKD": {
+      "name": "dinar macedonean",
+      "symbol_native": "MKD",
+      "symbol": "MKD",
+      "code": "MKD",
+      "name_plural": "Macedonian denari",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MYR": {
+      "name": "ringgit malaiezian",
+      "symbol_native": "RM",
+      "symbol": "RM",
+      "code": "MYR",
+      "name_plural": "Malaysian ringgits",
       "rounding": 0,
       "decimal_digits": 2
     }
@@ -4077,6 +4581,42 @@
       "name_plural": "South African rand",
       "rounding": 0,
       "decimal_digits": 2
+    },
+    "COP": {
+      "name": "Kolumbian peso",
+      "symbol_native": "$",
+      "symbol": "CO$",
+      "code": "COP",
+      "name_plural": "Colombian pesos",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "VND": {
+      "name": "Vietnamin dong",
+      "symbol_native": "₫",
+      "symbol": "₫",
+      "code": "VND",
+      "name_plural": "Vietnamese dong",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "MKD": {
+      "name": "Makedonian denaari",
+      "symbol_native": "MKD",
+      "symbol": "MKD",
+      "code": "MKD",
+      "name_plural": "Macedonian denari",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MYR": {
+      "name": "Malesian ringgit",
+      "symbol_native": "RM",
+      "symbol": "RM",
+      "code": "MYR",
+      "name_plural": "Malaysian ringgits",
+      "rounding": 0,
+      "decimal_digits": 2
     }
   },
   "tr-TR": {
@@ -4347,6 +4887,42 @@
       "symbol": "R",
       "code": "ZAR",
       "name_plural": "South African rand",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "COP": {
+      "name": "Kolombiya Pesosu",
+      "symbol_native": "$",
+      "symbol": "CO$",
+      "code": "COP",
+      "name_plural": "Colombian pesos",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "VND": {
+      "name": "Vietnam Dongu",
+      "symbol_native": "₫",
+      "symbol": "₫",
+      "code": "VND",
+      "name_plural": "Vietnamese dong",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "MKD": {
+      "name": "Makedonya Dinarı",
+      "symbol_native": "MKD",
+      "symbol": "MKD",
+      "code": "MKD",
+      "name_plural": "Macedonian denari",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MYR": {
+      "name": "Malezya Ringgiti",
+      "symbol_native": "RM",
+      "symbol": "RM",
+      "code": "MYR",
+      "name_plural": "Malaysian ringgits",
       "rounding": 0,
       "decimal_digits": 2
     }
@@ -4621,6 +5197,42 @@
       "name_plural": "South African rand",
       "rounding": 0,
       "decimal_digits": 2
+    },
+    "COP": {
+      "name": "Колумбийское песо",
+      "symbol_native": "$",
+      "symbol": "CO$",
+      "code": "COP",
+      "name_plural": "Colombian pesos",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "VND": {
+      "name": "Вьетнамский донг",
+      "symbol_native": "₫",
+      "symbol": "₫",
+      "code": "VND",
+      "name_plural": "Vietnamese dong",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "MKD": {
+      "name": "Македонский денар",
+      "symbol_native": "MKD",
+      "symbol": "MKD",
+      "code": "MKD",
+      "name_plural": "Macedonian denari",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MYR": {
+      "name": "Малайзийский ринггит",
+      "symbol_native": "RM",
+      "symbol": "RM",
+      "code": "MYR",
+      "name_plural": "Malaysian ringgits",
+      "rounding": 0,
+      "decimal_digits": 2
     }
   },
   "uk-UA": {
@@ -4891,6 +5503,42 @@
       "symbol": "R",
       "code": "ZAR",
       "name_plural": "South African rand",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "COP": {
+      "name": "колумбійський песо",
+      "symbol_native": "$",
+      "symbol": "CO$",
+      "code": "COP",
+      "name_plural": "Colombian pesos",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "VND": {
+      "name": "вʼєтнамський донг",
+      "symbol_native": "₫",
+      "symbol": "₫",
+      "code": "VND",
+      "name_plural": "Vietnamese dong",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "MKD": {
+      "name": "македонський денар",
+      "symbol_native": "MKD",
+      "symbol": "MKD",
+      "code": "MKD",
+      "name_plural": "Macedonian denari",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MYR": {
+      "name": "малайзійський рингіт",
+      "symbol_native": "RM",
+      "symbol": "RM",
+      "code": "MYR",
+      "name_plural": "Malaysian ringgits",
       "rounding": 0,
       "decimal_digits": 2
     }
@@ -5165,6 +5813,42 @@
       "name_plural": "South African rand",
       "rounding": 0,
       "decimal_digits": 2
+    },
+    "COP": {
+      "name": "פסו קולומביאני",
+      "symbol_native": "$",
+      "symbol": "CO$",
+      "code": "COP",
+      "name_plural": "Colombian pesos",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "VND": {
+      "name": "דונג וייטנאמי",
+      "symbol_native": "₫",
+      "symbol": "₫",
+      "code": "VND",
+      "name_plural": "Vietnamese dong",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "MKD": {
+      "name": "דינר מקדוני",
+      "symbol_native": "MKD",
+      "symbol": "MKD",
+      "code": "MKD",
+      "name_plural": "Macedonian denari",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MYR": {
+      "name": "רינגיט מלזי",
+      "symbol_native": "RM",
+      "symbol": "RM",
+      "code": "MYR",
+      "name_plural": "Malaysian ringgits",
+      "rounding": 0,
+      "decimal_digits": 2
     }
   },
   "ko": {
@@ -5435,6 +6119,42 @@
       "symbol": "R",
       "code": "ZAR",
       "name_plural": "South African rand",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "COP": {
+      "name": "콜롬비아 페소",
+      "symbol_native": "$",
+      "symbol": "CO$",
+      "code": "COP",
+      "name_plural": "Colombian pesos",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "VND": {
+      "name": "베트남 동",
+      "symbol_native": "₫",
+      "symbol": "₫",
+      "code": "VND",
+      "name_plural": "Vietnamese dong",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "MKD": {
+      "name": "마케도니아 디나르",
+      "symbol_native": "MKD",
+      "symbol": "MKD",
+      "code": "MKD",
+      "name_plural": "Macedonian denari",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MYR": {
+      "name": "말레이시아 링깃",
+      "symbol_native": "RM",
+      "symbol": "RM",
+      "code": "MYR",
+      "name_plural": "Malaysian ringgits",
       "rounding": 0,
       "decimal_digits": 2
     }
@@ -5709,6 +6429,42 @@
       "name_plural": "South African rand",
       "rounding": 0,
       "decimal_digits": 2
+    },
+    "COP": {
+      "name": "コロンビア ペソ",
+      "symbol_native": "$",
+      "symbol": "CO$",
+      "code": "COP",
+      "name_plural": "Colombian pesos",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "VND": {
+      "name": "ベトナム ドン",
+      "symbol_native": "₫",
+      "symbol": "₫",
+      "code": "VND",
+      "name_plural": "Vietnamese dong",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "MKD": {
+      "name": "マケドニア デナル",
+      "symbol_native": "MKD",
+      "symbol": "MKD",
+      "code": "MKD",
+      "name_plural": "Macedonian denari",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MYR": {
+      "name": "マレーシア リンギット",
+      "symbol_native": "RM",
+      "symbol": "RM",
+      "code": "MYR",
+      "name_plural": "Malaysian ringgits",
+      "rounding": 0,
+      "decimal_digits": 2
     }
   },
   "zh-CN": {
@@ -5981,6 +6737,42 @@
       "name_plural": "South African rand",
       "rounding": 0,
       "decimal_digits": 2
+    },
+    "COP": {
+      "name": "哥伦比亚比索",
+      "symbol_native": "$",
+      "symbol": "CO$",
+      "code": "COP",
+      "name_plural": "Colombian pesos",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "VND": {
+      "name": "越南盾",
+      "symbol_native": "₫",
+      "symbol": "₫",
+      "code": "VND",
+      "name_plural": "Vietnamese dong",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "MKD": {
+      "name": "马其顿第纳尔",
+      "symbol_native": "MKD",
+      "symbol": "MKD",
+      "code": "MKD",
+      "name_plural": "Macedonian denari",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MYR": {
+      "name": "马来西亚林吉特",
+      "symbol_native": "RM",
+      "symbol": "RM",
+      "code": "MYR",
+      "name_plural": "Malaysian ringgits",
+      "rounding": 0,
+      "decimal_digits": 2
     }
   },
   "zh-TW": {
@@ -6251,6 +7043,42 @@
       "symbol": "R",
       "code": "ZAR",
       "name_plural": "South African rand",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "COP": {
+      "name": "哥伦比亚比索",
+      "symbol_native": "$",
+      "symbol": "CO$",
+      "code": "COP",
+      "name_plural": "Colombian pesos",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "VND": {
+      "name": "越南盾",
+      "symbol_native": "₫",
+      "symbol": "₫",
+      "code": "VND",
+      "name_plural": "Vietnamese dong",
+      "rounding": 0,
+      "decimal_digits": 0
+    },
+    "MKD": {
+      "name": "马其顿第纳尔",
+      "symbol_native": "MKD",
+      "symbol": "MKD",
+      "code": "MKD",
+      "name_plural": "Macedonian denari",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MYR": {
+      "name": "马来西亚林吉特",
+      "symbol_native": "RM",
+      "symbol": "RM",
+      "code": "MYR",
+      "name_plural": "Malaysian ringgits",
       "rounding": 0,
       "decimal_digits": 2
     }

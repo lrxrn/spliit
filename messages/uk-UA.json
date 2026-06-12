@@ -387,5 +387,10 @@
       "TV/Phone/Internet": "ТБ/Телефон/Інтернет",
       "Water": "Вода"
     }
+  },
+  "Pwa": {
+    "updateTitle": "Доступне оновлення",
+    "updateDescription": "Доступна нова версія Spliit.",
+    "reload": "Оновити"
   }
 }

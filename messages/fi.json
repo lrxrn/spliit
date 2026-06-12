@@ -377,5 +377,10 @@
       "TV/Phone/Internet": "TV/Puhelin/Internet",
       "Water": "Vesi"
     }
+  },
+  "Pwa": {
+    "updateTitle": "Päivitys saatavilla",
+    "updateDescription": "Spliitistä on saatavilla uusi versio.",
+    "reload": "Lataa uudelleen"
   }
 }

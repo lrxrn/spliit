@@ -449,5 +449,10 @@
     "other": {
       "heading": "Другие валюты"
     }
+  },
+  "Pwa": {
+    "updateTitle": "Доступно обновление",
+    "updateDescription": "Доступна новая версия Spliit.",
+    "reload": "Обновить"
   }
 }

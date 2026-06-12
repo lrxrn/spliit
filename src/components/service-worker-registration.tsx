@@ -3,7 +3,7 @@
 import { ToastAction } from '@/components/ui/toast'
 import { useToast } from '@/components/ui/use-toast'
 import { useTranslations } from 'next-intl'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 // How often to ask the browser to check for a new service worker (1 hour),
 // so long-lived tabs notice deploys without a manual refresh.
@@ -21,6 +21,16 @@ export function ServiceWorkerRegistration() {
   const { toast } = useToast()
   const t = useTranslations('Pwa')
 
+  // Keep the latest toast/t available to the run-once effect without making
+  // them effect dependencies (which would re-register the worker on identity
+  // changes). Refs are synced after every render.
+  const toastRef = useRef(toast)
+  const tRef = useRef(t)
+  useEffect(() => {
+    toastRef.current = toast
+    tRef.current = t
+  })
+
   useEffect(() => {
     if (process.env.NODE_ENV !== 'production') return
     if (!('serviceWorker' in navigator)) return
@@ -29,13 +39,20 @@ export function ServiceWorkerRegistration() {
 
     const register = async () => {
       try {
+        // Whether the page is already controlled by a worker. If so, a later
+        // `controllerchange` means a NEW worker took over (an update) and we
+        // should reload. On a first install, `clients.claim()` also fires
+        // `controllerchange`, but reloading then would be a jarring,
+        // unnecessary refresh — so we skip it.
+        const hadController = !!navigator.serviceWorker.controller
+
         const registration = await navigator.serviceWorker.register('/sw.js')
 
-        // Reload exactly once the waiting worker takes control, so the page
-        // picks up the new assets. Guard against reload loops.
+        // Reload once the new worker takes control so the page picks up the new
+        // assets. Guard against reload loops and the first-install claim.
         let refreshing = false
         const onControllerChange = () => {
-          if (refreshing) return
+          if (!hadController || refreshing) return
           refreshing = true
           window.location.reload()
         }
@@ -45,7 +62,8 @@ export function ServiceWorkerRegistration() {
         )
 
         const promptUpdate = (worker: ServiceWorker) => {
-          toast({
+          const t = tRef.current
+          toastRef.current({
             title: t('updateTitle'),
             description: t('updateDescription'),
             duration: Infinity,
@@ -113,8 +131,10 @@ export function ServiceWorkerRegistration() {
       cleanup = () => window.removeEventListener('load', onLoad)
     }
 
+    // Run once on mount: registration is a one-time setup. toast/t are read
+    // from refs so their identity does not retrigger registration.
     return () => cleanup?.()
-  }, [toast, t])
+  }, [])
 
   return null
 }

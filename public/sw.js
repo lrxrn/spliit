@@ -64,9 +64,11 @@ self.addEventListener('activate', (event) => {
 
 /** Cache-first: serve from cache, falling back to network and storing the result. */
 async function cacheFirst(request, cacheName) {
-  const cache = await caches.open(cacheName)
-  const cached = await cache.match(request)
+  // Match across all caches (including PRECACHE) so precached assets such as
+  // the offline page's logo are served even before they land in `cacheName`.
+  const cached = await caches.match(request)
   if (cached) return cached
+  const cache = await caches.open(cacheName)
   const response = await fetch(request)
   if (response && response.ok) cache.put(request, response.clone())
   return response

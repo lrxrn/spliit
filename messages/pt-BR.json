@@ -151,7 +151,11 @@
         "description": "Selecione para quem a receita foi recebida."
       },
       "splitModeDescription": "Selecione como dividir a receita.",
-      "attachDescription": "Veja e anexe recibos à receita."
+      "attachDescription": "Veja e anexe recibos à receita.",
+      "currencyField": {
+        "label": "Moeda da receita",
+        "description": "A moeda em que a receita foi recebida."
+      }
     },
     "Expense": {
       "create": "Criar despesa",
@@ -184,6 +188,10 @@
         "daily": "Diariamente",
         "weekly": "Semanalmente",
         "monthly": "Mensalmente"
+      },
+      "currencyField": {
+        "label": "Moeda da despesa",
+        "description": "A moeda em que a despesa foi paga."
       }
     },
     "amountField": {
@@ -225,12 +233,25 @@
     "cancel": "Cancelar",
     "reimbursement": "Reembolso",
     "conversionRateField": {
-      "label": "Taxa de câmbio"
+      "label": "Taxa de câmbio",
+      "useApi": "Usar taxas do Frankfurter",
+      "useCustom": "Usar taxa personalizada"
     },
     "conversionRateState": {
       "success": "Taxas obtidas:",
       "error": "Opa, não conseguimos obter as taxas mais recentes.",
-      "refresh": "Atualizar"
+      "refresh": "Atualizar",
+      "loading": "Obtendo taxas de câmbio…",
+      "staleRate": "Usando a taxa:",
+      "noRate": "Insira uma taxa personalizada abaixo.",
+      "currencyNotFound": "Ops, o Frankfurter não tem a taxa para esta moeda neste dia.",
+      "noDate": "Insira a data da despesa para obter uma taxa de conversão.",
+      "dateMismatch": "Taxas da data: {date}",
+      "customRate": "Usando taxa personalizada"
+    },
+    "conversionUnavailable": "Para definir uma moeda diferente por despesa e converter valores, selecione uma moeda não personalizada para o grupo.",
+    "originalAmountField": {
+      "label": "Valor a converter"
     }
   },
   "ExpenseDocumentsInput": {
@@ -324,6 +345,8 @@
   "Share": {
     "title": "Compartilhar",
     "description": "Para que outros participantes vejam o grupo e adicionem despesas, compartilhe o link com eles.",
+    "copyLink": "Copiar link",
+    "shareLink": "Compartilhar link",
     "warning": "Aviso!",
     "warningHelp": "Toda pessoa com o link do grupo poderá ver e editar despesas. Compartilhe com cautela!"
   },
@@ -342,7 +365,8 @@
     "paidForMin1": "A despesa deve ser paga para pelo menos um participante.",
     "noZeroShares": "Todas as partes devem ser maiores que 0.",
     "amountSum": "A soma dos valores deve ser igual ao valor da despesa.",
-    "percentageSum": "A soma das porcentagens deve ser igual a 100."
+    "percentageSum": "A soma das porcentagens deve ser igual a 100.",
+    "ratePositive": "A taxa deve ser estritamente maior que zero."
   },
   "Categories": {
     "search": "Pesquisar categoria...",

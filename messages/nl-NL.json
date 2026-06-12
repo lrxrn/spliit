@@ -146,14 +146,6 @@
         "label": "Ontvangen door",
         "description": "Selecteer de deelnemer die het inkomen heeft ontvangen."
       },
-      "recurrenceRule": {
-        "label": "Terugkerend inkomen",
-        "description": "Kies hoe vaak het inkomen herhaald wordt.",
-        "none": "Niet",
-        "daily": "Dagelijks",
-        "weekly": "Wekelijks",
-        "monthly": "Maandelijks"
-      },
       "paidFor": {
         "title": "Ontvangen voor",
         "description": "Selecteer voor wie het inkomen is ontvangen."
@@ -353,6 +345,8 @@
   "Share": {
     "title": "Delen",
     "description": "Om andere deelnemers de groep te laten zien en uitgaven toe te voegen, deel je de URL met hen.",
+    "copyLink": "Link kopiëren",
+    "shareLink": "Link delen",
     "warning": "Waarschuwing!",
     "warningHelp": "Iedereen met de groeps-URL kan de uitgaven zien en bewerken. Deel voorzichtig!"
   },

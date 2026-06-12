@@ -38,12 +38,15 @@
       "earlierThisYear": "今年稍早",
       "lastYear": "去年",
       "older": "更早"
-    }
+    },
+    "export": "匯出"
   },
   "ExpenseCard": {
     "paidBy": "由 <strong>{paidBy}</strong> 支付 <paidFor></paidFor>。",
     "receivedBy": "由 <strong>{paidBy}</strong> 收取 <paidFor></paidFor>。",
-    "yourBalance": "你的餘額："
+    "yourBalance": "你的餘額：",
+    "everyone": "所有人",
+    "notInvolved": "你未參與"
   },
   "Groups": {
     "myGroups": "我的群組",
@@ -117,6 +120,12 @@
       "create": "建立",
       "creating": "建立中……",
       "cancel": "取消"
+    },
+    "CurrencyCodeField": {
+      "label": "主要貨幣",
+      "createDescription": "所有金額和餘額都將使用此貨幣。",
+      "editDescription": "所有金額和餘額都將使用此貨幣。變更此項不會換算已經輸入的支出，除非新貨幣的「最小單位」與目前貨幣不同（例如從美元變更為日圓）。",
+      "customOption": "自訂"
     }
   },
   "ExpenseForm": {
@@ -142,7 +151,11 @@
         "description": "選擇應參與此筆收入的成員。"
       },
       "splitModeDescription": "選擇如何分配此筆收入。",
-      "attachDescription": "查看／附上此筆收入的收據。"
+      "attachDescription": "查看／附上此筆收入的收據。",
+      "currencyField": {
+        "label": "收入貨幣",
+        "description": "收到這筆收入所使用的貨幣。"
+      }
     },
     "Expense": {
       "create": "新增消費紀錄",
@@ -159,14 +172,27 @@
       "categoryFieldDescription": "選擇消費類別。",
       "paidByField": {
         "label": "支付人",
-        "description": "选择支付这笔消费的群组成员。"
+        "description": "选择支付这笔消费的群组成员。",
+        "placeholder": "選擇參與者"
       },
       "paidFor": {
         "title": "應支付人",
         "description": "選擇需參與此筆消費的成員。"
       },
       "splitModeDescription": "選擇如何分配此筆消費。",
-      "attachDescription": "查看／附上此筆消費的收據。"
+      "attachDescription": "查看／附上此筆消費的收據。",
+      "currencyField": {
+        "label": "支出貨幣",
+        "description": "支付這筆支出所使用的貨幣。"
+      },
+      "recurrenceRule": {
+        "label": "支出重複",
+        "description": "選擇支出重複的頻率。",
+        "none": "無",
+        "daily": "每日",
+        "weekly": "每週",
+        "monthly": "每月"
+      }
     },
     "amountField": {
       "label": "金額"
@@ -205,7 +231,28 @@
     "save": "儲存",
     "saving": "儲存中……",
     "cancel": "取消",
-    "reimbursement": "報銷"
+    "reimbursement": "報銷",
+    "conversionUnavailable": "若要為每筆支出設定不同的貨幣並換算金額，請為群組選擇非自訂貨幣。",
+    "originalAmountField": {
+      "label": "要換算的金額"
+    },
+    "conversionRateField": {
+      "useApi": "使用 Frankfurter 的匯率",
+      "useCustom": "使用自訂匯率",
+      "label": "匯率"
+    },
+    "conversionRateState": {
+      "loading": "正在取得匯率…",
+      "success": "已取得匯率：",
+      "error": "糟糕，我們無法取得最新的匯率。",
+      "staleRate": "使用匯率：",
+      "noRate": "在下方輸入自訂匯率。",
+      "currencyNotFound": "糟糕，Frankfurter 沒有這個貨幣在這一天的匯率。",
+      "noDate": "輸入支出日期以取得換算匯率。",
+      "dateMismatch": "匯率日期：{date}",
+      "refresh": "重新整理",
+      "customRate": "使用自訂匯率"
+    }
   },
   "ExpenseDocumentsInput": {
     "TooBigToast": {
@@ -298,6 +345,8 @@
   "Share": {
     "title": "分享",
     "description": "將此網址分享給其他人以加入群組並查看及新增消費紀錄",
+    "copyLink": "複製連結",
+    "shareLink": "分享連結",
     "warning": "警告！",
     "warningHelp": "任何有此連結的人都可以看到及編輯消費紀錄。請小心使用！"
   },
@@ -316,7 +365,8 @@
     "paidForMin1": "這筆消費必須包含至少一個成員。",
     "noZeroShares": "份額需大於 0。",
     "amountSum": "金額總計必須等於消費金額。",
-    "percentageSum": "百分比加總必須等於 100。"
+    "percentageSum": "百分比加總必須等於 100。",
+    "ratePositive": "匯率必須嚴格大於零。"
   },
   "Categories": {
     "search": "搜尋類別……",
@@ -361,7 +411,8 @@
       "Gifts": "禮物",
       "Insurance": "保險",
       "Medical Expenses": "醫療支出",
-      "Taxes": "稅"
+      "Taxes": "稅",
+      "Donation": "捐贈"
     },
     "Transportation": {
       "heading": "交通",
@@ -384,6 +435,19 @@
       "Trash": "垃圾費",
       "TV/Phone/Internet": "電視/電話/網路",
       "Water": "水費"
+    }
+  },
+  "Currencies": {
+    "search": "搜尋貨幣...",
+    "noCurrency": "找不到貨幣。",
+    "custom": {
+      "heading": "自訂"
+    },
+    "common": {
+      "heading": "最常用"
+    },
+    "other": {
+      "heading": "其他貨幣"
     }
   },
   "Pwa": {

@@ -307,6 +307,8 @@
   "Share": {
     "title": "Sdílet",
     "description": "Aby ostatní účastníci mohli vidět skupinu a přidávat výdaje, sdílejte s nimi její URL.",
+    "copyLink": "Kopírovat odkaz",
+    "shareLink": "Sdílet odkaz",
     "warning": "Varování!",
     "warningHelp": "Každý, kdo má URL skupiny, bude moci zobrazit a upravovat výdaje. Sdílejte opatrně!"
   },

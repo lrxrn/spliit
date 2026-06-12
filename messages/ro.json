@@ -298,6 +298,8 @@
   "Share": {
     "title": "Distribuie",
     "description": "Pentru ca ceilalți participanți să poată vedea grupul și cheltuielile adăugate, distribuie URL-ul acestuia cu ei.",
+    "copyLink": "Copiază linkul",
+    "shareLink": "Distribuie linkul",
     "warning": "Avertisment!",
     "warningHelp": "Oricine are URL-ul grupului va putea să vadă și să editeze cheltuielile. Distribuie cu grijă!"
   },

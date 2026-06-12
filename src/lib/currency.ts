@@ -42,6 +42,10 @@ export const supportedCurrencyCodes = [
   'SGD',
   'THB',
   'ZAR',
+  'COP',
+  'VND',
+  'MKD',
+  'MYR',
 ] as const
 export type supportedCurrencyCodeType = (typeof supportedCurrencyCodes)[number]
 

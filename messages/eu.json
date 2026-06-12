@@ -345,6 +345,8 @@
   "Share": {
     "title": "Partekatu",
     "description": "Beste kide batzuek taldea ikusteko eta gastuak gehitzeko, partekatu haiekin URLa.",
+    "copyLink": "Kopiatu esteka",
+    "shareLink": "Partekatu esteka",
     "warning": "Kontuz!",
     "warningHelp": "Taldeko URLa duen edozein pertsonak gastuak ikusi eta editatu ahal izango ditu. Partekatu kontuz!"
   },

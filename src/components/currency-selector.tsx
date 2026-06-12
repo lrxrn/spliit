@@ -7,6 +7,7 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
+  CommandList,
 } from '@/components/ui/command'
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer'
 import {
@@ -129,7 +130,7 @@ function CurrencyCommand({
     <Command>
       <CommandInput placeholder={t('search')} className="text-base" />
       <CommandEmpty>{t('noCurrency')}</CommandEmpty>
-      <div className="w-full max-h-[300px] overflow-y-auto">
+      <CommandList className="w-full">
         {Object.entries(currenciesByGroup).map(
           ([group, groupCurrencies], index) => (
             <CommandGroup key={index} heading={t(`${group}.heading`)}>
@@ -147,7 +148,7 @@ function CurrencyCommand({
             </CommandGroup>
           ),
         )}
-      </div>
+      </CommandList>
     </Command>
   )
 }

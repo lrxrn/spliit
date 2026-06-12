@@ -288,6 +288,8 @@
   "Share": {
     "title": "Jaa",
     "description": "Jaa ryhmän URL muille jäsenille, jotta he voivat nähdä sen ja lisätä kuluja.",
+    "copyLink": "Kopioi linkki",
+    "shareLink": "Jaa linkki",
     "warning": "Varoitus!",
     "warningHelp": "Tällä URLilla kuka tahansa pääsee näkemään ja muokkaamaan kuluja. Jaa harkiten!"
   },

@@ -68,6 +68,38 @@ Here is the current state of translation:
 3. Run `npm run start-container` to start the postgres and the spliit2 containers
 4. You can access the app by browsing to http://localhost:3000
 
+### Using Docker Compose directly
+
+The npm scripts above are thin wrappers around Docker Compose, which is defined
+in [`compose.yaml`](./compose.yaml). You can also drive Compose yourself, which
+is handy on a server where the repository is checked out without Node.js
+installed:
+
+```bash
+# Build the image and start both services (app + PostgreSQL) in the background
+docker compose --env-file container.env up --build -d
+
+# Follow the application logs
+docker compose --env-file container.env logs -f app
+
+# Stop and remove the containers (the database volume is preserved)
+docker compose --env-file container.env down
+```
+
+The Compose stack runs two services:
+
+- **`app`** – the Spliit Next.js server, exposed on port `3000`. It reads all
+  configuration from `container.env` at runtime (see [Configuration](#configuration)),
+  so the same image can be reconfigured without rebuilding.
+- **`db`** – a PostgreSQL database. Its data is persisted to a `postgres-data/`
+  directory next to `compose.yaml`, so your expenses survive container restarts
+  and upgrades. The `app` service waits for the database health check to pass
+  before starting, and database migrations are applied automatically on startup.
+
+To upgrade an existing deployment, pull the latest changes, then re-run
+`docker compose --env-file container.env up --build -d`. Pending migrations are
+applied automatically by the container entrypoint.
+
 ## Health check
 
 The application has a health check endpoint that can be used to check if the application is running and if the database is accessible.

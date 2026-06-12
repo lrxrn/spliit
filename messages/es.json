@@ -345,6 +345,8 @@
   "Share": {
     "title": "Compartir",
     "description": "Para que otros participantes puedan ver el grupo y añadir gastos, compárteles su URL.",
+    "copyLink": "Copiar enlace",
+    "shareLink": "Compartir enlace",
     "warning": "Cuidado!",
     "warningHelp": "Todas las personas que tengan la URL del grupo podrán ver y editar los gastos. ¡Comparte con precaución!"
   },

@@ -130,5 +130,10 @@
       },
       "save": "Gravar"
     }
+  },
+  "Pwa": {
+    "updateTitle": "Atualização disponível",
+    "updateDescription": "Está disponível uma nova versão do Spliit.",
+    "reload": "Recarregar"
   }
 }

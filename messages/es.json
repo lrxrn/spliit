@@ -456,5 +456,10 @@
     "other": {
       "heading": "Otras monedas"
     }
+  },
+  "Pwa": {
+    "updateTitle": "Actualización disponible",
+    "updateDescription": "Hay una nueva versión de Spliit disponible.",
+    "reload": "Recargar"
   }
 }

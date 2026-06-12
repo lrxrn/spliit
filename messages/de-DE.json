@@ -456,5 +456,10 @@
     "common": {
       "heading": "Geläufigste"
     }
+  },
+  "Pwa": {
+    "updateTitle": "Update verfügbar",
+    "updateDescription": "Eine neue Version von Spliit ist verfügbar.",
+    "reload": "Neu laden"
   }
 }

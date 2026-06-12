@@ -456,5 +456,10 @@
     "other": {
       "heading": "其他貨幣"
     }
+  },
+  "Pwa": {
+    "updateTitle": "有可用更新",
+    "updateDescription": "Spliit 有新版本可用。",
+    "reload": "重新載入"
   }
 }

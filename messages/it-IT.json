@@ -456,5 +456,10 @@
     "other": {
       "heading": "Altre valute"
     }
+  },
+  "Pwa": {
+    "updateTitle": "Aggiornamento disponibile",
+    "updateDescription": "È disponibile una nuova versione di Spliit.",
+    "reload": "Ricarica"
   }
 }

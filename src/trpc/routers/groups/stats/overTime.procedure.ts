@@ -1,9 +1,9 @@
 import { getGroupExpenses } from '@/lib/api'
-import { filterExpensesByDateRange, getSpendingByCategory } from '@/lib/totals'
+import { filterExpensesByDateRange, getSpendingOverTime } from '@/lib/totals'
 import { baseProcedure } from '@/trpc/init'
 import { z } from 'zod'
 
-export const getStatsByCategoryProcedure = baseProcedure
+export const getStatsOverTimeProcedure = baseProcedure
   .input(
     z.object({
       groupId: z.string().min(1),
@@ -17,5 +17,5 @@ export const getStatsByCategoryProcedure = baseProcedure
       from,
       to,
     )
-    return { categories: getSpendingByCategory(expenses) }
+    return { months: getSpendingOverTime(expenses) }
   })

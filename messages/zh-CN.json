@@ -325,7 +325,8 @@
       "empty": "还没有任何支出。",
       "participant": "参与者",
       "paid": "已支付",
-      "share": "分摊"
+      "share": "分摊",
+      "count": "笔数"
     },
     "ByCategory": {
       "title": "按类别统计支出",
@@ -342,6 +343,27 @@
         "WEEKLY": "{count, plural, other {# 笔每周支出}}",
         "MONTHLY": "{count, plural, other {# 笔每月支出}}"
       }
+    },
+    "range": {
+      "label": "时间段",
+      "all": "全部时间",
+      "thisMonth": "本月",
+      "last30": "最近 30 天",
+      "thisYear": "今年"
+    },
+    "Summary": {
+      "title": "概览",
+      "description": "所选时间段的关键数据。",
+      "empty": "还没有任何支出。",
+      "expenseCount": "支出笔数",
+      "averageExpense": "平均支出",
+      "largestExpense": "最大支出",
+      "activeSpan": "活跃时间段"
+    },
+    "OverTime": {
+      "title": "支出趋势",
+      "description": "群组每月的总支出。",
+      "empty": "还没有任何支出。"
     }
   },
   "Activity": {

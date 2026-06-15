@@ -325,7 +325,8 @@
       "empty": "まだ支出はありません。",
       "participant": "参加者",
       "paid": "支払額",
-      "share": "負担分"
+      "share": "負担分",
+      "count": "件数"
     },
     "ByCategory": {
       "title": "カテゴリーごとの支出",
@@ -342,6 +343,27 @@
         "WEEKLY": "{count, plural, other {毎週の支出 #件}}",
         "MONTHLY": "{count, plural, other {毎月の支出 #件}}"
       }
+    },
+    "range": {
+      "label": "期間",
+      "all": "全期間",
+      "thisMonth": "今月",
+      "last30": "過去30日間",
+      "thisYear": "今年"
+    },
+    "Summary": {
+      "title": "概要",
+      "description": "選択した期間の主要な数値。",
+      "empty": "まだ支出はありません。",
+      "expenseCount": "支出件数",
+      "averageExpense": "平均支出",
+      "largestExpense": "最高額の支出",
+      "activeSpan": "対象期間"
+    },
+    "OverTime": {
+      "title": "期間ごとの支出",
+      "description": "グループの月別の合計支出。",
+      "empty": "まだ支出はありません。"
     }
   },
   "Activity": {

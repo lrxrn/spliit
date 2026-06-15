@@ -1,5 +1,25 @@
 import { getGroupExpenses } from '@/lib/api'
 
+/**
+ * Filters expenses to those whose `expenseDate` falls within an inclusive
+ * `[from, to]` range. Bounds are `YYYY-MM-DD` strings; either may be omitted.
+ * Expense dates are stored as date-only values (UTC midnight), so the
+ * comparison is done on the date portion to stay timezone-safe.
+ */
+export function filterExpensesByDateRange<T extends { expenseDate: Date }>(
+  expenses: T[],
+  from?: string,
+  to?: string,
+): T[] {
+  if (!from && !to) return expenses
+  return expenses.filter((expense) => {
+    const date = expense.expenseDate.toISOString().slice(0, 10)
+    if (from && date < from) return false
+    if (to && date > to) return false
+    return true
+  })
+}
+
 export function getTotalGroupSpending(
   expenses: NonNullable<Awaited<ReturnType<typeof getGroupExpenses>>>,
 ): number {
@@ -121,12 +141,14 @@ export type ParticipantSpending = {
   participantId: string
   name: string
   paid: number
+  paidCount: number
   share: number
 }
 
 /**
- * Computes, for every participant, how much they paid and what their share of
- * the group's expenses is (issue #496). Sorted by amount paid, descending.
+ * Computes, for every participant, how much they paid, how many expenses they
+ * paid for, and what their share of the group's expenses is (issues #496).
+ * Sorted by amount paid, descending.
  */
 export function getSpendingByParticipant(
   participants: { id: string; name: string }[],
@@ -137,9 +159,99 @@ export function getSpendingByParticipant(
       participantId: participant.id,
       name: participant.name,
       paid: getTotalActiveUserPaidFor(participant.id, expenses),
+      paidCount: expenses.filter(
+        (expense) =>
+          expense.paidBy.id === participant.id && !expense.isReimbursement,
+      ).length,
       share: getTotalActiveUserShare(participant.id, expenses),
     }))
     .sort((a, b) => b.paid - a.paid)
+}
+
+export type MonthlySpending = {
+  month: string
+  total: number
+}
+
+/**
+ * Aggregates non-reimbursement spending into monthly buckets (`YYYY-MM`),
+ * filling any gaps between the first and last month so the trend reads
+ * continuously. Sorted chronologically.
+ */
+export function getSpendingOverTime(
+  expenses: NonNullable<Awaited<ReturnType<typeof getGroupExpenses>>>,
+): MonthlySpending[] {
+  const totals = new Map<string, number>()
+  for (const expense of expenses) {
+    if (expense.isReimbursement) continue
+    const month = expense.expenseDate.toISOString().slice(0, 7)
+    totals.set(month, (totals.get(month) ?? 0) + expense.amount)
+  }
+
+  if (totals.size === 0) return []
+
+  const months = [...totals.keys()].sort()
+  const [firstYear, firstMonth] = months[0].split('-').map(Number)
+  const [lastYear, lastMonth] = months[months.length - 1].split('-').map(Number)
+
+  const result: MonthlySpending[] = []
+  let year = firstYear
+  let month = firstMonth
+  while (year < lastYear || (year === lastYear && month <= lastMonth)) {
+    const key = `${year}-${String(month).padStart(2, '0')}`
+    result.push({ month: key, total: totals.get(key) ?? 0 })
+    month += 1
+    if (month > 12) {
+      month = 1
+      year += 1
+    }
+  }
+
+  return result
+}
+
+export type SpendingSummary = {
+  expenseCount: number
+  totalSpending: number
+  averageExpense: number
+  largestExpense: { title: string; amount: number } | null
+  firstDate: string | null
+  lastDate: string | null
+}
+
+/**
+ * Computes high-level summary metrics over the non-reimbursement expenses: how
+ * many there are, the average and largest expense, and the active date span.
+ */
+export function getSpendingSummary(
+  expenses: NonNullable<Awaited<ReturnType<typeof getGroupExpenses>>>,
+): SpendingSummary {
+  const relevant = expenses.filter((expense) => !expense.isReimbursement)
+  const expenseCount = relevant.length
+  const totalSpending = relevant.reduce(
+    (total, expense) => total + expense.amount,
+    0,
+  )
+
+  let largestExpense: SpendingSummary['largestExpense'] = null
+  for (const expense of relevant) {
+    if (!largestExpense || expense.amount > largestExpense.amount) {
+      largestExpense = { title: expense.title, amount: expense.amount }
+    }
+  }
+
+  const dates = relevant
+    .map((expense) => expense.expenseDate.toISOString().slice(0, 10))
+    .sort()
+
+  return {
+    expenseCount,
+    totalSpending,
+    averageExpense: expenseCount ? Math.round(totalSpending / expenseCount) : 0,
+    largestExpense,
+    firstDate: dates[0] ?? null,
+    lastDate: dates[dates.length - 1] ?? null,
+  }
 }
 
 export type RecurrencePeriod = 'DAILY' | 'WEEKLY' | 'MONTHLY'

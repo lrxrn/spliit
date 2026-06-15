@@ -325,7 +325,8 @@
       "empty": "Es gibt noch keine Ausgaben.",
       "participant": "Teilnehmer",
       "paid": "Bezahlt",
-      "share": "Anteil"
+      "share": "Anteil",
+      "count": "Anzahl"
     },
     "ByCategory": {
       "title": "Ausgaben nach Kategorie",
@@ -342,6 +343,27 @@
         "WEEKLY": "{count, plural, one {# wöchentliche Ausgabe} other {# wöchentliche Ausgaben}}",
         "MONTHLY": "{count, plural, one {# monatliche Ausgabe} other {# monatliche Ausgaben}}"
       }
+    },
+    "range": {
+      "label": "Zeitraum",
+      "all": "Gesamter Zeitraum",
+      "thisMonth": "Dieser Monat",
+      "last30": "Letzte 30 Tage",
+      "thisYear": "Dieses Jahr"
+    },
+    "Summary": {
+      "title": "Zusammenfassung",
+      "description": "Kennzahlen für den ausgewählten Zeitraum.",
+      "empty": "Es gibt noch keine Ausgaben.",
+      "expenseCount": "Ausgaben",
+      "averageExpense": "Durchschnittliche Ausgabe",
+      "largestExpense": "Größte Ausgabe",
+      "activeSpan": "Aktiver Zeitraum"
+    },
+    "OverTime": {
+      "title": "Ausgaben im Zeitverlauf",
+      "description": "Gesamtausgaben der Gruppe pro Monat.",
+      "empty": "Es gibt noch keine Ausgaben."
     }
   },
   "Activity": {

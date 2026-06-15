@@ -143,7 +143,8 @@
       "empty": "Ainda não existem despesas.",
       "participant": "Participante",
       "paid": "Pago",
-      "share": "Parte"
+      "share": "Parte",
+      "count": "Quantidade"
     },
     "ByCategory": {
       "title": "Despesas por categoria",
@@ -160,6 +161,27 @@
         "WEEKLY": "{count, plural, one {# despesa semanal} other {# despesas semanais}}",
         "MONTHLY": "{count, plural, one {# despesa mensal} other {# despesas mensais}}"
       }
+    },
+    "range": {
+      "label": "Período",
+      "all": "Todo o período",
+      "thisMonth": "Este mês",
+      "last30": "Últimos 30 dias",
+      "thisYear": "Este ano"
+    },
+    "Summary": {
+      "title": "Resumo",
+      "description": "Números principais do período selecionado.",
+      "empty": "Ainda não existem despesas.",
+      "expenseCount": "Despesas",
+      "averageExpense": "Despesa média",
+      "largestExpense": "Maior despesa",
+      "activeSpan": "Período ativo"
+    },
+    "OverTime": {
+      "title": "Despesas ao longo do tempo",
+      "description": "Despesa total do grupo por mês.",
+      "empty": "Ainda não existem despesas."
     }
   }
 }

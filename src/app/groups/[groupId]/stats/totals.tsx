@@ -1,4 +1,5 @@
 'use client'
+import { StatsRange } from '@/app/groups/[groupId]/stats/stats-range'
 import { TotalsGroupSpending } from '@/app/groups/[groupId]/stats/totals-group-spending'
 import { TotalsYourShare } from '@/app/groups/[groupId]/stats/totals-your-share'
 import { TotalsYourSpendings } from '@/app/groups/[groupId]/stats/totals-your-spending'
@@ -8,13 +9,18 @@ import { getCurrencyFromGroup } from '@/lib/utils'
 import { trpc } from '@/trpc/client'
 import { useCurrentGroup } from '../current-group-context'
 
-export function Totals() {
+export function Totals({ range }: { range: StatsRange }) {
   const { groupId, group } = useCurrentGroup()
   const activeUser = useActiveUser(groupId)
 
   const participantId =
     activeUser && activeUser !== 'None' ? activeUser : undefined
-  const { data } = trpc.groups.stats.get.useQuery({ groupId, participantId })
+  const { data } = trpc.groups.stats.get.useQuery({
+    groupId,
+    participantId,
+    from: range.from,
+    to: range.to,
+  })
 
   if (!data || !group)
     return (

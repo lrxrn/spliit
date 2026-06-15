@@ -1,7 +1,10 @@
 import {
+  filterExpensesByDateRange,
   getRecurringSpending,
   getSpendingByCategory,
   getSpendingByParticipant,
+  getSpendingOverTime,
+  getSpendingSummary,
 } from './totals'
 
 type Expense = Parameters<typeof getSpendingByCategory>[0][number]
@@ -76,8 +79,14 @@ describe('getSpendingByParticipant', () => {
     const result = getSpendingByParticipant(participants, expenses)
 
     expect(result).toEqual([
-      { participantId: 'alice', name: 'Alice', paid: 1000, share: 500 },
-      { participantId: 'bob', name: 'Bob', paid: 0, share: 500 },
+      {
+        participantId: 'alice',
+        name: 'Alice',
+        paid: 1000,
+        paidCount: 1,
+        share: 500,
+      },
+      { participantId: 'bob', name: 'Bob', paid: 0, paidCount: 0, share: 500 },
     ])
   })
 })
@@ -115,5 +124,108 @@ describe('getRecurringSpending', () => {
     expect(result.byPeriod).toEqual([])
     expect(result.estimatedMonthly).toBe(0)
     expect(result.estimatedYearly).toBe(0)
+  })
+})
+
+describe('filterExpensesByDateRange', () => {
+  const expenses = [
+    { expenseDate: new Date('2026-01-15T00:00:00Z') },
+    { expenseDate: new Date('2026-02-10T00:00:00Z') },
+    { expenseDate: new Date('2026-03-20T00:00:00Z') },
+  ]
+
+  it('returns everything when no bounds are given', () => {
+    expect(filterExpensesByDateRange(expenses)).toHaveLength(3)
+  })
+
+  it('filters inclusively on both bounds', () => {
+    const result = filterExpensesByDateRange(
+      expenses,
+      '2026-02-01',
+      '2026-02-28',
+    )
+    expect(result).toHaveLength(1)
+    expect(result[0].expenseDate.toISOString().slice(0, 10)).toBe('2026-02-10')
+  })
+
+  it('supports an open-ended lower bound', () => {
+    expect(filterExpensesByDateRange(expenses, '2026-02-10')).toHaveLength(2)
+  })
+})
+
+describe('getSpendingOverTime', () => {
+  it('buckets by month and fills the gaps between first and last', () => {
+    const result = getSpendingOverTime([
+      makeExpense({
+        amount: 1000,
+        expenseDate: new Date('2026-01-15T00:00:00Z'),
+      }),
+      makeExpense({
+        amount: 500,
+        expenseDate: new Date('2026-01-20T00:00:00Z'),
+      }),
+      makeExpense({
+        amount: 9999,
+        expenseDate: new Date('2026-01-05T00:00:00Z'),
+        isReimbursement: true,
+      }),
+      makeExpense({
+        amount: 300,
+        expenseDate: new Date('2026-03-01T00:00:00Z'),
+      }),
+    ])
+
+    expect(result).toEqual([
+      { month: '2026-01', total: 1500 },
+      { month: '2026-02', total: 0 },
+      { month: '2026-03', total: 300 },
+    ])
+  })
+
+  it('returns an empty array when there are no expenses', () => {
+    expect(getSpendingOverTime([])).toEqual([])
+  })
+})
+
+describe('getSpendingSummary', () => {
+  it('computes count, average, largest expense and active span', () => {
+    const result = getSpendingSummary([
+      makeExpense({
+        amount: 1000,
+        title: 'Hotel',
+        expenseDate: new Date('2026-01-15T00:00:00Z'),
+      }),
+      makeExpense({
+        amount: 500,
+        title: 'Lunch',
+        expenseDate: new Date('2026-01-10T00:00:00Z'),
+      }),
+      makeExpense({
+        amount: 99999,
+        title: 'Refund',
+        expenseDate: new Date('2026-01-20T00:00:00Z'),
+        isReimbursement: true,
+      }),
+    ])
+
+    expect(result).toEqual({
+      expenseCount: 2,
+      totalSpending: 1500,
+      averageExpense: 750,
+      largestExpense: { title: 'Hotel', amount: 1000 },
+      firstDate: '2026-01-10',
+      lastDate: '2026-01-15',
+    })
+  })
+
+  it('returns a zeroed summary with no expenses', () => {
+    expect(getSpendingSummary([])).toEqual({
+      expenseCount: 0,
+      totalSpending: 0,
+      averageExpense: 0,
+      largestExpense: null,
+      firstDate: null,
+      lastDate: null,
+    })
   })
 })

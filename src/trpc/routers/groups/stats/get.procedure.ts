@@ -1,5 +1,6 @@
 import { getGroupExpenses } from '@/lib/api'
 import {
+  filterExpensesByDateRange,
   getTotalActiveUserPaidFor,
   getTotalActiveUserShare,
   getTotalGroupSpending,
@@ -12,10 +13,16 @@ export const getGroupStatsProcedure = baseProcedure
     z.object({
       groupId: z.string().min(1),
       participantId: z.string().optional(),
+      from: z.string().optional(),
+      to: z.string().optional(),
     }),
   )
-  .query(async ({ input: { groupId, participantId } }) => {
-    const expenses = await getGroupExpenses(groupId)
+  .query(async ({ input: { groupId, participantId, from, to } }) => {
+    const expenses = filterExpensesByDateRange(
+      await getGroupExpenses(groupId),
+      from,
+      to,
+    )
     const totalGroupSpendings = getTotalGroupSpending(expenses)
 
     const totalParticipantSpendings =

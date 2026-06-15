@@ -325,7 +325,8 @@
       "empty": "尚未有任何支出。",
       "participant": "參與者",
       "paid": "已支付",
-      "share": "分攤"
+      "share": "分攤",
+      "count": "筆數"
     },
     "ByCategory": {
       "title": "依類別統計支出",
@@ -342,6 +343,27 @@
         "WEEKLY": "{count, plural, other {# 筆每週支出}}",
         "MONTHLY": "{count, plural, other {# 筆每月支出}}"
       }
+    },
+    "range": {
+      "label": "時間範圍",
+      "all": "全部時間",
+      "thisMonth": "本月",
+      "last30": "最近 30 天",
+      "thisYear": "今年"
+    },
+    "Summary": {
+      "title": "概覽",
+      "description": "所選時間範圍的關鍵數據。",
+      "empty": "尚未有任何支出。",
+      "expenseCount": "支出筆數",
+      "averageExpense": "平均支出",
+      "largestExpense": "最大支出",
+      "activeSpan": "活躍時間範圍"
+    },
+    "OverTime": {
+      "title": "支出趨勢",
+      "description": "群組每月的總支出。",
+      "empty": "尚未有任何支出。"
     }
   },
   "Activity": {

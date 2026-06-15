@@ -310,6 +310,13 @@
   },
   "Stats": {
     "title": "Stats",
+    "range": {
+      "label": "Period",
+      "all": "All time",
+      "thisMonth": "This month",
+      "last30": "Last 30 days",
+      "thisYear": "This year"
+    },
     "Totals": {
       "title": "Totals",
       "description": "Spending summary of the entire group.",
@@ -319,12 +326,27 @@
       "yourEarnings": "Your total earnings",
       "yourShare": "Your total share"
     },
+    "Summary": {
+      "title": "Summary",
+      "description": "Key figures for the selected period.",
+      "empty": "There are no expenses yet.",
+      "expenseCount": "Expenses",
+      "averageExpense": "Average expense",
+      "largestExpense": "Largest expense",
+      "activeSpan": "Active period"
+    },
+    "OverTime": {
+      "title": "Spending over time",
+      "description": "Total group spending per month.",
+      "empty": "There are no expenses yet."
+    },
     "ByParticipant": {
       "title": "Spending by participant",
       "description": "How much each participant paid and their share of the expenses.",
       "empty": "There are no expenses yet.",
       "participant": "Participant",
       "paid": "Paid",
+      "count": "Count",
       "share": "Share"
     },
     "ByCategory": {

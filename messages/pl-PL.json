@@ -287,7 +287,8 @@
       "empty": "Nie ma jeszcze żadnych wydatków.",
       "participant": "Uczestnik",
       "paid": "Zapłacono",
-      "share": "Udział"
+      "share": "Udział",
+      "count": "Liczba"
     },
     "ByCategory": {
       "title": "Wydatki według kategorii",
@@ -304,6 +305,27 @@
         "WEEKLY": "{count, plural, one {# tygodniowy wydatek} few {# tygodniowe wydatki} many {# tygodniowych wydatków} other {# tygodniowego wydatku}}",
         "MONTHLY": "{count, plural, one {# miesięczny wydatek} few {# miesięczne wydatki} many {# miesięcznych wydatków} other {# miesięcznego wydatku}}"
       }
+    },
+    "range": {
+      "label": "Okres",
+      "all": "Cały czas",
+      "thisMonth": "Ten miesiąc",
+      "last30": "Ostatnie 30 dni",
+      "thisYear": "Ten rok"
+    },
+    "Summary": {
+      "title": "Podsumowanie",
+      "description": "Kluczowe dane dla wybranego okresu.",
+      "empty": "Nie ma jeszcze żadnych wydatków.",
+      "expenseCount": "Wydatki",
+      "averageExpense": "Średni wydatek",
+      "largestExpense": "Największy wydatek",
+      "activeSpan": "Aktywny okres"
+    },
+    "OverTime": {
+      "title": "Wydatki w czasie",
+      "description": "Łączne wydatki grupy w podziale na miesiące.",
+      "empty": "Nie ma jeszcze żadnych wydatków."
     }
   },
   "Activity": {

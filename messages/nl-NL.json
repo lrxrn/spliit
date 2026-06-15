@@ -325,7 +325,8 @@
       "empty": "Er zijn nog geen uitgaven.",
       "participant": "Deelnemer",
       "paid": "Betaald",
-      "share": "Aandeel"
+      "share": "Aandeel",
+      "count": "Aantal"
     },
     "ByCategory": {
       "title": "Uitgaven per categorie",
@@ -342,6 +343,27 @@
         "WEEKLY": "{count, plural, one {# wekelijkse uitgave} other {# wekelijkse uitgaven}}",
         "MONTHLY": "{count, plural, one {# maandelijkse uitgave} other {# maandelijkse uitgaven}}"
       }
+    },
+    "range": {
+      "label": "Periode",
+      "all": "Alle tijd",
+      "thisMonth": "Deze maand",
+      "last30": "Laatste 30 dagen",
+      "thisYear": "Dit jaar"
+    },
+    "Summary": {
+      "title": "Samenvatting",
+      "description": "Kerncijfers voor de geselecteerde periode.",
+      "empty": "Er zijn nog geen uitgaven.",
+      "expenseCount": "Uitgaven",
+      "averageExpense": "Gemiddelde uitgave",
+      "largestExpense": "Grootste uitgave",
+      "activeSpan": "Actieve periode"
+    },
+    "OverTime": {
+      "title": "Uitgaven in de tijd",
+      "description": "Totale uitgaven van de groep per maand.",
+      "empty": "Er zijn nog geen uitgaven."
     }
   },
   "Activity": {

@@ -325,7 +325,8 @@
       "empty": "Todavía no hay gastos.",
       "participant": "Participante",
       "paid": "Pagado",
-      "share": "Parte"
+      "share": "Parte",
+      "count": "Cantidad"
     },
     "ByCategory": {
       "title": "Gastos por categoría",
@@ -342,6 +343,27 @@
         "WEEKLY": "{count, plural, one {# gasto semanal} other {# gastos semanales}}",
         "MONTHLY": "{count, plural, one {# gasto mensual} other {# gastos mensuales}}"
       }
+    },
+    "range": {
+      "label": "Período",
+      "all": "Todo el tiempo",
+      "thisMonth": "Este mes",
+      "last30": "Últimos 30 días",
+      "thisYear": "Este año"
+    },
+    "Summary": {
+      "title": "Resumen",
+      "description": "Cifras clave del período seleccionado.",
+      "empty": "Todavía no hay gastos.",
+      "expenseCount": "Gastos",
+      "averageExpense": "Gasto medio",
+      "largestExpense": "Gasto más alto",
+      "activeSpan": "Período activo"
+    },
+    "OverTime": {
+      "title": "Gastos a lo largo del tiempo",
+      "description": "Gasto total del grupo por mes.",
+      "empty": "Todavía no hay gastos."
     }
   },
   "Activity": {

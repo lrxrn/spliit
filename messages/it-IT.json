@@ -325,7 +325,8 @@
       "empty": "Non ci sono ancora spese.",
       "participant": "Partecipante",
       "paid": "Pagato",
-      "share": "Quota"
+      "share": "Quota",
+      "count": "Numero"
     },
     "ByCategory": {
       "title": "Spese per categoria",
@@ -342,6 +343,27 @@
         "WEEKLY": "{count, plural, one {# spesa settimanale} other {# spese settimanali}}",
         "MONTHLY": "{count, plural, one {# spesa mensile} other {# spese mensili}}"
       }
+    },
+    "range": {
+      "label": "Periodo",
+      "all": "Sempre",
+      "thisMonth": "Questo mese",
+      "last30": "Ultimi 30 giorni",
+      "thisYear": "Quest'anno"
+    },
+    "Summary": {
+      "title": "Riepilogo",
+      "description": "Dati principali per il periodo selezionato.",
+      "empty": "Non ci sono ancora spese.",
+      "expenseCount": "Spese",
+      "averageExpense": "Spesa media",
+      "largestExpense": "Spesa maggiore",
+      "activeSpan": "Periodo attivo"
+    },
+    "OverTime": {
+      "title": "Spese nel tempo",
+      "description": "Spesa totale del gruppo per mese.",
+      "empty": "Non ci sono ancora spese."
     }
   },
   "Activity": {

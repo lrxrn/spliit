@@ -318,6 +318,30 @@
       "yourSpendings": "你的總開銷",
       "yourEarnings": "你的總收入",
       "yourShare": "你的總計份額"
+    },
+    "ByParticipant": {
+      "title": "依參與者統計支出",
+      "description": "每位參與者支付的金額及其分攤份額。",
+      "empty": "尚未有任何支出。",
+      "participant": "參與者",
+      "paid": "已支付",
+      "share": "分攤"
+    },
+    "ByCategory": {
+      "title": "依類別統計支出",
+      "description": "每個類別的支出總額。",
+      "empty": "尚未有任何支出。"
+    },
+    "Recurring": {
+      "title": "週期性支出",
+      "description": "群組有效週期性支出的預估費用。",
+      "estimatedMonthly": "預估每月費用",
+      "estimatedYearly": "每年 {amount}",
+      "period": {
+        "DAILY": "{count, plural, other {# 筆每日支出}}",
+        "WEEKLY": "{count, plural, other {# 筆每週支出}}",
+        "MONTHLY": "{count, plural, other {# 筆每月支出}}"
+      }
     }
   },
   "Activity": {

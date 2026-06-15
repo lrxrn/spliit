@@ -1,3 +1,6 @@
+import { CategoryBreakdown } from '@/app/groups/[groupId]/stats/category-breakdown'
+import { ParticipantSpendingStats } from '@/app/groups/[groupId]/stats/participant-spending'
+import { RecurringSpendingStats } from '@/app/groups/[groupId]/stats/recurring-spending'
 import { Totals } from '@/app/groups/[groupId]/stats/totals'
 import {
   Card,
@@ -22,6 +25,9 @@ export function TotalsPageClient() {
           <Totals />
         </CardContent>
       </Card>
+      <ParticipantSpendingStats />
+      <CategoryBreakdown />
+      <RecurringSpendingStats />
     </>
   )
 }

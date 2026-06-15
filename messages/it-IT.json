@@ -318,6 +318,30 @@
       "yourSpendings": "Le tue spese totali",
       "yourEarnings": "I tuoi guadagni totali",
       "yourShare": "La tua quota totale"
+    },
+    "ByParticipant": {
+      "title": "Spese per partecipante",
+      "description": "Quanto ha pagato ogni partecipante e la sua quota delle spese.",
+      "empty": "Non ci sono ancora spese.",
+      "participant": "Partecipante",
+      "paid": "Pagato",
+      "share": "Quota"
+    },
+    "ByCategory": {
+      "title": "Spese per categoria",
+      "description": "Importo totale speso in ogni categoria.",
+      "empty": "Non ci sono ancora spese."
+    },
+    "Recurring": {
+      "title": "Spese ricorrenti",
+      "description": "Costo stimato delle spese ricorrenti attive del gruppo.",
+      "estimatedMonthly": "Costo mensile stimato",
+      "estimatedYearly": "{amount} all'anno",
+      "period": {
+        "DAILY": "{count, plural, one {# spesa giornaliera} other {# spese giornaliere}}",
+        "WEEKLY": "{count, plural, one {# spesa settimanale} other {# spese settimanali}}",
+        "MONTHLY": "{count, plural, one {# spesa mensile} other {# spese mensili}}"
+      }
     }
   },
   "Activity": {

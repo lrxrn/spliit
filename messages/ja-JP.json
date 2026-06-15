@@ -318,6 +318,30 @@
       "yourSpendings": "あなたの総支出",
       "yourEarnings": "あなたの総収入",
       "yourShare": "あなたの総シェア"
+    },
+    "ByParticipant": {
+      "title": "参加者ごとの支出",
+      "description": "各参加者が支払った金額と支出の負担分。",
+      "empty": "まだ支出はありません。",
+      "participant": "参加者",
+      "paid": "支払額",
+      "share": "負担分"
+    },
+    "ByCategory": {
+      "title": "カテゴリーごとの支出",
+      "description": "各カテゴリーの合計支出額。",
+      "empty": "まだ支出はありません。"
+    },
+    "Recurring": {
+      "title": "定期的な支出",
+      "description": "グループの有効な定期的支出の推定費用。",
+      "estimatedMonthly": "推定月額",
+      "estimatedYearly": "年間 {amount}",
+      "period": {
+        "DAILY": "{count, plural, other {毎日の支出 #件}}",
+        "WEEKLY": "{count, plural, other {毎週の支出 #件}}",
+        "MONTHLY": "{count, plural, other {毎月の支出 #件}}"
+      }
     }
   },
   "Activity": {

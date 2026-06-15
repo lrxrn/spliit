@@ -135,5 +135,31 @@
     "updateTitle": "Atualização disponível",
     "updateDescription": "Está disponível uma nova versão do Spliit.",
     "reload": "Recarregar"
+  },
+  "Stats": {
+    "ByParticipant": {
+      "title": "Despesas por participante",
+      "description": "Quanto cada participante pagou e a sua parte das despesas.",
+      "empty": "Ainda não existem despesas.",
+      "participant": "Participante",
+      "paid": "Pago",
+      "share": "Parte"
+    },
+    "ByCategory": {
+      "title": "Despesas por categoria",
+      "description": "Valor total gasto em cada categoria.",
+      "empty": "Ainda não existem despesas."
+    },
+    "Recurring": {
+      "title": "Despesas recorrentes",
+      "description": "Custo estimado das despesas recorrentes ativas do grupo.",
+      "estimatedMonthly": "Custo mensal estimado",
+      "estimatedYearly": "{amount} por ano",
+      "period": {
+        "DAILY": "{count, plural, one {# despesa diária} other {# despesas diárias}}",
+        "WEEKLY": "{count, plural, one {# despesa semanal} other {# despesas semanais}}",
+        "MONTHLY": "{count, plural, one {# despesa mensal} other {# despesas mensais}}"
+      }
+    }
   }
 }

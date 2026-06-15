@@ -318,6 +318,30 @@
       "yourSpendings": "Jouw totale uitgaven",
       "yourEarnings": "Jouw totale inkomsten",
       "yourShare": "Jouw totale aandeel"
+    },
+    "ByParticipant": {
+      "title": "Uitgaven per deelnemer",
+      "description": "Hoeveel elke deelnemer heeft betaald en zijn aandeel in de uitgaven.",
+      "empty": "Er zijn nog geen uitgaven.",
+      "participant": "Deelnemer",
+      "paid": "Betaald",
+      "share": "Aandeel"
+    },
+    "ByCategory": {
+      "title": "Uitgaven per categorie",
+      "description": "Totaalbedrag dat per categorie is uitgegeven.",
+      "empty": "Er zijn nog geen uitgaven."
+    },
+    "Recurring": {
+      "title": "Terugkerende uitgaven",
+      "description": "Geschatte kosten van de actieve terugkerende uitgaven van de groep.",
+      "estimatedMonthly": "Geschatte maandelijkse kosten",
+      "estimatedYearly": "{amount} per jaar",
+      "period": {
+        "DAILY": "{count, plural, one {# dagelijkse uitgave} other {# dagelijkse uitgaven}}",
+        "WEEKLY": "{count, plural, one {# wekelijkse uitgave} other {# wekelijkse uitgaven}}",
+        "MONTHLY": "{count, plural, one {# maandelijkse uitgave} other {# maandelijkse uitgaven}}"
+      }
     }
   },
   "Activity": {

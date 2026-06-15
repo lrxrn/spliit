@@ -380,9 +380,12 @@ export async function getGroupExpenseCount(groupId: string) {
 
 /**
  * Returns the currently active recurring expenses of a group: the latest frame
- * of every ongoing recurring series (the frame that still owns a
- * `recurringExpenseLink`). Past, already-materialized frames are excluded so a
- * single subscription is only counted once. Used for recurring stats (#508).
+ * of every ongoing recurring series. Each materialized frame keeps its own
+ * `recurringExpenseLink`, but only the current frame's link is still "open"
+ * (`nextExpenseCreatedAt` is null) — past frames have it set once their
+ * successor is created (see `createRecurringExpenses`). Filtering on the open
+ * link ensures a single subscription is counted only once. Used for recurring
+ * stats (#508).
  */
 export async function getActiveRecurringExpenses(groupId: string) {
   await createRecurringExpenses()
@@ -400,7 +403,7 @@ export async function getActiveRecurringExpenses(groupId: string) {
       groupId,
       isReimbursement: false,
       recurrenceRule: { not: RecurrenceRule.NONE },
-      recurringExpenseLink: { isNot: null },
+      recurringExpenseLink: { is: { nextExpenseCreatedAt: null } },
     },
     orderBy: { amount: 'desc' },
   })

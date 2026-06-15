@@ -1,6 +1,4 @@
 'use client'
-import { useCurrentGroup } from '@/app/groups/[groupId]/current-group-context'
-import { StatsRange } from '@/app/groups/[groupId]/stats/stats-range'
 import {
   Card,
   CardContent,
@@ -9,19 +7,18 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
+import { Currency } from '@/lib/currency'
 import { SpendingSummary } from '@/lib/totals'
-import { formatCurrency, getCurrencyFromGroup } from '@/lib/utils'
-import { trpc } from '@/trpc/client'
+import { formatCurrency } from '@/lib/utils'
 import { useLocale, useTranslations } from 'next-intl'
 
-export function SummaryStats({ range }: { range: StatsRange }) {
-  const { groupId, group } = useCurrentGroup()
+type Props = {
+  summary?: SpendingSummary
+  currency?: Currency
+}
+
+export function SummaryStats({ summary, currency }: Props) {
   const t = useTranslations('Stats.Summary')
-  const { data } = trpc.groups.stats.summary.useQuery({
-    groupId,
-    from: range.from,
-    to: range.to,
-  })
 
   return (
     <Card className="mb-4">
@@ -30,7 +27,7 @@ export function SummaryStats({ range }: { range: StatsRange }) {
         <CardDescription>{t('description')}</CardDescription>
       </CardHeader>
       <CardContent>
-        {!data || !group ? (
+        {!summary || !currency ? (
           <div className="grid grid-cols-2 gap-4">
             {[0, 1, 2, 3].map((index) => (
               <div key={index} className="flex flex-col gap-2">
@@ -39,10 +36,10 @@ export function SummaryStats({ range }: { range: StatsRange }) {
               </div>
             ))}
           </div>
-        ) : data.expenseCount === 0 ? (
+        ) : summary.expenseCount === 0 ? (
           <p className="text-sm text-muted-foreground">{t('empty')}</p>
         ) : (
-          <SummaryGrid summary={data} currency={getCurrencyFromGroup(group)} />
+          <SummaryGrid summary={summary} currency={currency} />
         )}
       </CardContent>
     </Card>
@@ -54,7 +51,7 @@ function SummaryGrid({
   currency,
 }: {
   summary: SpendingSummary
-  currency: ReturnType<typeof getCurrencyFromGroup>
+  currency: Currency
 }) {
   const locale = useLocale()
   const t = useTranslations('Stats.Summary')

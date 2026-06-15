@@ -1,7 +1,5 @@
 'use client'
-import { useCurrentGroup } from '@/app/groups/[groupId]/current-group-context'
 import { CategoryIcon } from '@/app/groups/[groupId]/expenses/category-icon'
-import { StatsRange } from '@/app/groups/[groupId]/stats/stats-range'
 import {
   Card,
   CardContent,
@@ -10,19 +8,18 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
+import { Currency } from '@/lib/currency'
 import { CategorySpending } from '@/lib/totals'
-import { formatCurrency, getCurrencyFromGroup } from '@/lib/utils'
-import { trpc } from '@/trpc/client'
+import { formatCurrency } from '@/lib/utils'
 import { useLocale, useTranslations } from 'next-intl'
 
-export function CategoryBreakdown({ range }: { range: StatsRange }) {
-  const { groupId, group } = useCurrentGroup()
+type Props = {
+  categories?: CategorySpending[]
+  currency?: Currency
+}
+
+export function CategoryBreakdown({ categories, currency }: Props) {
   const t = useTranslations('Stats.ByCategory')
-  const { data } = trpc.groups.stats.byCategory.useQuery({
-    groupId,
-    from: range.from,
-    to: range.to,
-  })
 
   return (
     <Card className="mb-4">
@@ -31,7 +28,7 @@ export function CategoryBreakdown({ range }: { range: StatsRange }) {
         <CardDescription>{t('description')}</CardDescription>
       </CardHeader>
       <CardContent>
-        {!data || !group ? (
+        {!categories || !currency ? (
           <div className="flex flex-col gap-4">
             {[0, 1, 2, 3].map((index) => (
               <div key={index} className="flex flex-col gap-2">
@@ -40,13 +37,10 @@ export function CategoryBreakdown({ range }: { range: StatsRange }) {
               </div>
             ))}
           </div>
-        ) : data.categories.length === 0 ? (
+        ) : categories.length === 0 ? (
           <p className="text-sm text-muted-foreground">{t('empty')}</p>
         ) : (
-          <CategoryBars
-            categories={data.categories}
-            currency={getCurrencyFromGroup(group)}
-          />
+          <CategoryBars categories={categories} currency={currency} />
         )}
       </CardContent>
     </Card>
@@ -58,7 +52,7 @@ function CategoryBars({
   currency,
 }: {
   categories: CategorySpending[]
-  currency: ReturnType<typeof getCurrencyFromGroup>
+  currency: Currency
 }) {
   const locale = useLocale()
   const t = useTranslations('Categories')

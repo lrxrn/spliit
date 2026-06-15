@@ -79,6 +79,7 @@ export function calculateShare(
         (sum, paidFor) => sum + Number(paidFor.shares),
         0,
       )
+      if (totalShares === 0) return 0
       return (expense.amount * shares) / totalShares
     default:
       return 0
@@ -147,24 +148,49 @@ export type ParticipantSpending = {
 
 /**
  * Computes, for every participant, how much they paid, how many expenses they
- * paid for, and what their share of the group's expenses is (issues #496).
- * Sorted by amount paid, descending.
+ * paid for, and what their share of the group's expenses is (issue #496) in a
+ * single pass over the expenses. Sorted by amount paid, descending.
  */
 export function getSpendingByParticipant(
   participants: { id: string; name: string }[],
   expenses: NonNullable<Awaited<ReturnType<typeof getGroupExpenses>>>,
 ): ParticipantSpending[] {
+  const totals = new Map<
+    string,
+    { paid: number; paidCount: number; share: number }
+  >()
+  for (const participant of participants) {
+    totals.set(participant.id, { paid: 0, paidCount: 0, share: 0 })
+  }
+
+  for (const expense of expenses) {
+    if (expense.isReimbursement) continue
+
+    const payer = totals.get(expense.paidBy.id)
+    if (payer) {
+      payer.paid += expense.amount
+      payer.paidCount += 1
+    }
+
+    for (const paidFor of expense.paidFor) {
+      const entry = totals.get(paidFor.participant.id)
+      if (entry) {
+        entry.share += calculateShare(paidFor.participant.id, expense)
+      }
+    }
+  }
+
   return participants
-    .map((participant) => ({
-      participantId: participant.id,
-      name: participant.name,
-      paid: getTotalActiveUserPaidFor(participant.id, expenses),
-      paidCount: expenses.filter(
-        (expense) =>
-          expense.paidBy.id === participant.id && !expense.isReimbursement,
-      ).length,
-      share: getTotalActiveUserShare(participant.id, expenses),
-    }))
+    .map((participant) => {
+      const entry = totals.get(participant.id)!
+      return {
+        participantId: participant.id,
+        name: participant.name,
+        paid: entry.paid,
+        paidCount: entry.paidCount,
+        share: parseFloat(entry.share.toFixed(2)),
+      }
+    })
     .sort((a, b) => b.paid - a.paid)
 }
 

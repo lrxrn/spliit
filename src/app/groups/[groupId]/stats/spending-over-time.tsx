@@ -1,6 +1,4 @@
 'use client'
-import { useCurrentGroup } from '@/app/groups/[groupId]/current-group-context'
-import { StatsRange } from '@/app/groups/[groupId]/stats/stats-range'
 import {
   Card,
   CardContent,
@@ -9,19 +7,18 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
+import { Currency } from '@/lib/currency'
 import { MonthlySpending } from '@/lib/totals'
-import { formatCurrency, getCurrencyFromGroup } from '@/lib/utils'
-import { trpc } from '@/trpc/client'
+import { formatCurrency } from '@/lib/utils'
 import { useLocale, useTranslations } from 'next-intl'
 
-export function SpendingOverTime({ range }: { range: StatsRange }) {
-  const { groupId, group } = useCurrentGroup()
+type Props = {
+  months?: MonthlySpending[]
+  currency?: Currency
+}
+
+export function SpendingOverTime({ months, currency }: Props) {
   const t = useTranslations('Stats.OverTime')
-  const { data } = trpc.groups.stats.overTime.useQuery({
-    groupId,
-    from: range.from,
-    to: range.to,
-  })
 
   return (
     <Card className="mb-4">
@@ -30,7 +27,7 @@ export function SpendingOverTime({ range }: { range: StatsRange }) {
         <CardDescription>{t('description')}</CardDescription>
       </CardHeader>
       <CardContent>
-        {!data || !group ? (
+        {!months || !currency ? (
           <div className="flex flex-col gap-4">
             {[0, 1, 2, 3].map((index) => (
               <div key={index} className="flex flex-col gap-2">
@@ -39,13 +36,10 @@ export function SpendingOverTime({ range }: { range: StatsRange }) {
               </div>
             ))}
           </div>
-        ) : data.months.length === 0 ? (
+        ) : months.length === 0 ? (
           <p className="text-sm text-muted-foreground">{t('empty')}</p>
         ) : (
-          <MonthlyBars
-            months={data.months}
-            currency={getCurrencyFromGroup(group)}
-          />
+          <MonthlyBars months={months} currency={currency} />
         )}
       </CardContent>
     </Card>
@@ -57,7 +51,7 @@ function MonthlyBars({
   currency,
 }: {
   months: MonthlySpending[]
-  currency: ReturnType<typeof getCurrencyFromGroup>
+  currency: Currency
 }) {
   const locale = useLocale()
   const max = Math.max(...months.map((month) => month.total))

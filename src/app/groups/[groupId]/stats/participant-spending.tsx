@@ -1,6 +1,4 @@
 'use client'
-import { useCurrentGroup } from '@/app/groups/[groupId]/current-group-context'
-import { StatsRange } from '@/app/groups/[groupId]/stats/stats-range'
 import {
   Card,
   CardContent,
@@ -17,19 +15,18 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import { Currency } from '@/lib/currency'
 import { ParticipantSpending } from '@/lib/totals'
-import { formatCurrency, getCurrencyFromGroup } from '@/lib/utils'
-import { trpc } from '@/trpc/client'
+import { formatCurrency } from '@/lib/utils'
 import { useLocale, useTranslations } from 'next-intl'
 
-export function ParticipantSpendingStats({ range }: { range: StatsRange }) {
-  const { groupId, group } = useCurrentGroup()
+type Props = {
+  participants?: ParticipantSpending[]
+  currency?: Currency
+}
+
+export function ParticipantSpendingStats({ participants, currency }: Props) {
   const t = useTranslations('Stats.ByParticipant')
-  const { data } = trpc.groups.stats.byParticipant.useQuery({
-    groupId,
-    from: range.from,
-    to: range.to,
-  })
 
   return (
     <Card className="mb-4">
@@ -38,19 +35,16 @@ export function ParticipantSpendingStats({ range }: { range: StatsRange }) {
         <CardDescription>{t('description')}</CardDescription>
       </CardHeader>
       <CardContent>
-        {!data || !group ? (
+        {!participants || !currency ? (
           <div className="flex flex-col gap-3">
             {[0, 1, 2].map((index) => (
               <Skeleton key={index} className="h-5 w-full" />
             ))}
           </div>
-        ) : data.participants.length === 0 ? (
+        ) : participants.length === 0 ? (
           <p className="text-sm text-muted-foreground">{t('empty')}</p>
         ) : (
-          <ParticipantTable
-            participants={data.participants}
-            currency={getCurrencyFromGroup(group)}
-          />
+          <ParticipantTable participants={participants} currency={currency} />
         )}
       </CardContent>
     </Card>
@@ -62,7 +56,7 @@ function ParticipantTable({
   currency,
 }: {
   participants: ParticipantSpending[]
-  currency: ReturnType<typeof getCurrencyFromGroup>
+  currency: Currency
 }) {
   const locale = useLocale()
   const t = useTranslations('Stats.ByParticipant')

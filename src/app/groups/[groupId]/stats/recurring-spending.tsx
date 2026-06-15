@@ -1,5 +1,4 @@
 'use client'
-import { useCurrentGroup } from '@/app/groups/[groupId]/current-group-context'
 import {
   Card,
   CardContent,
@@ -8,19 +7,22 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
+import { Currency } from '@/lib/currency'
 import { RecurringSpending } from '@/lib/totals'
-import { formatCurrency, getCurrencyFromGroup } from '@/lib/utils'
-import { trpc } from '@/trpc/client'
+import { formatCurrency } from '@/lib/utils'
 import { useLocale, useTranslations } from 'next-intl'
 
-export function RecurringSpendingStats() {
-  const { groupId, group } = useCurrentGroup()
+type Props = {
+  recurring?: RecurringSpending
+  currency?: Currency
+}
+
+export function RecurringSpendingStats({ recurring, currency }: Props) {
   const t = useTranslations('Stats.Recurring')
-  const { data } = trpc.groups.stats.recurring.useQuery({ groupId })
 
   // Keep the stats page uncluttered for groups that have no recurring
   // expenses: only render the card once we know there is something to show.
-  if (data && data.count === 0) return null
+  if (recurring && recurring.count === 0) return null
 
   return (
     <Card className="mb-4">
@@ -29,16 +31,13 @@ export function RecurringSpendingStats() {
         <CardDescription>{t('description')}</CardDescription>
       </CardHeader>
       <CardContent>
-        {!data || !group ? (
+        {!recurring || !currency ? (
           <div className="flex flex-col gap-3">
             <Skeleton className="h-7 w-32" />
             <Skeleton className="h-4 w-40" />
           </div>
         ) : (
-          <RecurringSummary
-            stats={data}
-            currency={getCurrencyFromGroup(group)}
-          />
+          <RecurringSummary stats={recurring} currency={currency} />
         )}
       </CardContent>
     </Card>
@@ -50,7 +49,7 @@ function RecurringSummary({
   currency,
 }: {
   stats: RecurringSpending
-  currency: ReturnType<typeof getCurrencyFromGroup>
+  currency: Currency
 }) {
   const locale = useLocale()
   const t = useTranslations('Stats.Recurring')

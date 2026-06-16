@@ -108,12 +108,16 @@ describe('getRecurringSpending', () => {
       { period: 'WEEKLY', count: 1, total: 700 },
       { period: 'MONTHLY', count: 2, total: 1500 },
     ])
-    // 100 * (365.25/12) + 700 * (365.25/12/7) + 1500 = 3044.6875 + 3044.69 -> rounded
     const expectedMonthly = Math.round(
       100 * (365.25 / 12) + 700 * (365.25 / 12 / 7) + 1500,
     )
     expect(result.estimatedMonthly).toBe(expectedMonthly)
-    expect(result.estimatedYearly).toBe(expectedMonthly * 12)
+    // Yearly is computed independently from the monthly figure (not × 12) so it
+    // does not compound the monthly rounding.
+    const expectedYearly = Math.round(
+      100 * 365.25 + 700 * (365.25 / 7) + 1500 * 12,
+    )
+    expect(result.estimatedYearly).toBe(expectedYearly)
   })
 
   it('returns an empty summary when there are no recurring expenses', () => {

@@ -9,8 +9,19 @@ import {
 import { Skeleton } from '@/components/ui/skeleton'
 import { Currency } from '@/lib/currency'
 import { SpendingSummary } from '@/lib/totals'
-import { formatCurrency } from '@/lib/utils'
+import { formatCurrency, formatDateOnly } from '@/lib/utils'
 import { useLocale, useTranslations } from 'next-intl'
+
+/** Renders the active date span as a single date, a range, or a dash. */
+function formatActiveSpan(
+  firstDate: string | null,
+  lastDate: string | null,
+  formatDate: (date: string) => string,
+): string {
+  if (!firstDate || !lastDate) return '—'
+  if (firstDate === lastDate) return formatDate(firstDate)
+  return `${formatDate(firstDate)} – ${formatDate(lastDate)}`
+}
 
 type Props = {
   summary?: SpendingSummary
@@ -55,19 +66,16 @@ function SummaryGrid({
 }) {
   const locale = useLocale()
   const t = useTranslations('Stats.Summary')
-  const dateFormat = new Intl.DateTimeFormat(locale, {
-    dateStyle: 'medium',
-    timeZone: 'UTC',
-  })
   const formatDate = (date: string) =>
-    dateFormat.format(new Date(`${date}T00:00:00Z`))
+    formatDateOnly(new Date(`${date}T00:00:00Z`), locale, {
+      dateStyle: 'medium',
+    })
 
-  const activeSpan =
-    summary.firstDate && summary.lastDate
-      ? summary.firstDate === summary.lastDate
-        ? formatDate(summary.firstDate)
-        : `${formatDate(summary.firstDate)} – ${formatDate(summary.lastDate)}`
-      : '—'
+  const activeSpan = formatActiveSpan(
+    summary.firstDate,
+    summary.lastDate,
+    formatDate,
+  )
 
   return (
     <div className="grid grid-cols-2 gap-4">

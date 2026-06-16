@@ -1,3 +1,4 @@
+import type { RecurrenceRule } from '@/generated/prisma/client'
 import { getGroupExpenses } from '@/lib/api'
 
 /**
@@ -280,7 +281,10 @@ export function getSpendingSummary(
   }
 }
 
-export type RecurrencePeriod = 'DAILY' | 'WEEKLY' | 'MONTHLY'
+// All recurrence periods except NONE, derived from the Prisma enum so that
+// adding a new RecurrenceRule value (e.g. YEARLY) becomes a compile error in
+// PERIOD_FACTORS below rather than silently dropping out of the stats.
+export type RecurrencePeriod = Exclude<RecurrenceRule, 'NONE'>
 
 export type RecurringPeriodStats = {
   period: RecurrencePeriod
@@ -295,27 +299,32 @@ export type RecurringSpending = {
   estimatedYearly: number
 }
 
-// How many times each recurrence period occurs within an average month, used
-// to normalize recurring spending to a comparable monthly figure. Based on the
-// average month length of 365.25 / 12 days.
-const MONTHLY_EQUIVALENT_FACTOR: Record<RecurrencePeriod, number> = {
-  DAILY: 365.25 / 12,
-  WEEKLY: 365.25 / 12 / 7,
-  MONTHLY: 1,
+// How many times each recurrence period occurs within an average month and
+// year, used to normalize recurring spending to comparable monthly/yearly
+// figures. Based on the average year length of 365.25 days. The Record is
+// exhaustive over RecurrencePeriod, so a new enum value forces an update here.
+const PERIOD_FACTORS: Record<
+  RecurrencePeriod,
+  { perMonth: number; perYear: number }
+> = {
+  DAILY: { perMonth: 365.25 / 12, perYear: 365.25 },
+  WEEKLY: { perMonth: 365.25 / 12 / 7, perYear: 365.25 / 7 },
+  MONTHLY: { perMonth: 1, perYear: 12 },
 }
 
-const RECURRENCE_PERIODS: RecurrencePeriod[] = ['DAILY', 'WEEKLY', 'MONTHLY']
+const RECURRENCE_PERIODS = Object.keys(PERIOD_FACTORS) as RecurrencePeriod[]
 
 /**
  * Summarizes the active recurring expenses of a group (issue #508). Each active
  * recurring expense is counted once per period and normalized into an estimated
  * monthly and yearly cost so the stats page can act as a basic subscription
- * tracker.
+ * tracker. Monthly and yearly are computed independently (not monthly × 12) to
+ * avoid compounding the monthly rounding.
  */
 export function getRecurringSpending(
   expenses: {
     amount: number
-    recurrenceRule: string | null
+    recurrenceRule: RecurrenceRule | null
     isReimbursement: boolean
   }[],
 ): RecurringSpending {
@@ -331,18 +340,19 @@ export function getRecurringSpending(
     }
   })
 
-  const estimatedMonthly = Math.round(
-    byPeriod.reduce(
-      (sum, { period, total }) =>
-        sum + total * MONTHLY_EQUIVALENT_FACTOR[period],
-      0,
-    ),
-  )
+  const estimate = (factor: 'perMonth' | 'perYear') =>
+    Math.round(
+      byPeriod.reduce(
+        (sum, { period, total }) =>
+          sum + total * PERIOD_FACTORS[period][factor],
+        0,
+      ),
+    )
 
   return {
     count: byPeriod.reduce((sum, { count }) => sum + count, 0),
     byPeriod: byPeriod.filter(({ count }) => count > 0),
-    estimatedMonthly,
-    estimatedYearly: estimatedMonthly * 12,
+    estimatedMonthly: estimate('perMonth'),
+    estimatedYearly: estimate('perYear'),
   }
 }

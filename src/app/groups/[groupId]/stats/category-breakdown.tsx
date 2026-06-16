@@ -1,13 +1,16 @@
 'use client'
 import { CategoryIcon } from '@/app/groups/[groupId]/expenses/category-icon'
 import {
+  StatBar,
+  StatBarListSkeleton,
+} from '@/app/groups/[groupId]/stats/stat-bar'
+import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Skeleton } from '@/components/ui/skeleton'
 import { Currency } from '@/lib/currency'
 import { CategorySpending } from '@/lib/totals'
 import { formatCurrency } from '@/lib/utils'
@@ -29,14 +32,7 @@ export function CategoryBreakdown({ categories, currency }: Props) {
       </CardHeader>
       <CardContent>
         {!categories || !currency ? (
-          <div className="flex flex-col gap-4">
-            {[0, 1, 2, 3].map((index) => (
-              <div key={index} className="flex flex-col gap-2">
-                <Skeleton className="h-3 w-40" />
-                <Skeleton className="h-2 w-full" />
-              </div>
-            ))}
-          </div>
+          <StatBarListSkeleton />
         ) : categories.length === 0 ? (
           <p className="text-sm text-muted-foreground">{t('empty')}</p>
         ) : (
@@ -62,7 +58,6 @@ function CategoryBars({
   return (
     <div className="flex flex-col gap-4">
       {categories.map((category, index) => {
-        const width = max > 0 ? (category.total / max) * 100 : 0
         const share = total > 0 ? Math.round((category.total / total) * 100) : 0
         return (
           <div key={category.categoryId} className="flex flex-col gap-1.5">
@@ -84,15 +79,11 @@ function CategoryBars({
                 {formatCurrency(currency, category.total, locale)} ({share}%)
               </span>
             </div>
-            <div className="h-2 w-full overflow-hidden rounded-full bg-muted">
-              <div
-                className="h-full rounded-full"
-                style={{
-                  width: `${width}%`,
-                  backgroundColor: `hsl(var(--chart-${(index % 5) + 1}))`,
-                }}
-              />
-            </div>
+            <StatBar
+              value={category.total}
+              max={max}
+              color={`hsl(var(--chart-${(index % 5) + 1}))`}
+            />
           </div>
         )
       })}

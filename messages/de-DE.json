@@ -318,6 +318,52 @@
       "yourSpendings": "Deine gesamten Ausgaben",
       "yourEarnings": "Deine gesamten Einnahmen",
       "yourShare": "Dein gesamter Anteil"
+    },
+    "ByParticipant": {
+      "title": "Ausgaben pro Teilnehmer",
+      "description": "Wie viel jede Person bezahlt hat und ihr Anteil an den Ausgaben.",
+      "empty": "Es gibt noch keine Ausgaben.",
+      "participant": "Teilnehmer",
+      "paid": "Bezahlt",
+      "share": "Anteil",
+      "count": "Anzahl"
+    },
+    "ByCategory": {
+      "title": "Ausgaben nach Kategorie",
+      "description": "Gesamtbetrag pro Kategorie.",
+      "empty": "Es gibt noch keine Ausgaben."
+    },
+    "Recurring": {
+      "title": "Wiederkehrende Ausgaben",
+      "description": "Geschätzte Kosten der aktiven wiederkehrenden Ausgaben der Gruppe.",
+      "estimatedMonthly": "Geschätzte monatliche Kosten",
+      "estimatedYearly": "{amount} pro Jahr",
+      "period": {
+        "DAILY": "{count, plural, one {# tägliche Ausgabe} other {# tägliche Ausgaben}}",
+        "WEEKLY": "{count, plural, one {# wöchentliche Ausgabe} other {# wöchentliche Ausgaben}}",
+        "MONTHLY": "{count, plural, one {# monatliche Ausgabe} other {# monatliche Ausgaben}}"
+      }
+    },
+    "range": {
+      "label": "Zeitraum",
+      "all": "Gesamter Zeitraum",
+      "thisMonth": "Dieser Monat",
+      "last30": "Letzte 30 Tage",
+      "thisYear": "Dieses Jahr"
+    },
+    "Summary": {
+      "title": "Zusammenfassung",
+      "description": "Kennzahlen für den ausgewählten Zeitraum.",
+      "empty": "Es gibt noch keine Ausgaben.",
+      "expenseCount": "Ausgaben",
+      "averageExpense": "Durchschnittliche Ausgabe",
+      "largestExpense": "Größte Ausgabe",
+      "activeSpan": "Aktiver Zeitraum"
+    },
+    "OverTime": {
+      "title": "Ausgaben im Zeitverlauf",
+      "description": "Gesamtausgaben der Gruppe pro Monat.",
+      "empty": "Es gibt noch keine Ausgaben."
     }
   },
   "Activity": {

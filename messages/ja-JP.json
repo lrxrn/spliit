@@ -318,6 +318,52 @@
       "yourSpendings": "あなたの総支出",
       "yourEarnings": "あなたの総収入",
       "yourShare": "あなたの総シェア"
+    },
+    "ByParticipant": {
+      "title": "参加者ごとの支出",
+      "description": "各参加者が支払った金額と支出の負担分。",
+      "empty": "まだ支出はありません。",
+      "participant": "参加者",
+      "paid": "支払額",
+      "share": "負担分",
+      "count": "件数"
+    },
+    "ByCategory": {
+      "title": "カテゴリーごとの支出",
+      "description": "各カテゴリーの合計支出額。",
+      "empty": "まだ支出はありません。"
+    },
+    "Recurring": {
+      "title": "定期的な支出",
+      "description": "グループの有効な定期的支出の推定費用。",
+      "estimatedMonthly": "推定月額",
+      "estimatedYearly": "年間 {amount}",
+      "period": {
+        "DAILY": "{count, plural, other {毎日の支出 #件}}",
+        "WEEKLY": "{count, plural, other {毎週の支出 #件}}",
+        "MONTHLY": "{count, plural, other {毎月の支出 #件}}"
+      }
+    },
+    "range": {
+      "label": "期間",
+      "all": "全期間",
+      "thisMonth": "今月",
+      "last30": "過去30日間",
+      "thisYear": "今年"
+    },
+    "Summary": {
+      "title": "概要",
+      "description": "選択した期間の主要な数値。",
+      "empty": "まだ支出はありません。",
+      "expenseCount": "支出件数",
+      "averageExpense": "平均支出",
+      "largestExpense": "最高額の支出",
+      "activeSpan": "対象期間"
+    },
+    "OverTime": {
+      "title": "期間ごとの支出",
+      "description": "グループの月別の合計支出。",
+      "empty": "まだ支出はありません。"
     }
   },
   "Activity": {

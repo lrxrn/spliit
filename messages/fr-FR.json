@@ -318,6 +318,52 @@
       "yourSpendings": "Vos dépenses totales",
       "yourEarnings": "Vos revenus totaux",
       "yourShare": "Votre part totale"
+    },
+    "ByParticipant": {
+      "title": "Dépenses par participant",
+      "description": "Combien chaque participant a payé et sa part des dépenses.",
+      "empty": "Il n'y a pas encore de dépenses.",
+      "participant": "Participant",
+      "paid": "Payé",
+      "share": "Part",
+      "count": "Nombre"
+    },
+    "ByCategory": {
+      "title": "Dépenses par catégorie",
+      "description": "Montant total dépensé dans chaque catégorie.",
+      "empty": "Il n'y a pas encore de dépenses."
+    },
+    "Recurring": {
+      "title": "Dépenses récurrentes",
+      "description": "Coût estimé des dépenses récurrentes actives du groupe.",
+      "estimatedMonthly": "Coût mensuel estimé",
+      "estimatedYearly": "{amount} par an",
+      "period": {
+        "DAILY": "{count, plural, one {# dépense quotidienne} other {# dépenses quotidiennes}}",
+        "WEEKLY": "{count, plural, one {# dépense hebdomadaire} other {# dépenses hebdomadaires}}",
+        "MONTHLY": "{count, plural, one {# dépense mensuelle} other {# dépenses mensuelles}}"
+      }
+    },
+    "range": {
+      "label": "Période",
+      "all": "Tout le temps",
+      "thisMonth": "Ce mois-ci",
+      "last30": "30 derniers jours",
+      "thisYear": "Cette année"
+    },
+    "Summary": {
+      "title": "Résumé",
+      "description": "Chiffres clés pour la période sélectionnée.",
+      "empty": "Il n'y a pas encore de dépenses.",
+      "expenseCount": "Dépenses",
+      "averageExpense": "Dépense moyenne",
+      "largestExpense": "Dépense la plus élevée",
+      "activeSpan": "Période active"
+    },
+    "OverTime": {
+      "title": "Dépenses au fil du temps",
+      "description": "Dépenses totales du groupe par mois.",
+      "empty": "Il n'y a pas encore de dépenses."
     }
   },
   "Activity": {

@@ -280,6 +280,52 @@
       "yourSpendings": "Twoje wydatki",
       "yourEarnings": "Twoje wpływy",
       "yourShare": "Twoje udziały"
+    },
+    "ByParticipant": {
+      "title": "Wydatki według uczestników",
+      "description": "Ile zapłacił każdy uczestnik i jaki jest jego udział w wydatkach.",
+      "empty": "Nie ma jeszcze żadnych wydatków.",
+      "participant": "Uczestnik",
+      "paid": "Zapłacono",
+      "share": "Udział",
+      "count": "Liczba"
+    },
+    "ByCategory": {
+      "title": "Wydatki według kategorii",
+      "description": "Łączna kwota wydana w każdej kategorii.",
+      "empty": "Nie ma jeszcze żadnych wydatków."
+    },
+    "Recurring": {
+      "title": "Wydatki cykliczne",
+      "description": "Szacowany koszt aktywnych wydatków cyklicznych grupy.",
+      "estimatedMonthly": "Szacowany koszt miesięczny",
+      "estimatedYearly": "{amount} rocznie",
+      "period": {
+        "DAILY": "{count, plural, one {# dzienny wydatek} few {# dzienne wydatki} many {# dziennych wydatków} other {# dziennego wydatku}}",
+        "WEEKLY": "{count, plural, one {# tygodniowy wydatek} few {# tygodniowe wydatki} many {# tygodniowych wydatków} other {# tygodniowego wydatku}}",
+        "MONTHLY": "{count, plural, one {# miesięczny wydatek} few {# miesięczne wydatki} many {# miesięcznych wydatków} other {# miesięcznego wydatku}}"
+      }
+    },
+    "range": {
+      "label": "Okres",
+      "all": "Cały czas",
+      "thisMonth": "Ten miesiąc",
+      "last30": "Ostatnie 30 dni",
+      "thisYear": "Ten rok"
+    },
+    "Summary": {
+      "title": "Podsumowanie",
+      "description": "Kluczowe dane dla wybranego okresu.",
+      "empty": "Nie ma jeszcze żadnych wydatków.",
+      "expenseCount": "Wydatki",
+      "averageExpense": "Średni wydatek",
+      "largestExpense": "Największy wydatek",
+      "activeSpan": "Aktywny okres"
+    },
+    "OverTime": {
+      "title": "Wydatki w czasie",
+      "description": "Łączne wydatki grupy w podziale na miesiące.",
+      "empty": "Nie ma jeszcze żadnych wydatków."
     }
   },
   "Activity": {

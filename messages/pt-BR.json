@@ -318,6 +318,52 @@
       "yourSpendings": "Seus gastos totais",
       "yourEarnings": "Suas receitas totais",
       "yourShare": "Sua participação total"
+    },
+    "ByParticipant": {
+      "title": "Gastos por participante",
+      "description": "Quanto cada participante pagou e a sua parte das despesas.",
+      "empty": "Ainda não há despesas.",
+      "participant": "Participante",
+      "paid": "Pago",
+      "share": "Parte",
+      "count": "Quantidade"
+    },
+    "ByCategory": {
+      "title": "Gastos por categoria",
+      "description": "Valor total gasto em cada categoria.",
+      "empty": "Ainda não há despesas."
+    },
+    "Recurring": {
+      "title": "Despesas recorrentes",
+      "description": "Custo estimado das despesas recorrentes ativas do grupo.",
+      "estimatedMonthly": "Custo mensal estimado",
+      "estimatedYearly": "{amount} por ano",
+      "period": {
+        "DAILY": "{count, plural, one {# despesa diária} other {# despesas diárias}}",
+        "WEEKLY": "{count, plural, one {# despesa semanal} other {# despesas semanais}}",
+        "MONTHLY": "{count, plural, one {# despesa mensal} other {# despesas mensais}}"
+      }
+    },
+    "range": {
+      "label": "Período",
+      "all": "Todo o período",
+      "thisMonth": "Este mês",
+      "last30": "Últimos 30 dias",
+      "thisYear": "Este ano"
+    },
+    "Summary": {
+      "title": "Resumo",
+      "description": "Números principais do período selecionado.",
+      "empty": "Ainda não há despesas.",
+      "expenseCount": "Despesas",
+      "averageExpense": "Despesa média",
+      "largestExpense": "Maior despesa",
+      "activeSpan": "Período ativo"
+    },
+    "OverTime": {
+      "title": "Gastos ao longo do tempo",
+      "description": "Gasto total do grupo por mês.",
+      "empty": "Ainda não há despesas."
     }
   },
   "Activity": {

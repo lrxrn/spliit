@@ -260,6 +260,52 @@
       "yourShare": "나의 총 부담금",
       "groupEarnings": "그룹 총수입",
       "yourEarnings": "내 총수입"
+    },
+    "ByParticipant": {
+      "title": "참가자별 지출",
+      "description": "각 참가자가 지불한 금액과 지출 부담.",
+      "empty": "아직 지출이 없습니다.",
+      "participant": "참가자",
+      "paid": "지불액",
+      "share": "부담액",
+      "count": "건수"
+    },
+    "ByCategory": {
+      "title": "카테고리별 지출",
+      "description": "각 카테고리의 총 지출액.",
+      "empty": "아직 지출이 없습니다."
+    },
+    "Recurring": {
+      "title": "반복 지출",
+      "description": "그룹의 활성 반복 지출의 예상 비용.",
+      "estimatedMonthly": "예상 월 비용",
+      "estimatedYearly": "연 {amount}",
+      "period": {
+        "DAILY": "{count, plural, other {매일 지출 #건}}",
+        "WEEKLY": "{count, plural, other {매주 지출 #건}}",
+        "MONTHLY": "{count, plural, other {매월 지출 #건}}"
+      }
+    },
+    "range": {
+      "label": "기간",
+      "all": "전체 기간",
+      "thisMonth": "이번 달",
+      "last30": "지난 30일",
+      "thisYear": "올해"
+    },
+    "Summary": {
+      "title": "요약",
+      "description": "선택한 기간의 주요 수치.",
+      "empty": "아직 지출이 없습니다.",
+      "expenseCount": "지출 건수",
+      "averageExpense": "평균 지출",
+      "largestExpense": "최대 지출",
+      "activeSpan": "활동 기간"
+    },
+    "OverTime": {
+      "title": "기간별 지출",
+      "description": "그룹의 월별 총 지출.",
+      "empty": "아직 지출이 없습니다."
     }
   },
   "Activity": {

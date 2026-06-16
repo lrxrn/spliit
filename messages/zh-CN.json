@@ -318,6 +318,52 @@
       "yourSpendings": "你的总计开销",
       "yourEarnings": "你的总计收入",
       "yourShare": "你的总计份额"
+    },
+    "ByParticipant": {
+      "title": "按参与者统计支出",
+      "description": "每位参与者支付的金额及其分摊份额。",
+      "empty": "还没有任何支出。",
+      "participant": "参与者",
+      "paid": "已支付",
+      "share": "分摊",
+      "count": "笔数"
+    },
+    "ByCategory": {
+      "title": "按类别统计支出",
+      "description": "每个类别的支出总额。",
+      "empty": "还没有任何支出。"
+    },
+    "Recurring": {
+      "title": "周期性支出",
+      "description": "群组活跃周期性支出的预估费用。",
+      "estimatedMonthly": "预计每月费用",
+      "estimatedYearly": "每年 {amount}",
+      "period": {
+        "DAILY": "{count, plural, other {# 笔每日支出}}",
+        "WEEKLY": "{count, plural, other {# 笔每周支出}}",
+        "MONTHLY": "{count, plural, other {# 笔每月支出}}"
+      }
+    },
+    "range": {
+      "label": "时间段",
+      "all": "全部时间",
+      "thisMonth": "本月",
+      "last30": "最近 30 天",
+      "thisYear": "今年"
+    },
+    "Summary": {
+      "title": "概览",
+      "description": "所选时间段的关键数据。",
+      "empty": "还没有任何支出。",
+      "expenseCount": "支出笔数",
+      "averageExpense": "平均支出",
+      "largestExpense": "最大支出",
+      "activeSpan": "活跃时间段"
+    },
+    "OverTime": {
+      "title": "支出趋势",
+      "description": "群组每月的总支出。",
+      "empty": "还没有任何支出。"
     }
   },
   "Activity": {

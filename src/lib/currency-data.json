@@ -305,6 +305,15 @@
       "name_plural": "Malaysian ringgits",
       "rounding": 0,
       "decimal_digits": 2
+    },
+    "MVR": {
+      "name": "Rufiyaa Maladewa",
+      "symbol_native": "Rf",
+      "symbol": "Rf",
+      "code": "MVR",
+      "name_plural": "Maldivian rufiyaas",
+      "rounding": 0,
+      "decimal_digits": 2
     }
   },
   "ca": {
@@ -611,6 +620,15 @@
       "symbol": "RM",
       "code": "MYR",
       "name_plural": "Malaysian ringgits",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MVR": {
+      "name": "rufiyaa de les Maldives",
+      "symbol_native": "Rf",
+      "symbol": "Rf",
+      "code": "MVR",
+      "name_plural": "Maldivian rufiyaas",
       "rounding": 0,
       "decimal_digits": 2
     }
@@ -921,6 +939,15 @@
       "name_plural": "Malaysian ringgits",
       "rounding": 0,
       "decimal_digits": 2
+    },
+    "MVR": {
+      "name": "rufijaa Malediv",
+      "symbol_native": "Rf",
+      "symbol": "Rf",
+      "code": "MVR",
+      "name_plural": "Maldivian rufiyaas",
+      "rounding": 0,
+      "decimal_digits": 2
     }
   },
   "de-DE": {
@@ -1227,6 +1254,15 @@
       "symbol": "RM",
       "code": "MYR",
       "name_plural": "Malaysian ringgits",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MVR": {
+      "name": "Maledivische Rufiyaa",
+      "symbol_native": "Rf",
+      "symbol": "Rf",
+      "code": "MVR",
+      "name_plural": "Maldivian rufiyaas",
       "rounding": 0,
       "decimal_digits": 2
     }
@@ -1537,6 +1573,15 @@
       "name_plural": "Malaysian ringgits",
       "rounding": 0,
       "decimal_digits": 2
+    },
+    "MVR": {
+      "name": "Maldivian Rufiyaa",
+      "symbol_native": "Rf",
+      "symbol": "Rf",
+      "code": "MVR",
+      "name_plural": "Maldivian rufiyaas",
+      "rounding": 0,
+      "decimal_digits": 2
     }
   },
   "es": {
@@ -1843,6 +1888,15 @@
       "symbol": "RM",
       "code": "MYR",
       "name_plural": "Malaysian ringgits",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MVR": {
+      "name": "rufiyaa de Maldivas",
+      "symbol_native": "Rf",
+      "symbol": "Rf",
+      "code": "MVR",
+      "name_plural": "Maldivian rufiyaas",
       "rounding": 0,
       "decimal_digits": 2
     }
@@ -2153,6 +2207,15 @@
       "name_plural": "Malaysian ringgits",
       "rounding": 0,
       "decimal_digits": 2
+    },
+    "MVR": {
+      "name": "Maldivetako rufiyaa",
+      "symbol_native": "Rf",
+      "symbol": "Rf",
+      "code": "MVR",
+      "name_plural": "Maldivian rufiyaas",
+      "rounding": 0,
+      "decimal_digits": 2
     }
   },
   "fr-FR": {
@@ -2459,6 +2522,15 @@
       "symbol": "RM",
       "code": "MYR",
       "name_plural": "Malaysian ringgits",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MVR": {
+      "name": "rufiyaa maldivienne",
+      "symbol_native": "Rf",
+      "symbol": "Rf",
+      "code": "MVR",
+      "name_plural": "Maldivian rufiyaas",
       "rounding": 0,
       "decimal_digits": 2
     }
@@ -2769,6 +2841,15 @@
       "name_plural": "Malaysian ringgits",
       "rounding": 0,
       "decimal_digits": 2
+    },
+    "MVR": {
+      "name": "rufiyaa maldiviana",
+      "symbol_native": "Rf",
+      "symbol": "Rf",
+      "code": "MVR",
+      "name_plural": "Maldivian rufiyaas",
+      "rounding": 0,
+      "decimal_digits": 2
     }
   },
   "nl-NL": {
@@ -3075,6 +3156,15 @@
       "symbol": "RM",
       "code": "MYR",
       "name_plural": "Malaysian ringgits",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MVR": {
+      "name": "Maldivische rufiyaa",
+      "symbol_native": "Rf",
+      "symbol": "Rf",
+      "code": "MVR",
+      "name_plural": "Maldivian rufiyaas",
       "rounding": 0,
       "decimal_digits": 2
     }
@@ -3385,6 +3475,15 @@
       "name_plural": "Malaysian ringgits",
       "rounding": 0,
       "decimal_digits": 2
+    },
+    "MVR": {
+      "name": "rufijaa malediwska",
+      "symbol_native": "Rf",
+      "symbol": "Rf",
+      "code": "MVR",
+      "name_plural": "Maldivian rufiyaas",
+      "rounding": 0,
+      "decimal_digits": 2
     }
   },
   "pt": {
@@ -3691,6 +3790,15 @@
       "symbol": "RM",
       "code": "MYR",
       "name_plural": "Malaysian ringgits",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MVR": {
+      "name": "rufiyaa maldiviana",
+      "symbol_native": "Rf",
+      "symbol": "Rf",
+      "code": "MVR",
+      "name_plural": "Maldivian rufiyaas",
       "rounding": 0,
       "decimal_digits": 2
     }
@@ -4001,6 +4109,15 @@
       "name_plural": "Malaysian ringgits",
       "rounding": 0,
       "decimal_digits": 2
+    },
+    "MVR": {
+      "name": "rufiyaa maldiviana",
+      "symbol_native": "Rf",
+      "symbol": "Rf",
+      "code": "MVR",
+      "name_plural": "Maldivian rufiyaas",
+      "rounding": 0,
+      "decimal_digits": 2
     }
   },
   "ro": {
@@ -4307,6 +4424,15 @@
       "symbol": "RM",
       "code": "MYR",
       "name_plural": "Malaysian ringgits",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MVR": {
+      "name": "rufiyaa maldiviană",
+      "symbol_native": "Rf",
+      "symbol": "Rf",
+      "code": "MVR",
+      "name_plural": "Maldivian rufiyaas",
       "rounding": 0,
       "decimal_digits": 2
     }
@@ -4617,6 +4743,15 @@
       "name_plural": "Malaysian ringgits",
       "rounding": 0,
       "decimal_digits": 2
+    },
+    "MVR": {
+      "name": "Malediivien rufiyaa",
+      "symbol_native": "Rf",
+      "symbol": "Rf",
+      "code": "MVR",
+      "name_plural": "Maldivian rufiyaas",
+      "rounding": 0,
+      "decimal_digits": 2
     }
   },
   "tr-TR": {
@@ -4923,6 +5058,15 @@
       "symbol": "RM",
       "code": "MYR",
       "name_plural": "Malaysian ringgits",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MVR": {
+      "name": "Maldiv Rufiyası",
+      "symbol_native": "Rf",
+      "symbol": "Rf",
+      "code": "MVR",
+      "name_plural": "Maldivian rufiyaas",
       "rounding": 0,
       "decimal_digits": 2
     }
@@ -5233,6 +5377,15 @@
       "name_plural": "Malaysian ringgits",
       "rounding": 0,
       "decimal_digits": 2
+    },
+    "MVR": {
+      "name": "Мальдивская руфия",
+      "symbol_native": "Rf",
+      "symbol": "Rf",
+      "code": "MVR",
+      "name_plural": "Maldivian rufiyaas",
+      "rounding": 0,
+      "decimal_digits": 2
     }
   },
   "uk-UA": {
@@ -5539,6 +5692,15 @@
       "symbol": "RM",
       "code": "MYR",
       "name_plural": "Malaysian ringgits",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MVR": {
+      "name": "Мальдівська руфія",
+      "symbol_native": "Rf",
+      "symbol": "Rf",
+      "code": "MVR",
+      "name_plural": "Maldivian rufiyaas",
       "rounding": 0,
       "decimal_digits": 2
     }
@@ -5849,6 +6011,15 @@
       "name_plural": "Malaysian ringgits",
       "rounding": 0,
       "decimal_digits": 2
+    },
+    "MVR": {
+      "name": "רופייה מלדיבית",
+      "symbol_native": "Rf",
+      "symbol": "Rf",
+      "code": "MVR",
+      "name_plural": "Maldivian rufiyaas",
+      "rounding": 0,
+      "decimal_digits": 2
     }
   },
   "ko": {
@@ -6155,6 +6326,15 @@
       "symbol": "RM",
       "code": "MYR",
       "name_plural": "Malaysian ringgits",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MVR": {
+      "name": "몰디브 루피야",
+      "symbol_native": "Rf",
+      "symbol": "Rf",
+      "code": "MVR",
+      "name_plural": "Maldivian rufiyaas",
       "rounding": 0,
       "decimal_digits": 2
     }
@@ -6465,6 +6645,15 @@
       "name_plural": "Malaysian ringgits",
       "rounding": 0,
       "decimal_digits": 2
+    },
+    "MVR": {
+      "name": "モルディブ ルフィア",
+      "symbol_native": "Rf",
+      "symbol": "Rf",
+      "code": "MVR",
+      "name_plural": "Maldivian rufiyaas",
+      "rounding": 0,
+      "decimal_digits": 2
     }
   },
   "zh-CN": {
@@ -6773,6 +6962,15 @@
       "name_plural": "Malaysian ringgits",
       "rounding": 0,
       "decimal_digits": 2
+    },
+    "MVR": {
+      "name": "马尔代夫拉菲亚",
+      "symbol_native": "Rf",
+      "symbol": "Rf",
+      "code": "MVR",
+      "name_plural": "Maldivian rufiyaas",
+      "rounding": 0,
+      "decimal_digits": 2
     }
   },
   "zh-TW": {
@@ -7079,6 +7277,15 @@
       "symbol": "RM",
       "code": "MYR",
       "name_plural": "Malaysian ringgits",
+      "rounding": 0,
+      "decimal_digits": 2
+    },
+    "MVR": {
+      "name": "馬爾地夫拉菲亞",
+      "symbol_native": "Rf",
+      "symbol": "Rf",
+      "code": "MVR",
+      "name_plural": "Maldivian rufiyaas",
       "rounding": 0,
       "decimal_digits": 2
     }

@@ -46,6 +46,7 @@ export const supportedCurrencyCodes = [
   'VND',
   'MKD',
   'MYR',
+  'MVR',
 ] as const
 export type supportedCurrencyCodeType = (typeof supportedCurrencyCodes)[number]
 

@@ -55,7 +55,10 @@
     "verify": "Verify & sign in",
     "changeEmail": "Use a different email",
     "errorSending": "Failed to send code. Please try again.",
-    "errorVerifying": "Invalid or expired code. Please try again."
+    "errorVerifying": "Invalid or expired code. Please try again.",
+    "orContinueWith": "or continue with",
+    "signInWithMicrosoft": "Sign in with Microsoft",
+    "errorMicrosoft": "Microsoft sign-in failed. Please try again."
   },
   "Footer": {
     "madeIn": "Made in Montréal, Québec 🇨🇦",

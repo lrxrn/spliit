@@ -4,6 +4,17 @@ import { Loader2 } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useState } from 'react'
+
+function MicrosoftIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="1" y="1" width="9" height="9" fill="#F25022" />
+      <rect x="11" y="1" width="9" height="9" fill="#7FBA00" />
+      <rect x="1" y="11" width="9" height="9" fill="#00A4EF" />
+      <rect x="11" y="11" width="9" height="9" fill="#FFB900" />
+    </svg>
+  )
+}
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -27,7 +38,19 @@ export default function SignInPage() {
   const [email, setEmail] = useState('')
   const [otp, setOtp] = useState('')
   const [loading, setLoading] = useState(false)
+  const [loadingMicrosoft, setLoadingMicrosoft] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  async function signInWithMicrosoft() {
+    setLoadingMicrosoft(true)
+    setError(null)
+    try {
+      await authClient.signIn.social({ provider: 'microsoft', callbackURL: callbackUrl })
+    } catch {
+      setError(t('errorMicrosoft'))
+      setLoadingMicrosoft(false)
+    }
+  }
 
   async function sendCode() {
     if (!email) return
@@ -87,6 +110,28 @@ export default function SignInPage() {
               <Button onClick={sendCode} disabled={loading || !email}>
                 {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                 {t('sendCode')}
+              </Button>
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <span className="w-full border-t" />
+                </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                  <span className="bg-background px-2 text-muted-foreground">
+                    {t('orContinueWith')}
+                  </span>
+                </div>
+              </div>
+              <Button
+                variant="outline"
+                onClick={signInWithMicrosoft}
+                disabled={loadingMicrosoft || loading}
+              >
+                {loadingMicrosoft ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <MicrosoftIcon className="mr-2 h-4 w-4" />
+                )}
+                {t('signInWithMicrosoft')}
               </Button>
             </>
           ) : (

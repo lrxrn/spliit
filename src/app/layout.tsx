@@ -69,7 +69,7 @@ function Content({ children }: { children: React.ReactNode }) {
   const t = useTranslations()
   return (
     <TRPCProvider>
-      <header className="fixed top-0 left-0 right-0 h-16 flex justify-between bg-white dark:bg-gray-950 bg-opacity-50 dark:bg-opacity-50 p-2 border-b backdrop-blur-sm z-50">
+      <header className="fixed top-0 left-0 right-0 h-16 flex items-center justify-between bg-white dark:bg-gray-950 bg-opacity-50 dark:bg-opacity-50 px-3 border-b backdrop-blur-sm z-50">
         <Link
           className="flex items-center gap-2 hover:scale-105 transition-transform"
           href="/"
@@ -84,29 +84,18 @@ function Content({ children }: { children: React.ReactNode }) {
             />
           </h1>
         </Link>
-        <div role="navigation" aria-label="Menu" className="flex">
-          <ul className="flex items-center text-sm">
-            <li>
-              <Button
-                variant="ghost"
-                size="sm"
-                asChild
-                className="-my-3 text-primary"
-              >
-                <Link href="/groups">{t('Header.groups')}</Link>
-              </Button>
-            </li>
-            <li>
-              <AuthButton />
-            </li>
-            <li>
-              <LocaleSwitcher />
-            </li>
-            <li>
-              <ThemeToggle />
-            </li>
-          </ul>
-        </div>
+        <nav role="navigation" aria-label="Menu" className="flex items-center gap-1">
+          <Button
+            variant="ghost"
+            size="sm"
+            asChild
+            className="text-primary"
+          >
+            <Link href="/groups">{t('Header.groups')}</Link>
+          </Button>
+          <ThemeToggle />
+          <AuthButton />
+        </nav>
       </header>
 
       <div className="pt-16 flex-1 flex flex-col">{children}</div>
@@ -145,6 +134,9 @@ function Content({ children }: { children: React.ReactNode }) {
               })}
             </span>
           </div>
+        </div>
+        <div className="flex items-end">
+          <LocaleSwitcher />
         </div>
       </footer>
       <Toaster />

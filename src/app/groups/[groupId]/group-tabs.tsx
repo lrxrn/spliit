@@ -1,4 +1,5 @@
 'use client'
+import { authClient } from '@/lib/auth-client'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useTranslations } from 'next-intl'
 import { usePathname, useRouter } from 'next/navigation'
@@ -13,6 +14,8 @@ export function GroupTabs({ groupId }: Props) {
   const value =
     pathname.replace(/\/groups\/[^\/]+\/([^/]+).*/, '$1') || 'expenses'
   const router = useRouter()
+  const { data: session } = authClient.useSession()
+  const isSignedIn = !!session?.user
 
   return (
     <Tabs
@@ -28,7 +31,9 @@ export function GroupTabs({ groupId }: Props) {
         <TabsTrigger value="information">{t('Information.title')}</TabsTrigger>
         <TabsTrigger value="stats">{t('Stats.title')}</TabsTrigger>
         <TabsTrigger value="activity">{t('Activity.title')}</TabsTrigger>
-        <TabsTrigger value="edit">{t('Settings.title')}</TabsTrigger>
+        {isSignedIn && (
+          <TabsTrigger value="edit">{t('Settings.title')}</TabsTrigger>
+        )}
       </TabsList>
     </Tabs>
   )

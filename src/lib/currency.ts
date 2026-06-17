@@ -33,7 +33,6 @@ export const supportedCurrencyCodes = [
   'CNY',
   'HKD',
   'IDR',
-  'ILS',
   'INR',
   'KRW',
   'MXN',

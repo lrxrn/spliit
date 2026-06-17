@@ -22,6 +22,16 @@ if (process.env.S3_UPLOAD_ENDPOINT) {
   })
 }
 
+// R2 Storage
+if (process.env.R2_PUBLIC_URL) {
+  try {
+    const url = new URL(process.env.R2_PUBLIC_URL)
+    remotePatterns.push({ hostname: url.hostname })
+  } catch {
+    // ignore unparseable URL
+  }
+}
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Emit a self-contained server (.next/standalone) with only the traced

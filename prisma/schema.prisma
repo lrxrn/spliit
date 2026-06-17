@@ -13,15 +13,94 @@ datasource db {
   // PrismaClient; Migrate reads its connection from prisma.config.ts.
 }
 
+model User {
+  id            String    @id
+  name          String
+  email         String    @unique
+  emailVerified Boolean   @default(false)
+  image         String?
+  createdAt     DateTime
+  updatedAt     DateTime
+  sessions      Session[]
+  accounts      Account[]
+
+  ownedGroups        Group[]               @relation("GroupOwner")
+  linkedParticipants Participant[]         @relation("ParticipantUser")
+  groupPreferences   UserGroupPreference[]
+
+  @@map("user")
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String   @unique
+  createdAt DateTime
+  updatedAt DateTime
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime
+  updatedAt             DateTime
+
+  @@map("account")
+}
+
+model Verification {
+  id         String    @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime?
+  updatedAt  DateTime?
+
+  @@map("verification")
+}
+
+model UserGroupPreference {
+  id         String   @id @default(cuid())
+  userId     String
+  groupId    String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  group      Group    @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  isRecent   Boolean  @default(false)
+  isStarred  Boolean  @default(false)
+  isArchived Boolean  @default(false)
+  visitedAt  DateTime @default(now())
+
+  @@unique([userId, groupId])
+}
+
 model Group {
   id           String        @id
   name         String
   information  String?       @db.Text
   currency     String        @default("$")
   currencyCode String?
+  ownerId      String?
+  owner        User?         @relation("GroupOwner", fields: [ownerId], references: [id], onDelete: SetNull)
   participants Participant[]
   expenses     Expense[]
   activities   Activity[]
+  groupPreferences UserGroupPreference[]
   createdAt    DateTime      @default(now())
 }
 
@@ -30,6 +109,8 @@ model Participant {
   name            String
   group           Group            @relation(fields: [groupId], references: [id], onDelete: Cascade)
   groupId         String
+  userId          String?
+  user            User?            @relation("ParticipantUser", fields: [userId], references: [id], onDelete: SetNull)
   expensesPaidBy  Expense[]
   expensesPaidFor ExpensePaidFor[]
 }
@@ -125,6 +206,7 @@ model Activity {
   participantId String?
   expenseId     String?
   data          String?
+  userId        String?
 }
 
 enum ActivityType {

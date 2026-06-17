@@ -1,7 +1,7 @@
 services:
   app:
     build: .
-    image: spliit:latest
+    image: spliit2:latest
     ports:
       - 3000:3000
     env_file:

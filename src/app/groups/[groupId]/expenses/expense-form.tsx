@@ -1265,6 +1265,7 @@ export function ExpenseForm({
                   <ExpenseDocumentsInput
                     documents={field.value ?? []}
                     updateDocuments={field.onChange}
+                    storageProvider={runtimeFeatureFlags.storageProvider}
                   />
                 )}
               />

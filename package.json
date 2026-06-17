@@ -12,11 +12,13 @@
     "prettier": "prettier -w src",
     "postinstall": "prisma migrate deploy && prisma generate",
     "build-image": "./scripts/build-image.sh",
-    "start-container": "docker compose --env-file container.env up",
+    "start-container": "docker compose --env-file container.env up -d --force-recreate",
     "test": "jest",
     "generate-currency-data": "ts-node -T ./src/scripts/generateCurrencyData.ts"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1070.0",
+    "@aws-sdk/s3-request-presigner": "^3.1070.0",
     "@formatjs/intl-localematcher": "^0.8.10",
     "@hookform/resolvers": "^5",
     "@json2csv/plainjs": "^7.0.6",
@@ -40,6 +42,7 @@
     "@trpc/client": "^11.17.0",
     "@trpc/react-query": "^11.17.0",
     "@trpc/server": "^11.17.0",
+    "better-auth": "^1.6.19",
     "class-variance-authority": "^0.7.1",
     "client-only": "^0.0.1",
     "clsx": "^2.1.1",

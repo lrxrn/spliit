@@ -8,6 +8,8 @@ export const EditGroup = () => {
   const { groupId } = useCurrentGroup()
   const { data, isLoading } = trpc.groups.getDetails.useQuery({ groupId })
   const { mutateAsync } = trpc.groups.update.useMutation()
+  const { mutateAsync: linkParticipant } =
+    trpc.groups.participants.link.useMutation()
   const utils = trpc.useUtils()
 
   if (isLoading) return <></>
@@ -18,6 +20,9 @@ export const EditGroup = () => {
       onSubmit={async (groupFormValues, participantId) => {
         await mutateAsync({ groupId, participantId, groupFormValues })
         await utils.groups.invalidate()
+      }}
+      onLinkParticipant={async (participantId, email) => {
+        await linkParticipant({ groupId, participantId, email })
       }}
       protectedParticipantIds={data?.participantsWithExpenses}
     />

@@ -20,6 +20,13 @@ function getAllowedUploadHosts(): string[] {
       `${env.S3_UPLOAD_BUCKET}.s3.${env.S3_UPLOAD_REGION}.amazonaws.com`,
     )
   }
+  if (env.R2_PUBLIC_URL) {
+    try {
+      hosts.push(new URL(env.R2_PUBLIC_URL).hostname)
+    } catch {
+      // ignore unparseable URL
+    }
+  }
   return hosts
 }
 

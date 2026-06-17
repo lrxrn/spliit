@@ -24,6 +24,11 @@ import {
 } from '@/components/ui/hover-card'
 import { Input } from '@/components/ui/input'
 import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover'
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -35,10 +40,10 @@ import { getGroup } from '@/lib/api'
 import { defaultCurrencyList, getCurrency } from '@/lib/currency'
 import { GroupFormValues, groupFormSchema } from '@/lib/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Save, Trash2 } from 'lucide-react'
+import { Link2, Link2Off, Loader2, Save, Trash2 } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useFieldArray, useForm } from 'react-hook-form'
 import { CurrencySelector } from './currency-selector'
 import { Textarea } from './ui/textarea'
@@ -49,6 +54,10 @@ export type Props = {
     groupFormValues: GroupFormValues,
     participantId?: string,
   ) => Promise<void>
+  onLinkParticipant?: (
+    participantId: string,
+    email: string | null,
+  ) => Promise<void>
   protectedParticipantIds?: string[]
   defaultCurrencyCode?: string
 }
@@ -56,6 +65,7 @@ export type Props = {
 export function GroupForm({
   group,
   onSubmit,
+  onLinkParticipant,
   protectedParticipantIds = [],
   defaultCurrencyCode = 'USD',
 }: Props) {
@@ -90,6 +100,12 @@ export function GroupForm({
   })
 
   const [activeUser, setActiveUser] = useState<string | null>(null)
+  const [linkedState, setLinkedState] = useState<Record<string, string | null>>(
+    () =>
+      Object.fromEntries(
+        (group?.participants ?? []).map((p) => [p.id, p.userId ?? null]),
+      ),
+  )
   useEffect(() => {
     if (activeUser === null) {
       const currentActiveUser =
@@ -259,6 +275,20 @@ export function GroupForm({
                               {...field}
                               placeholder={t('Participants.new')}
                             />
+                            {item.id && onLinkParticipant && (
+                              <ParticipantLinkButton
+                                participantId={item.id}
+                                isLinked={!!linkedState[item.id]}
+                                onLink={async (email) => {
+                                  await onLinkParticipant(item.id!, email)
+                                  setLinkedState((s) => ({
+                                    ...s,
+                                    [item.id!]: email,
+                                  }))
+                                }}
+                                t={t}
+                              />
+                            )}
                             {item.id &&
                             protectedParticipantIds.includes(item.id) ? (
                               <HoverCard>
@@ -377,5 +407,110 @@ export function GroupForm({
         </div>
       </form>
     </Form>
+  )
+}
+
+function ParticipantLinkButton({
+  participantId,
+  isLinked,
+  onLink,
+  t,
+}: {
+  participantId: string
+  isLinked: boolean
+  onLink: (email: string | null) => Promise<void>
+  t: ReturnType<typeof useTranslations<'GroupForm'>>
+}) {
+  const [open, setOpen] = useState(false)
+  const [email, setEmail] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  async function handleSubmit() {
+    setLoading(true)
+    setError(null)
+    try {
+      await onLink(email || null)
+      setOpen(false)
+      setEmail('')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : t('Participants.Link.error'))
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  async function handleUnlink() {
+    setLoading(true)
+    setError(null)
+    try {
+      await onLink(null)
+      setOpen(false)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : t('Participants.Link.error'))
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <Popover
+      open={open}
+      onOpenChange={(o) => {
+        setOpen(o)
+        if (o) setTimeout(() => inputRef.current?.focus(), 50)
+      }}
+    >
+      <PopoverTrigger asChild>
+        <Button variant="ghost" type="button" size="icon" title={isLinked ? t('Participants.Link.linked') : t('Participants.Link.link')}>
+          {isLinked ? (
+            <Link2 className="w-4 h-4 text-primary" />
+          ) : (
+            <Link2Off className="w-4 h-4 text-muted-foreground" />
+          )}
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-72 flex flex-col gap-3" align="end">
+        <p className="text-sm font-medium">{t('Participants.Link.title')}</p>
+        {!isLinked ? (
+          <>
+            <Input
+              ref={inputRef}
+              type="email"
+              placeholder={t('Participants.Link.emailPlaceholder')}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
+            />
+            {error && <p className="text-xs text-destructive">{error}</p>}
+            <Button
+              type="button"
+              size="sm"
+              disabled={loading || !email}
+              onClick={handleSubmit}
+            >
+              {loading && <Loader2 className="mr-2 h-3 w-3 animate-spin" />}
+              {t('Participants.Link.link')}
+            </Button>
+          </>
+        ) : (
+          <>
+            <p className="text-sm text-muted-foreground">{t('Participants.Link.alreadyLinked')}</p>
+            {error && <p className="text-xs text-destructive">{error}</p>}
+            <Button
+              type="button"
+              variant="destructive"
+              size="sm"
+              disabled={loading}
+              onClick={handleUnlink}
+            >
+              {loading && <Loader2 className="mr-2 h-3 w-3 animate-spin" />}
+              {t('Participants.Link.unlink')}
+            </Button>
+          </>
+        )}
+      </PopoverContent>
+    </Popover>
   )
 }

@@ -43,6 +43,16 @@ const envSchema = z
     S3_UPLOAD_BUCKET: z.string().optional(),
     S3_UPLOAD_REGION: z.string().optional(),
     S3_UPLOAD_ENDPOINT: z.string().optional(),
+    STORAGE_PROVIDER: z.enum(['s3', 'r2']).default('s3'),
+    R2_ACCOUNT_ID: z.string().optional(),
+    R2_ACCESS_KEY_ID: z.string().optional(),
+    R2_SECRET_ACCESS_KEY: z.string().optional(),
+    R2_BUCKET_NAME: z.string().optional(),
+    R2_PUBLIC_URL: z.string().url().optional(),
+    BETTER_AUTH_URL: z.string().url().optional(),
+    LANDING_TITLE: z.string().optional(),
+    LANDING_DESCRIPTION: z.string().optional(),
+    LANDING_CTA: z.string().optional(),
     NEXT_PUBLIC_ENABLE_RECEIPT_EXTRACT: z.preprocess(
       interpretEnvVarAsBool,
       z.boolean().default(false),
@@ -83,7 +93,14 @@ const envSchema = z
       env.ENABLE_RECEIPT_EXTRACT || env.NEXT_PUBLIC_ENABLE_RECEIPT_EXTRACT
     const enableCategoryExtract =
       env.ENABLE_CATEGORY_EXTRACT || env.NEXT_PUBLIC_ENABLE_CATEGORY_EXTRACT
-    if (
+    if (enableExpenseDocuments && env.STORAGE_PROVIDER === 'r2') {
+      if (!env.R2_ACCOUNT_ID || !env.R2_ACCESS_KEY_ID || !env.R2_SECRET_ACCESS_KEY || !env.R2_BUCKET_NAME || !env.R2_PUBLIC_URL) {
+        ctx.addIssue({
+          code: ZodIssueCode.custom,
+          message: 'If STORAGE_PROVIDER=r2 and ENABLE_EXPENSE_DOCUMENTS is set, R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET_NAME and R2_PUBLIC_URL must be set',
+        })
+      }
+    } else if (
       enableExpenseDocuments &&
       // S3_UPLOAD_ENDPOINT is fully optional as it will only be used for providers other than AWS
       (!env.S3_UPLOAD_BUCKET ||

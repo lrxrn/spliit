@@ -4,11 +4,58 @@
     "description": "Welcome to your new <strong>Spliit</strong> instance !",
     "button": {
       "groups": "Go to groups",
-      "github": "GitHub"
+      "github": "GitHub",
+      "signIn": "Sign In"
+    },
+    "features": {
+      "title": "Features",
+      "noAccount": {
+        "title": "No account to view",
+        "description": "Share a link and anyone can view expenses — no sign-up required."
+      },
+      "splitting": {
+        "title": "Smart expense splitting",
+        "description": "Split evenly, by shares, percentages, or exact amounts."
+      },
+      "tracking": {
+        "title": "Full activity log",
+        "description": "See every change with who made it, when they made it."
+      }
+    },
+    "howItWorks": {
+      "title": "How it works",
+      "step1": {
+        "title": "Create a group",
+        "description": "Sign in and create a group for your trip, household, or event."
+      },
+      "step2": {
+        "title": "Add expenses",
+        "description": "Log who paid for what and how it should be split."
+      },
+      "step3": {
+        "title": "Share the link",
+        "description": "Anyone with the link can view the group — editing requires an account."
+      }
     }
   },
   "Header": {
-    "groups": "Groups"
+    "groups": "Groups",
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "account": "Account"
+  },
+  "Auth": {
+    "signIn": "Sign in to Spliit",
+    "enterEmail": "Enter your email to receive a login code.",
+    "enterCode": "Check your email for the 6-digit code.",
+    "emailLabel": "Email address",
+    "sendCode": "Send code",
+    "codeSentTo": "Code sent to {email}",
+    "codeLabel": "Login code",
+    "verify": "Verify & sign in",
+    "changeEmail": "Use a different email",
+    "errorSending": "Failed to send code. Please try again.",
+    "errorVerifying": "Invalid or expired code. Please try again."
   },
   "Footer": {
     "madeIn": "Made in Montréal, Québec 🇨🇦",
@@ -85,6 +132,10 @@
     "NotFound": {
       "text": "This group does not exist.",
       "link": "Go to recently visited groups"
+    },
+    "ClaimBanner": {
+      "description": "This group has no owner — claim it to prevent others from editing.",
+      "button": "Claim group"
     }
   },
   "GroupForm": {
@@ -117,7 +168,16 @@
       "add": "Add participant",
       "John": "John",
       "Jane": "Jane",
-      "Jack": "Jack"
+      "Jack": "Jack",
+      "Link": {
+        "title": "Link to account",
+        "link": "Link",
+        "linked": "Linked to account",
+        "unlink": "Unlink",
+        "alreadyLinked": "This participant is linked to an account.",
+        "emailPlaceholder": "user@example.com",
+        "error": "Something went wrong"
+      }
     },
     "Settings": {
       "title": "Local settings",

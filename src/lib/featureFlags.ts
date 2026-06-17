@@ -21,6 +21,7 @@ export async function getRuntimeFeatureFlags() {
     enableCategoryExtract:
       parseFlag(process.env.ENABLE_CATEGORY_EXTRACT) ||
       env.NEXT_PUBLIC_ENABLE_CATEGORY_EXTRACT,
+    storageProvider: env.STORAGE_PROVIDER,
   }
 }
 

@@ -29,15 +29,46 @@ import { useEffect, useState } from 'react'
 type Props = {
   documents: ExpenseFormValues['documents']
   updateDocuments: (documents: ExpenseFormValues['documents']) => void
+  storageProvider?: 's3' | 'r2'
 }
 
 const MAX_FILE_SIZE = 5 * 1024 ** 2
 
-export function ExpenseDocumentsInput({ documents, updateDocuments }: Props) {
+async function uploadToR2(
+  file: File,
+): Promise<{ url: string; width: number; height: number }> {
+  const res = await fetch('/api/r2-upload', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ filename: file.name, contentType: file.type }),
+  })
+  if (!res.ok) throw new Error('Failed to get R2 upload URL')
+  const { presignedUrl, publicUrl } = (await res.json()) as {
+    presignedUrl: string
+    publicUrl: string
+  }
+
+  const putRes = await fetch(presignedUrl, {
+    method: 'PUT',
+    headers: { 'Content-Type': file.type },
+    body: file,
+  })
+  if (!putRes.ok) throw new Error('Failed to upload to R2')
+
+  const { width, height } = await getImageData(file)
+  if (!width || !height) throw new Error('Cannot get image dimensions')
+  return { url: publicUrl, width, height }
+}
+
+export function ExpenseDocumentsInput({
+  documents,
+  updateDocuments,
+  storageProvider = 's3',
+}: Props) {
   const locale = useLocale()
   const t = useTranslations('ExpenseDocumentsInput')
   const [pending, setPending] = useState(false)
-  const { FileInput, openFileDialog, uploadToS3 } = usePresignedUpload() // use presigned uploads to addtionally support providers other than AWS
+  const { FileInput, openFileDialog, uploadToS3 } = usePresignedUpload()
   const { toast } = useToast()
 
   const handleFileChange = async (file: File) => {
@@ -56,9 +87,17 @@ export function ExpenseDocumentsInput({ documents, updateDocuments }: Props) {
     const upload = async () => {
       try {
         setPending(true)
-        const { width, height } = await getImageData(file)
-        if (!width || !height) throw new Error('Cannot get image dimensions')
-        const { url } = await uploadToS3(file)
+        let url: string, width: number, height: number
+        if (storageProvider === 'r2') {
+          ;({ url, width, height } = await uploadToR2(file))
+        } else {
+          const { width: w, height: h } = await getImageData(file)
+          if (!w || !h) throw new Error('Cannot get image dimensions')
+          const s3 = await uploadToS3(file)
+          ;({ url } = s3)
+          width = w
+          height = h
+        }
         updateDocuments([...documents, { id: randomId(), url, width, height }])
       } catch (err) {
         console.error(err)

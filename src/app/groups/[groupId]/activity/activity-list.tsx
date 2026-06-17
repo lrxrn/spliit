@@ -141,6 +141,7 @@ export function ActivityList() {
                   activity={activity}
                   participant={participant}
                   dateStyle={dateStyle}
+                  actorName={activity.actorName ?? undefined}
                 />
               )
             })}

@@ -16,6 +16,7 @@ type Props = {
   activity: Activity
   participant?: Participant
   dateStyle: DateTimeStyle
+  actorName?: string
 }
 
 function useSummary(activity: Activity, participantName?: string) {
@@ -47,6 +48,7 @@ export function ActivityItem({
   activity,
   participant,
   dateStyle,
+  actorName,
 }: Props) {
   const router = useRouter()
   const locale = useLocale()
@@ -78,6 +80,11 @@ export function ActivityItem({
       </div>
       <div className="flex-1">
         <div className="m-1">{summary}</div>
+        {actorName && (
+          <div className="mx-1 text-xs text-muted-foreground">
+            by {actorName}
+          </div>
+        )}
       </div>
       {expenseExists && (
         <Button
